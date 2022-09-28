@@ -88,3 +88,26 @@ variable "db_sg_rule" {
   type    = string
   default = "postgresql-tcp"
 }
+
+variable "customer_gateway_ip_address" {
+  type = string
+  default = "40.78.225.32"
+}
+
+variable "repl_instance_engine_version" {
+  type        = string
+  description = "replication_instance_engine_version"
+  default     = "3.4.5"
+}
+
+variable "repl_instance_class" {
+  type        = string
+  description = "replication_instance_class"
+  default     = "dms.t3.medium"
+}
+
+variable "source_endpoint_database_password" {
+  type        = string
+  # sensitive   = true
+}
+
