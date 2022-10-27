@@ -1,13 +1,13 @@
 variable "aws_region" {
   type = map(string)
   default = {
-    dev   = "us-east-1"
+    dev   = "us-west-2"
   }
 }
 
 variable "project_name" {
   type    = string
-  default = "sms"
+  default = "actriv"
 }
 
 
@@ -91,13 +91,13 @@ variable "db_sg_rule" {
 
 variable "customer_gateway_ip_address" {
   type = string
-  default = "40.78.225.32"
+  default = "52.151.239.113"
 }
 
 variable "repl_instance_engine_version" {
   type        = string
   description = "replication_instance_engine_version"
-  default     = "3.4.5"
+  default     = "3.4.7"
 }
 
 variable "repl_instance_class" {
@@ -111,3 +111,14 @@ variable "source_endpoint_database_password" {
   # sensitive   = true
 }
 
+variable "redshift_master_password" {
+  type        = string
+  # sensitive   = true
+}
+
+
+variable "redshift_node_type" {
+  type        = string
+  description = "redshift node type"
+  default     = "ra3.xlplus"
+}

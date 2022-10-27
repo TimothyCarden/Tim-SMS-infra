@@ -1,16 +1,15 @@
 {
     "rules": [
       {
-        "rule-type": "transformation",
-        "rule-id": "1",
-        "rule-name": "Rule name 1",
-        "rule-action": "rename",
-        "rule-target": "schema",
+        "rule-type": "selection",
+        "rule-id": "398800311",
+        "rule-name": "398800311",
         "object-locator": {
-          "schema-name": "SCHEMA_1",
-          "table-name": "TABLE_1"
+          "schema-name": "dbo",
+          "table-name": "%"
         },
-        "value": "main"
+        "rule-action": "include",
+        "filters": []
       }
     ]
   }

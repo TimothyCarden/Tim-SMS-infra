@@ -113,7 +113,7 @@
     "HandleCollationDiff": false,
     "ValidationOnly": false,
     "RecordFailureDelayLimitInMinutes": 0,
-    "SkipLobColumns": false,
+    "SkipLobColumns": true,
     "ValidationPartialLobSize": 0,
     "ValidationQueryCdcDelaySeconds": 0,
     "PartitionSize": 10000

@@ -1,5 +1,5 @@
 module "infrastructure" {
-  source = "git::git@github.com:ZapNURSE/terraform-module-infra.git?ref=ACTR-26-spin-up-dms-instance-with-instance-type-dms-t-3-medium"
+  source = "git::git@github.com:ZapNURSE/terraform-module-infra.git?ref=develop"
 
   aws_region   = lookup(var.aws_region, local.env)
   env          = local.env
@@ -22,4 +22,6 @@ module "infrastructure" {
   repl_instance_engine_version      = var.repl_instance_engine_version
   repl_instance_class               = var.repl_instance_class
   source_endpoint_database_password = var.source_endpoint_database_password
+  redshift_master_password          = var.redshift_master_password
+  redshift_node_type                = var.redshift_node_type
 }

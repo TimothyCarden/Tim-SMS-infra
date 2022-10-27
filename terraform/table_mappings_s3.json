@@ -1,0 +1,202 @@
+{
+    "rules": [
+      {
+        "rule-type": "selection",
+        "rule-id": "398800311",
+        "rule-name": "398800311",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "orders"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800312",
+        "rule-name": "398800312",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "order_type"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800313",
+        "rule-name": "398800313",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "order_type_LT"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800314",
+        "rule-name": "398800314",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "lt_order"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800315",
+        "rule-name": "398800315",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "lt_order_rates"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800316",
+        "rule-name": "398800316",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "orders_OrderSources"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800317",
+        "rule-name": "398800317",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "profile_client"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800318",
+        "rule-name": "398800318",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "profile_temp"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800319",
+        "rule-name": "398800319",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "schedule"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800320",
+        "rule-name": "398800320",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "shift_options"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800321",
+        "rule-name": "398800321",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "shift_client_sel"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800322",
+        "rule-name": "398800322",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "tempRequestedShifts"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800323",
+        "rule-name": "398800323",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "facilities"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800324",
+        "rule-name": "398800324",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "specs"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800325",
+        "rule-name": "398800325",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "TempSpec"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800326",
+        "rule-name": "398800326",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "certs"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800327",
+        "rule-name": "398800327",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "TempCert"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800328",
+        "rule-name": "398800328",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "regions"
+        },
+        "rule-action": "include",
+        "filters": []
+      }
+    ]
+  }
