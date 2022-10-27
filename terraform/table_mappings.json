@@ -1,0 +1,15 @@
+{
+    "rules": [
+      {
+        "rule-type": "selection",
+        "rule-id": "398800311",
+        "rule-name": "398800311",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "%"
+        },
+        "rule-action": "include",
+        "filters": []
+      }
+    ]
+  }
