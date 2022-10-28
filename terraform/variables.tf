@@ -79,10 +79,10 @@ variable "db_user" {
   default = "postgres"
 }
 
-# variable "db_password" {
-#   type = string
-#   # sensitive = true
-# }
+variable "db_password" {
+  type = string
+  # sensitive = true
+}
 
 variable "db_sg_rule" {
   type    = string
@@ -106,15 +106,15 @@ variable "repl_instance_class" {
   default     = "dms.t3.medium"
 }
 
-# variable "source_endpoint_database_password" {
-#   type        = string
-#   # sensitive   = true
-# }
+variable "source_endpoint_database_password" {
+  type        = string
+  # sensitive   = true
+}
 
-# variable "redshift_master_password" {
-#   type        = string
-#   # sensitive   = true
-# }
+variable "redshift_master_password" {
+  type        = string
+  # sensitive   = true
+}
 
 
 variable "redshift_node_type" {
