@@ -197,6 +197,116 @@
         },
         "rule-action": "include",
         "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800329",
+        "rule-name": "398800329",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "ClientTaxParameter"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800330",
+        "rule-name": "398800330",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "invoice_period_codes"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800331",
+        "rule-name": "398800331",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "invoiceBillTypes"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800332",
+        "rule-name": "398800332",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "InvoiceHistory"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800333",
+        "rule-name": "398800333",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "InvoiceLineItems"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800334",
+        "rule-name": "398800334",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "invoices"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800335",
+        "rule-name": "398800335",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "PaybillCodes"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800336",
+        "rule-name": "398800336",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "PaybillCodes_Other"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800337",
+        "rule-name": "398800337",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "paycheck"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800338",
+        "rule-name": "398800338",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "paycheck_lineitems"
+        },
+        "rule-action": "include",
+        "filters": []
       }
     ]
   }
