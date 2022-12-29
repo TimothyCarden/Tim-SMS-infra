@@ -1,0 +1,26 @@
+{
+    "rules": [
+      {
+        "rule-type": "selection",
+        "rule-id": "398800311",
+        "rule-name": "398800311",
+        "object-locator": {
+          "schema-name": "public",
+          "table-name": "sent_message"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800312",
+        "rule-name": "398800312",
+        "object-locator": {
+          "schema-name": "public",
+          "table-name": "sent_message_order"
+        },
+        "rule-action": "include",
+        "filters": []
+      }
+    ]
+  }

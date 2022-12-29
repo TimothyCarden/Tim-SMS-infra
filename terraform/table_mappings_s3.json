@@ -307,6 +307,17 @@
         },
         "rule-action": "include",
         "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800339",
+        "rule-name": "398800339",
+        "object-locator": {
+          "schema-name": "dbo",
+          "table-name": "notes"
+        },
+        "rule-action": "include",
+        "filters": []
       }
     ]
   }

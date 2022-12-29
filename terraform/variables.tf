@@ -103,7 +103,7 @@ variable "repl_instance_engine_version" {
 variable "repl_instance_class" {
   type        = string
   description = "replication_instance_class"
-  default     = "dms.t3.medium"
+  default     = "dms.t3.large"
 }
 
 variable "source_endpoint_database_password" {
