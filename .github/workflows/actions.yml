@@ -1,57 +1,57 @@
-name: 'Terraform'
+# name: 'Terraform'
 
-on:
-  push:
-    branches: [ "develop" ]
-  pull_request:
+# on:
+#   push:
+#     branches: [ "develop" ]
+#   pull_request:
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    environment: production
+# jobs:
+#   terraform:
+#     name: 'Terraform'
+#     runs-on: ubuntu-latest
+#     environment: production
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+#     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+#     defaults:
+#       run:
+#         shell: bash
 
-    steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+#     steps:
+#     # Checkout the repository to the GitHub Actions runner
+#     - name: Checkout
+#       uses: actions/checkout@v3
 
-    - name: Verify Terraform version
-      run: terraform --version
+#     - name: Verify Terraform version
+#       run: terraform --version
 
-    - name: Terraform init
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
-          && ssh-keyscan github.com > known_hosts
-          && chmod 600 id_rsa known_hosts
-          && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
-      working-directory: ./terraform
-      run: terraform init -input=false
+#     - name: Terraform init
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
+#           && ssh-keyscan github.com > known_hosts
+#           && chmod 600 id_rsa known_hosts
+#           && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
+#       working-directory: ./terraform
+#       run: terraform init -input=false
 
-    - name: Terraform validation
-      working-directory: ./terraform
-      run: terraform validate
+#     - name: Terraform validation
+#       working-directory: ./terraform
+#       run: terraform validate
 
-    - name: Terraform workspace 
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      working-directory: ./terraform
-      run: terraform workspace select dev
+#     - name: Terraform workspace 
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       working-directory: ./terraform
+#       run: terraform workspace select dev
 
-    - name: Terraform plan
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      working-directory: ./terraform
-      run: terraform plan -var "db_password=${{ secrets.CTMS_POSTGRES_DB_PASSWORD }}" -var "redshift_master_password=${{ secrets.CTMS_REDSHIFT_PASSWORD }}" -var "source_endpoint_database_password=${{ secrets.CTMS_AZURE_DB_PASSWORD }}"
+#     - name: Terraform plan
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       working-directory: ./terraform
+#       run: terraform plan -var "db_password=${{ secrets.CTMS_POSTGRES_DB_PASSWORD }}" -var "redshift_master_password=${{ secrets.CTMS_REDSHIFT_PASSWORD }}" -var "source_endpoint_database_password=${{ secrets.CTMS_AZURE_DB_PASSWORD }}"
