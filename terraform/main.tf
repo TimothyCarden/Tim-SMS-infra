@@ -28,4 +28,8 @@ module "infrastructure" {
   source_endpoint_database_password = local.azure_sql_password
   enable_replication_from_azure     = lookup(var.enable_replication_from_azure, local.env)
   namespace_service_accounts        = lookup(var.namespace_service_accounts, local.env)
+  bucket_name                       = lookup(var.bucket_name, local.env)
+  endpoint                          = lookup(var.endpoint, local.env)
+  service_name                      = var.service_name
+  domain_name                       = lookup(var.domain_name, local.env)
 }

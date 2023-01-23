@@ -171,3 +171,38 @@ variable "namespace_service_accounts" {
     test  = "default:secret-manager-service-account"
   }
 }
+
+
+variable "bucket_name" {
+  type = map(string)
+  default = {
+    prod  = "app.actrusfm.com"
+    dev   = "app.dev.actrusfm.com"
+    test = "app.stage.actrusfm.com"
+  }
+}
+
+variable "endpoint" {
+  type = map(string)
+  default = {
+    prod  = "actrusfm.com"
+    dev   = "dev.actrusfm.com"
+    test  = "test.actrusfm.com"
+  }
+}
+
+
+variable "service_name" {
+  type    = string
+  default = ""
+}
+
+variable "domain_name" {
+  type = map(string)
+  default = {
+    prod  = "actrusfm.com"
+    dev   = "dev.actrusfm.com"
+    test =  "test.actrusfm.com"
+  }
+}
+
