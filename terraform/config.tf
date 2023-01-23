@@ -5,6 +5,18 @@ terraform {
   #     version = "3.62.0"
   #   }
   # }
+   required_providers {
+
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.10"
+    }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.5.1"
+    }
+  }
 
 
   backend "s3" {
@@ -18,4 +30,16 @@ terraform {
 
 provider "aws" {
   region = lookup(var.aws_region, local.env)
+}
+
+provider "helm" {
+  # Several Kubernetes authentication methods are possible: https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#authentication
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+
+}
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
 }
