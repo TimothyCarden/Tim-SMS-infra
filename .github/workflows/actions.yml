@@ -58,4 +58,4 @@ jobs:
         working-directory: ./terraform
         run: |
           terraform plan -target=module.infrastructure.module.vpc -out .tfplan 
-          terraform apply -auto-approve
+          terraform apply -auto-approve .tfplan
