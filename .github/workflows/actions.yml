@@ -44,6 +44,11 @@ jobs:
             && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
         run: |
            terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
+      
+      - name: kubeconfing
+        run: |
+           aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region "us-west-2"
+           export KUBE_CONFIG_DATA=$(cat ~/.kube/config | base64)
 
       - name: Terraform validation
         working-directory: ./terraform
