@@ -5,3 +5,11 @@ output "app_client_id" {
 output "cognito_user_pool_id" {
   value = module.infrastructure.cognito_user_pool_id
 }
+
+output "distribution_id" {
+  value = module.infrastructure.distribution_id
+}
+
+output "bucket_name" {
+  value = module.infrastructure.bucket_name
+}
