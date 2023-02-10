@@ -1,65 +1,109 @@
-name: 'Deploy Whole Infrastructure'
+# name: 'Deploy Whole Infrastructure'
 
-on:
-  push:
-    branches: ["infrastructure_for_alpha_version"]
+# on:
+#   push:
+#     branches: ["infrastructure_for_alpha_version"]
 
-jobs:
-  prepare-environment:
-    name: 'Setup Terraform'
-    runs-on: ubuntu-latest
+# jobs:
+#   prepare-environment:
+#     name: 'Setup Terraform'
+#     runs-on: ubuntu-latest
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+#     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+#     defaults:
+#       run:
+#         shell: bash
 
-    steps: 
-    - name: Setup Terraform
-      uses: autero1/action-terraform@v1.1.0
-      with:
-        terraform_version: 1.3.0
-  deploy_to_dev:
-    runs-on: ubuntu-latest
-    needs: prepare-environment
-    environment: develop
-    steps:
-      # Checkout the repository to the GitHub Actions runner
-      - name: Checkout
-        uses: actions/checkout@v3
+#     steps: 
+#     - name: Setup Terraform
+#       uses: autero1/action-terraform@v1.1.0
+#       with:
+#         terraform_version: 1.3.0
+#   deploy_to_dev:
+#     runs-on: ubuntu-latest
+#     needs: prepare-environment
+#     environment: develop
+#     steps:
+#       # Checkout the repository to the GitHub Actions runner
+#       - name: Checkout
+#         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials 
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+#       - name: Configure AWS Credentials 
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-west-2
 
-      - name: Terraform init
-        working-directory: ./terraform
-        env:
-          GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
-            && ssh-keyscan github.com > known_hosts
-            && chmod 600 id_rsa known_hosts
-            && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
-        run: |
-           terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
+#       - name: Terraform init
+#         working-directory: ./terraform
+#         env:
+#           GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
+#             && ssh-keyscan github.com > known_hosts
+#             && chmod 600 id_rsa known_hosts
+#             && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
+#         run: |
+#            terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
       
-      - name: kubeconfing
-        run: |
-           aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region "us-west-2"
-           export KUBE_CONFIG_DATA=$(cat ~/.kube/config | base64)
+#       - name: kubeconfing
+#         run: |
+#            aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region "us-west-2"
+#            export KUBE_CONFIG_DATA=$(cat ~/.kube/config | base64)
 
-      - name: Terraform validation
-        working-directory: ./terraform
-        run: |
-          terraform validate
+#       - name: Terraform validation
+#         working-directory: ./terraform
+#         run: |
+#           terraform validate
 
-      - name: Terraform workspace 
-        working-directory: ./terraform 
-        run: terraform workspace select ${{ vars.ENV }}
+#       - name: Terraform workspace 
+#         working-directory: ./terraform 
+#         run: terraform workspace select ${{ vars.ENV }}
       
-      - name: Terraform apply
-        working-directory: ./terraform
-        run: |
-          terraform apply -auto-approve
+#       - name: Terraform apply
+#         working-directory: ./terraform
+#         run: |
+#           terraform apply -auto-approve
+#   deploy_to_prod:
+#     runs-on: ubuntu-latest
+#     needs: prepare-environment
+#     environment: production
+#     steps:
+#       # Checkout the repository to the GitHub Actions runner
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: Configure AWS Credentials 
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-west-2
+
+#       - name: Terraform init
+#         working-directory: ./terraform
+#         env:
+#           GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
+#             && ssh-keyscan github.com > known_hosts
+#             && chmod 600 id_rsa known_hosts
+#             && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
+#         run: |
+#            terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
+      
+#       - name: kubeconfing
+#         run: |
+#            aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region "us-west-2"
+#            export KUBE_CONFIG_DATA=$(cat ~/.kube/config | base64)
+
+#       - name: Terraform validation
+#         working-directory: ./terraform
+#         run: |
+#           terraform validate
+
+#       - name: Terraform workspace 
+#         working-directory: ./terraform 
+#         run: terraform workspace select ${{ vars.ENV }}
+      
+#       - name: Terraform apply
+#         working-directory: ./terraform
+#         run: |
+#           terraform apply -auto-approve
