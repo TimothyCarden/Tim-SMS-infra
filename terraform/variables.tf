@@ -122,7 +122,7 @@ variable "enable_multi_az" {
   type   =  map(bool)
   default = {
     dev   = false
-    prod  = true
+    prod  = false
     test  = false
   }
 }
