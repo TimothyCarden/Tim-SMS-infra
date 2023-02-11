@@ -1,11 +1,32 @@
-data "aws_ssm_parameter" "rds_db_password" {
-  name = "CTMS_POSTGRES_DB_PASSWORD"
+# =================================
+# RDS Password
+# =================================
+
+data "aws_secretsmanager_secret" "rds_password" {
+  name = "${local.env}/PostgreDatabasePassword"
+}
+data "aws_secretsmanager_secret_version" "rds_password" {
+  secret_id = data.aws_secretsmanager_secret.rds_password.id
 }
 
-data "aws_ssm_parameter" "redshift_master_password" {
-  name = "CTMS_REDSHIFT_PASSWORD"
+# =================================
+# Redshift Password
+# =================================
+
+data "aws_secretsmanager_secret" "redshift_password" {
+  name = "${local.env}/RedshiftPassword"
+}
+data "aws_secretsmanager_secret_version" "redshift_password" {
+  secret_id = data.aws_secretsmanager_secret.redshift_password.id
 }
 
-data "aws_ssm_parameter" "sql_server_password" {
-  name = "CTMS_AZURE_DB_PASSWORD"
+# =================================
+# CTMS Sql server
+# =================================
+
+data "aws_secretsmanager_secret" "azure_sql_password" {
+  name = "${local.env}/AzureSqlServerPassword"
+}
+data "aws_secretsmanager_secret_version" "azure_sql_password" {
+  secret_id = data.aws_secretsmanager_secret.azure_sql_password.id
 }

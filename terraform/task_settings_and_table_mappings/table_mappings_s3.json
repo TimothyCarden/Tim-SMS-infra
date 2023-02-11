@@ -318,6 +318,91 @@
         },
         "rule-action": "include",
         "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800340",
+        "rule-name": "398800340",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%PayNotes",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800341",
+        "rule-name": "398800341",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%notes",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800342",
+        "rule-name": "398800342",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%resume_text",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800343",
+        "rule-name": "398800343",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%resume_html",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800344",
+        "rule-name": "398800344",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%notes2",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
+      },
+      {
+        "rule-type": "transformation",
+        "rule-id": "398800345",
+        "rule-name": "398800345",
+        "rule-target" : "column",
+        "value" : null , 
+        "object-locator": {
+          "column-name" : "%HRNotes",
+          "schema-name": "%dbo",
+          "table-name": "%profile_temp"
+        },
+        "rule-action": "remove-column",
+        "filters": []
       }
+     
     ]
   }
