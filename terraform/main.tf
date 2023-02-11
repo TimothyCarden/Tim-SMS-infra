@@ -24,7 +24,7 @@ module "infrastructure" {
   redshift_master_password          = local.redshift_password
   redshift_node_type                = lookup(var.redshift_node_type, local.env)
   eks_instance_types                = lookup(var.eks_instance_types, local.env)
-  # customer_gateway_ip_address       = var.customer_gateway_ip_address
+  customer_gateway_ip_address       = var.customer_gateway_ip_address
   source_endpoint_database_password = local.azure_sql_password
   enable_replication_from_azure     = lookup(var.enable_replication_from_azure, local.env)
   namespace_service_accounts        = lookup(var.namespace_service_accounts, local.env)
