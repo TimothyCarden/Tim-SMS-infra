@@ -96,10 +96,10 @@ variable "db_sg_rule" {
   default = "postgresql-tcp"
 }
 
-# variable "customer_gateway_ip_address" {
-#   type = string
-#   default = "52.151.239.113"
-# }
+variable "customer_gateway_ip_address" {
+  type = string
+  default = "52.151.239.113"
+}
 
 variable "repl_instance_engine_version" {
   type        = string
