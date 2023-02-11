@@ -2,7 +2,7 @@ name: 'Deploy Whole Infrastructure'
 
 on:
   push:
-    branches: ["infrastructure_for_alpha_version"]
+    branches: ["develop"]
 
 jobs:
   prepare-environment:
