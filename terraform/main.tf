@@ -33,3 +33,4 @@ module "infrastructure" {
   service_name                      = var.service_name
   domain_name                       = lookup(var.domain_name, local.env)
 }
+
