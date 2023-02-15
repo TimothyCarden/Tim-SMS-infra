@@ -17,7 +17,7 @@
         "rule-name": "453444783",
         "object-locator": {
           "schema-name": "workforce",
-          "table-name": "provider_shift_request"
+          "table-name": "provider_order_request"
         },
         "rule-action": "include",
         "filters": []
