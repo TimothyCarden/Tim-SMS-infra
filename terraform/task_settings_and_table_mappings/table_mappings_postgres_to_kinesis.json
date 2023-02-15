@@ -1,0 +1,26 @@
+{
+    "rules": [
+      {
+        "rule-type": "selection",
+        "rule-id": "454785572",
+        "rule-name": "454785572",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_order"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "453444783",
+        "rule-name": "453444783",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "provider_shift_request"
+        },
+        "rule-action": "include",
+        "filters": []
+      }
+    ]
+  }
