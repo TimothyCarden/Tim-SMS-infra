@@ -30,3 +30,14 @@ data "aws_secretsmanager_secret" "azure_sql_password" {
 data "aws_secretsmanager_secret_version" "azure_sql_password" {
   secret_id = data.aws_secretsmanager_secret.azure_sql_password.id
 }
+
+# =================================
+# FCM Api Key
+# =================================
+
+data "aws_secretsmanager_secret" "fcm_api_key" {
+  name = "${local.env}/FCMApiKEY"
+}
+data "aws_secretsmanager_secret_version" "fcm_api_key" {
+  secret_id = data.aws_secretsmanager_secret.fcm_api_key.id
+}
