@@ -23,7 +23,7 @@ jobs:
         terraform_version: 1.3.0
   deploy_to_dev:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/develop')
+    if: ${{ github.event_name == 'repository_dispatch' || startsWith(github.ref, 'refs/heads/develop')}} 
     needs: prepare-environment
     environment: develop
     steps:
