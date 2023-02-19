@@ -69,7 +69,7 @@ jobs:
       
       - name: Resume replication tasks
         run: |
-           aws dms resume-replication-task --replication-task-arn arn:aws:dms:us-west-2:415172466759:task:HESWKUTLFA4TM5AEMXXSMW4FK6SOZKAOZ7HY5BA
+           aws dms start-replication-task --replication-task-arn arn:aws:dms:us-west-2:415172466759:task:HESWKUTLFA4TM5AEMXXSMW4FK6SOZKAOZ7HY5BA
   deploy_to_prod:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/heads/release/')
