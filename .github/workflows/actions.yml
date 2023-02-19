@@ -1,6 +1,7 @@
 name: 'Deploy Whole Infrastructure'
 
 on:
+  repository_dispatch:
   push:
     branches: ["develop","release/*"]
 
