@@ -2,6 +2,7 @@ name: 'Deploy Whole Infrastructure'
 
 on:
   repository_dispatch:
+   types: [custom-event]
   push:
     branches: ["develop","release/*"]
 
