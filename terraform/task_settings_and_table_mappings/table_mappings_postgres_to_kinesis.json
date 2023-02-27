@@ -1,26 +1,37 @@
 {
-    "rules": [
-      {
-        "rule-type": "selection",
-        "rule-id": "454785572",
-        "rule-name": "454785572",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "shift_order"
-        },
-        "rule-action": "include",
-        "filters": []
+  "rules": [
+    {
+      "rule-type": "selection",
+      "rule-id": "454785572",
+      "rule-name": "454785572",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "453444783",
-        "rule-name": "453444783",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "provider_order_request"
-        },
-        "rule-action": "include",
-        "filters": []
-      }
-    ]
-  }
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "453444783",
+      "rule-name": "453444783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_order_request"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "453445783",
+      "rule-name": "453445783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order_time_sheet"
+      },
+      "rule-action": "include",
+      "filters": []
+    }
+  ]
+}

@@ -23,7 +23,8 @@
     "StopTaskCachedChangesNotApplied": false,
     "MaxFullLoadSubTasks": 8,
     "TransactionConsistencyTimeout": 600,
-    "CommitRate": 10000
+    "CommitRate": 10000,
+    "TargetTablePrepMode": "DO_NOTHING"
   },
   "Logging": {
     "EnableLogging": true,
