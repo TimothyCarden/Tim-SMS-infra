@@ -21,6 +21,28 @@
         },
         "rule-action": "include",
         "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800313",
+        "rule-name": "398800313",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_invoice "
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800314",
+        "rule-name": "398800314",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_payroll"
+        },
+        "rule-action": "include",
+        "filters": []
       }
     ]
   }
