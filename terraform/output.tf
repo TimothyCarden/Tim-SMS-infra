@@ -13,3 +13,23 @@ output "distribution_id" {
 output "bucket_name" {
   value = module.infrastructure.bucket_name
 }
+
+output "postgres_to_s3_replication_task_arn" {
+  value = module.infrastructure.postgres_to_s3_replication_task_arn
+}
+
+output "postgres_to_kinesis_replication_task_arn" {
+  value = module.infrastructure.postgres_to_kinesis_replication_task_arn
+}
+
+output "workforce_to_s3_replication_task_arn" {
+  value = module.infrastructure.workforce_to_s3_replication_task_arn
+}
+
+output "sql_to_s3_replication_task_arn" {
+  value = module.infrastructure.sql_to_s3_replication_task_arn ? module.infrastructure.sql_to_s3_replication_task_arn : "null"
+}
+
+output "sql_to_postgres_replication_task_arn" {
+  value = module.infrastructure.sql_to_postgres_replication_task_arn ? module.infrastructure.sql_to_postgres_replication_task_arn : "null"
+}
