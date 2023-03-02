@@ -2,22 +2,22 @@
     "rules": [
       {
         "rule-type": "selection",
-        "rule-id": "398800311",
-        "rule-name": "398800311",
+        "rule-id": "398800313",
+        "rule-name": "398800313",
         "object-locator": {
-          "schema-name": "public",
-          "table-name": "sent_message"
+          "schema-name": "workforce",
+          "table-name": "shift_invoice "
         },
         "rule-action": "include",
         "filters": []
       },
       {
         "rule-type": "selection",
-        "rule-id": "398800312",
-        "rule-name": "398800312",
+        "rule-id": "398800314",
+        "rule-name": "398800314",
         "object-locator": {
-          "schema-name": "public",
-          "table-name": "sent_message_order"
+          "schema-name": "workforce",
+          "table-name": "shift_payroll"
         },
         "rule-action": "include",
         "filters": []
