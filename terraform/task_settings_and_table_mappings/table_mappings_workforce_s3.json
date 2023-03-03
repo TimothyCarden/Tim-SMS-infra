@@ -6,7 +6,7 @@
         "rule-name": "398800313",
         "object-locator": {
           "schema-name": "workforce",
-          "table-name": "shift_invoice "
+          "table-name": "shift_invoice"
         },
         "rule-action": "include",
         "filters": []
