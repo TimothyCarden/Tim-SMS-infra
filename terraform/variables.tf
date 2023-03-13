@@ -3,7 +3,7 @@ variable "aws_region" {
   default = {
     dev   = "us-west-2"
     prod  = "us-west-2"
-    test  = "us-west-2"
+    stage  = "us-west-2"
   }
 }
 
@@ -18,7 +18,7 @@ variable "cidrs" {
   default = {
     dev   = "10.12.0.0/16"
     prod  = "10.13.0.0/16"
-    test  = "10.14.0.0/16"
+    stage  = "10.14.0.0/16"
   }
 }
 
@@ -51,7 +51,7 @@ variable "db_instance_type" {
   default = {
     dev   = "db.t4g.medium"
     prod  = "db.t4g.medium"
-    test  = "db.t4g.medium"
+    stage  = "db.t4g.medium"
   }
   description = "Size of the RDS DB instance"
 }
@@ -73,7 +73,7 @@ variable "db_storage" {
   default = {
     dev    = 200
     prod   = 200
-    test   = 200
+    stage   = 200
   }
 }
 
@@ -82,7 +82,7 @@ variable "db_backup_retention_period" {
   default = {
     dev   = 7
     prod  = 7
-    test  = 7
+    stage  = 7
   }
 }
 
@@ -113,7 +113,7 @@ variable "repl_instance_class" {
   default = {
     dev   = "dms.t3.large"
     prod  = "dms.t3.large"
-    test  = "dms.t3.large"
+    stage  = "dms.t3.large"
   }
 }
 
@@ -123,7 +123,7 @@ variable "enable_multi_az" {
   default = {
     dev   = false
     prod  = false
-    test  = false
+    stage  = false
   }
 }
 
@@ -134,7 +134,7 @@ variable "enable_replication_from_azure" {
   default = {
     dev   = false
     prod  = true
-    test  = false
+    stage  = false
   }
 }
 
@@ -149,7 +149,7 @@ variable "redshift_node_type" {
   default = {
     dev   = "ra3.xlplus"
     prod  = "ra3.xlplus"
-    test  = "ra3.xlplus"
+    stage  = "ra3.xlplus"
   }
   description = "redshift node type"
 }
@@ -159,7 +159,7 @@ variable "eks_instance_types" {
   default = {
     dev   = "t3.medium"
     prod  = "t3.medium"
-    test  = "t3.medium"
+    stage  = "t3.medium"
   }
 }
 
@@ -168,7 +168,7 @@ variable "namespace_service_accounts" {
   default = {
     dev   = "default:secret-manager-service-account"
     prod  = "default:secret-manager-service-account"
-    test  = "default:secret-manager-service-account"
+    stage  = "default:secret-manager-service-account"
   }
 }
 
@@ -178,7 +178,7 @@ variable "bucket_name" {
   default = {
     prod  = "app.actrusfm.com"
     dev   = "app.dev.actrusfm.com"
-    test = "app.stage.actrusfm.com"
+    stage = "app.stage.actrusfm.com"
   }
 }
 
@@ -187,7 +187,7 @@ variable "endpoint" {
   default = {
     prod  = "actrusfm.com"
     dev   = "dev.actrusfm.com"
-    test  = "test.actrusfm.com"
+    stage  = "stage.actrusfm.com"
   }
 }
 
@@ -202,7 +202,7 @@ variable "domain_name" {
   default = {
     prod  = "actrusfm.com"
     dev   = "dev.actrusfm.com"
-    test =  "test.actrusfm.com"
+    stage =  "stage.actrusfm.com"
   }
 }
 

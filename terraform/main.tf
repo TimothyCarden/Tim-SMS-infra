@@ -1,5 +1,5 @@
 module "infrastructure" {
-  source = "git::git@github.com:ZapNURSE/terraform-module-infra.git?ref=develop"
+  source = "git::git@github.com:ZapNURSE/terraform-module-infra.git?ref=stage_env"
 
   aws_region                        = lookup(var.aws_region, local.env)
   env                               = local.env
