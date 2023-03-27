@@ -134,3 +134,61 @@ jobs:
            aws dms start-replication-task --replication-task-arn ${{ env.WORKFORCE_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
            aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
            aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_POSTGRES_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
+  deploy_to_stage:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/stage_env')
+    needs: prepare-environment
+    environment: stage
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials 
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Terraform init
+        working-directory: ./terraform
+        env:
+          GIT_SSH_COMMAND: "echo '${{ secrets.GH_SSH_KEY }}' > id_rsa
+            && ssh-keyscan github.com > known_hosts
+            && chmod 600 id_rsa known_hosts
+            && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
+        run: |
+           terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
+      
+      - name: kubeconfing
+        run: |
+           aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region "us-west-2"
+           export KUBE_CONFIG_DATA=$(cat ~/.kube/config | base64)
+
+      - name: Terraform validation
+        working-directory: ./terraform
+        run: |
+          terraform validate
+
+      - name: Terraform workspace 
+        working-directory: ./terraform 
+        run: terraform workspace select ${{ vars.ENV }}
+      
+      - name: Terraform apply
+        working-directory: ./terraform
+        run: |
+          terraform apply -auto-approve
+          echo "POSTGRES_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_s3_replication_task_arn`" >> $GITHUB_ENV
+          echo "POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_kinesis_replication_task_arn`" >> $GITHUB_ENV
+          echo "WORKFORCE_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw workforce_to_s3_replication_task_arn`" >> $GITHUB_ENV
+          echo "SQL_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw sql_to_s3_replication_task_arn`" >> $GITHUB_ENV
+          echo "SQL_TO_POSTGRES_REPLICATION_TASK_ARN=`terraform output -raw sql_to_postgres_replication_task_arn`" >> $GITHUB_ENV
+      
+      - name: Resume replication tasks
+        run: |
+           aws dms start-replication-task --replication-task-arn ${{ env.POSTGRES_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
+           aws dms start-replication-task --replication-task-arn ${{ env.POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
+           aws dms start-replication-task --replication-task-arn ${{ env.WORKFORCE_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
+           aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
+           aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_POSTGRES_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
