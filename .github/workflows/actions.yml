@@ -4,7 +4,7 @@ on:
   repository_dispatch:
    types: [custom-event]
   push:
-    branches: ["develop","release/*","stage_env"]
+    branches: ["develop","release/*"]
 
 jobs:
   prepare-environment:
