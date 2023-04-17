@@ -14,6 +14,14 @@ output "bucket_name" {
   value = module.infrastructure.bucket_name
 }
 
+output "florence_distribution_id" {
+  value = module.infrastructure.florence_distribution_id
+}
+
+output "florence_bucket_name" {
+  value = module.infrastructure.florence_bucket_name
+}
+
 output "postgres_to_s3_replication_task_arn" {
   value = module.infrastructure.postgres_to_s3_replication_task_arn
 }
