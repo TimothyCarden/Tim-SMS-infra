@@ -6,6 +6,14 @@ output "cognito_user_pool_id" {
   value = module.infrastructure.cognito_user_pool_id
 }
 
+output "florence_app_client_id" {
+  value = module.infrastructure.florence_app_client_id
+}
+
+output "florence_cognito_user_pool_id" {
+  value = module.infrastructure.florence_cognito_user_pool_id
+}
+
 output "distribution_id" {
   value = module.infrastructure.distribution_id
 }
