@@ -4,6 +4,7 @@ module "infrastructure" {
   aws_region                        = lookup(var.aws_region, local.env)
   env                               = local.env
   project_name                      = var.project_name
+  florence_project_name             = var.florence_project_name
   cidr                              = lookup(var.cidrs, local.env)
   # aws_peer_region = lookup(var.aws_region, local.env)
   db_storage                        = lookup(var.db_storage, local.env)
@@ -32,6 +33,10 @@ module "infrastructure" {
   endpoint                          = lookup(var.endpoint, local.env)
   service_name                      = var.service_name
   domain_name                       = lookup(var.domain_name, local.env)
+  florence_bucket_name              = lookup(var.florence_bucket_name, local.env)
+  florence_endpoint                 = lookup(var.florence_endpoint, local.env)
+  florence_service_name             = var.florence_service_name
+  florence_domain_name              = lookup(var.florence_domain_name, local.env)
   fcm_api_key                       = local.fcm_api_key
 }
 

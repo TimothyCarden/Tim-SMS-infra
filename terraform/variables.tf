@@ -12,6 +12,11 @@ variable "project_name" {
   default = "actriv"
 }
 
+variable "florence_project_name" {
+  type    = string
+  default = "florence"
+}
+
 
 variable "cidrs" {
   type = map(string)
@@ -182,6 +187,15 @@ variable "bucket_name" {
   }
 }
 
+variable "florence_bucket_name" {
+  type = map(string)
+  default = {
+    prod  = "florence-app.actrusfm.com"
+    dev   = "florence-app.dev.actrusfm.com"
+    stage = "florence-app.stage.actrusfm.com"
+  }
+}
+
 variable "endpoint" {
   type = map(string)
   default = {
@@ -191,8 +205,22 @@ variable "endpoint" {
   }
 }
 
+variable "florence_endpoint" {
+  type = map(string)
+  default = {
+    prod  = "florence.actrusfm.com"
+    dev   = "florence.dev.actrusfm.com"
+    stage  = "florence.stage.actrusfm.com"
+  }
+}
+
 
 variable "service_name" {
+  type    = string
+  default = ""
+}
+
+variable "florence_service_name" {
   type    = string
   default = ""
 }
@@ -203,6 +231,15 @@ variable "domain_name" {
     prod  = "actrusfm.com"
     dev   = "dev.actrusfm.com"
     stage =  "stage.actrusfm.com"
+  }
+}
+
+variable "florence_domain_name" {
+  type = map(string)
+  default = {
+    prod  = "florence.actrusfm.com"
+    dev   = "florence.dev.actrusfm.com"
+    stage =  "florence.stage.actrusfm.com"
   }
 }
 
