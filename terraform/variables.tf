@@ -77,7 +77,7 @@ variable "db_storage" {
   description = "Allocated DB storage in GB"
   default = {
     dev    = 400
-    prod   = 200
+    prod   = 300
     stage   = 200
   }
 }
