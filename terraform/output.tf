@@ -43,9 +43,9 @@ output "workforce_to_s3_replication_task_arn" {
 }
 
 output "sql_to_s3_replication_task_arn" {
-   value = module.infrastructure.sql_to_s3_replication_task_arn != null ? module.infrastructure.sql_to_s3_replication_task_arn[0] : (null)
+   value = length(module.infrastructure.sql_to_postgres_replication_task_arn) > 0 ? module.infrastructure.sql_to_s3_replication_task_arn[0] : (null)
 }
 
 output "sql_to_postgres_replication_task_arn" {
-  value = module.infrastructure.sql_to_postgres_replication_task_arn != null ? module.infrastructure.sql_to_postgres_replication_task_arn[0] : (null)
+  value = length(module.infrastructure.sql_to_postgres_replication_task_arn) > 0 ? module.infrastructure.sql_to_postgres_replication_task_arn[0] : (null)
 }
