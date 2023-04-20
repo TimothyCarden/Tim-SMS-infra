@@ -76,7 +76,7 @@ variable "db_storage" {
   type        = map(number)
   description = "Allocated DB storage in GB"
   default = {
-    dev    = 400
+    dev    = 200
     prod   = 300
     stage   = 200
   }
