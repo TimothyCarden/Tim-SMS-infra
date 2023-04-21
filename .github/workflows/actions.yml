@@ -136,7 +136,7 @@ jobs:
            aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_POSTGRES_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
   deploy_to_stage:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/stage_env')
+    if: startsWith(github.ref, 'refs/heads/release/')
     needs: prepare-environment
     environment: stage
     steps:
