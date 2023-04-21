@@ -22,5 +22,83 @@
         "rule-action": "include",
         "filters": []
       }
+      ,
+      {
+        "rule-type": "selection",
+        "rule-id": "398800315",
+        "rule-name": "398800315",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "provider_shift_clocking "
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800316",
+        "rule-name": "398800316",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_order"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800317",
+        "rule-name": "398800317",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_option "
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800318",
+        "rule-name": "398800318",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "provider"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800319",
+        "rule-name": "398800319",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "provider_geo_position"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800320",
+        "rule-name": "398800320",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "client_facility"
+        },
+        "rule-action": "include",
+        "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800321",
+        "rule-name": "398800321",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "region"
+        },
+        "rule-action": "include",
+        "filters": []
+      }
     ]
   }
