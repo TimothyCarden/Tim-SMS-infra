@@ -187,6 +187,15 @@ variable "bucket_name" {
   }
 }
 
+variable "bucket_name_custom_data" {
+  type = map(string)
+  default = {
+    prod  = "custom.data.actrusfm.com"
+    dev   = "custom.data.dev.actrusfm.com"
+    stage = "custom.data.stage.actrusfm.com"
+  }
+}
+
 variable "florence_bucket_name" {
   type = map(string)
   default = {
