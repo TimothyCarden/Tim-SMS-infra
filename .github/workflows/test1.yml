@@ -1,6 +1,8 @@
 name: Test
 on:
   create:
+  push:
+    branches: ["develop"]
 jobs:
   deploy:
     runs-on: ubuntu-latest
