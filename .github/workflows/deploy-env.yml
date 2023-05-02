@@ -1,0 +1,21 @@
+name: Deploy to environment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prompt for branch name and environment
+        id: prompt
+        uses: mathieudutour/github-ask@v2
+        with:
+          title: 'Deployment Information'
+          questions: |
+            - name: branch
+              type: input
+              message: 'Enter the branch name:'
+            - name: environment
+              type: input
+              message: 'Enter the environment to deploy to:'

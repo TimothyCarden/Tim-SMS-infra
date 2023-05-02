@@ -1,2 +1,2 @@
-# sms-infrastructure
-This is repository for sms project's aws architecture(terraform)
+[![Deploy to Environment](https://img.shields.io/badge/Deploy%20to%20Environment-blue)](../../actions/workflows/deploy-env.yml?ref=main&workflow_dispatch=true)
+
