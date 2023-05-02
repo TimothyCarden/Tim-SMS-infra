@@ -1,6 +1,7 @@
 name: Test
 on:
   create:
+    branches: ["refs/heads/release/*","refs/heads/origin/release/*"]
   push:
     branches: ["develop"]
 jobs:
