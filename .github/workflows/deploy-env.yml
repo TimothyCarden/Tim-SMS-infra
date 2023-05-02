@@ -1,27 +1,25 @@
-name: Deploy to environment
-
+name: Deploy to Environment
 on:
   workflow_dispatch:
-
+    inputs:
+      branch_name:
+        description: 'Name of the branch to deploy'
+        required: true
+        default: 'main'
+      environment:
+        description: 'Name of the environment to deploy to'
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Prompt for Input
-        uses: peter-evans/prompt-action@v2.2.2
         id: prompt
-        with:
-          inputs: |
-            [
-              {
-                "name": "branch_name",
-                "type": "input",
-                "message": "Enter the name of the branch you want to deploy:"
-              },
-              {
-                "name": "environment",
-                "type": "input",
-                "message": "Enter the environment you want to deploy to:"
-              }
-            ]
+        run: echo "::set-output name=branch_name::${{ github.event.inputs.branch_name }}\n::set-output name=environment::${{ github.event.inputs.environment }}"
+        env:
+          branch_name: ${{ github.event.inputs.branch_name }}
+          environment: ${{ github.event.inputs.environment }}
+      - name: Deploy to ${{ steps.prompt.outputs.branch_name }} on ${{ steps.prompt.outputs.environment }}
+        run: |
+          echo "Hello world"
 
