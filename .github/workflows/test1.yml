@@ -1,4 +1,5 @@
 name: Test
+run-name: "Test pipeline"
 on:
   create:
     branches: ["refs/heads/release/*","refs/heads/origin/release/*"]
