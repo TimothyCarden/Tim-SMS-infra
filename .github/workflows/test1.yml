@@ -2,7 +2,7 @@ name: Test
 run-name: "Test pipeline"
 on:
   create:
-    branches: ["release/*","origin/release/*"]
+    branches: ["release/**","origin/release/**"]
     types: 
       - 'branch'
   push:
