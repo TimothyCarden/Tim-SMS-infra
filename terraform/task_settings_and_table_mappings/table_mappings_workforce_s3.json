@@ -99,6 +99,17 @@
         },
         "rule-action": "include",
         "filters": []
+      },
+      {
+        "rule-type": "selection",
+        "rule-id": "398800322",
+        "rule-name": "398800322",
+        "object-locator": {
+          "schema-name": "workforce",
+          "table-name": "shift_order_time_sheet"
+        },
+        "rule-action": "include",
+        "filters": []
       }
     ]
   }
