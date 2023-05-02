@@ -7,15 +7,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Prompt for branch name and environment
+      - name: Prompt for Input
+        uses: peter-evans/prompt-action@v2.2.2
         id: prompt
-        uses: mathieudutour/github-ask@v2
         with:
-          title: 'Deployment Information'
-          questions: |
-            - name: branch
-              type: input
-              message: 'Enter the branch name:'
-            - name: environment
-              type: input
-              message: 'Enter the environment to deploy to:'
+          inputs: |
+            [
+              {
+                "name": "branch_name",
+                "type": "input",
+                "message": "Enter the name of the branch you want to deploy:"
+              },
+              {
+                "name": "environment",
+                "type": "input",
+                "message": "Enter the environment you want to deploy to:"
+              }
+            ]
+
