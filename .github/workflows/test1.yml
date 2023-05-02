@@ -2,6 +2,7 @@ name: Test
 on:
   create:
     branches: ["release/*", "origin/release/*"]
+    created_by: 'mhernahapetyan'
 jobs:
   deploy:
     runs-on: ubuntu-latest
