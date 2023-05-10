@@ -78,7 +78,7 @@ variable "db_storage" {
   default = {
     dev    = 450
     prod   = 350
-    stage   = 200
+    stage   = 250
   }
 }
 
