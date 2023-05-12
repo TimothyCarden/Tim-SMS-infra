@@ -32,6 +32,28 @@
       },
       "rule-action": "include",
       "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "678445783",
+      "rule-name": "678445783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_credentials_certification"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "789445783",
+      "rule-name": "789445783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_credentials_license"
+      },
+      "rule-action": "include",
+      "filters": []
     }
   ]
 }
