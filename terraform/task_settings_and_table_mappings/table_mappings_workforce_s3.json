@@ -29,7 +29,7 @@
         "rule-name": "398800315",
         "object-locator": {
           "schema-name": "workforce",
-          "table-name": "provider_shift_clocking "
+          "table-name": "provider_shift_clocking"
         },
         "rule-action": "include",
         "filters": []
@@ -51,7 +51,7 @@
         "rule-name": "398800317",
         "object-locator": {
           "schema-name": "workforce",
-          "table-name": "shift_option "
+          "table-name": "shift_option"
         },
         "rule-action": "include",
         "filters": []
