@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-zip cognito-verift-challenge-package.zip lambda_function.py
+zip cognito-verify-challenge-package.zip lambda_function.py
