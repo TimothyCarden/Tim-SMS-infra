@@ -45,7 +45,6 @@ jobs:
           echo $subfolders
           for lambda in $subfolders
           do 
-            dirname $lambda
             real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
             echo "Build $real_name"
             cd $real_name
