@@ -55,3 +55,4 @@ def lambda_handler(event, context):
     if event.get('triggerSource') == "CustomMessage_ForgotPassword":
         event['response'] = recover_password(event.get('request'))
     return event
+

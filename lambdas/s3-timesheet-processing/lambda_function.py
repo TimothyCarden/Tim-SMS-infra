@@ -192,3 +192,4 @@ def lambda_handler(event, context):
         for record in event['Records']:
             process_s3_event(record['body'])
     return event
+

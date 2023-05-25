@@ -77,3 +77,4 @@ def lambda_handler(event, context):
         for record in event['Records']:
             send_email(base64.b64decode(record['body']))
     return event
+

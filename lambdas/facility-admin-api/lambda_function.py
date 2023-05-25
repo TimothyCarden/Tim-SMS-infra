@@ -227,3 +227,4 @@ class Manager:
         self.manager_last_name = manager_last_name
         self.manager_status = manager_status
         self.facility_name = facility_name
+

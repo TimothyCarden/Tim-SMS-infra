@@ -33,3 +33,4 @@ def lambda_handler(event, context):
     response['challengeName'] = 'CUSTOM_CHALLENGE'
 
     return event
+

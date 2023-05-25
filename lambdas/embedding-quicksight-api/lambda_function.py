@@ -97,3 +97,4 @@ def lambda_handler(event, context):
             return send_message_response("Something went wrong", 400)
     else:
         return send_message_response("Not Found", 404)
+

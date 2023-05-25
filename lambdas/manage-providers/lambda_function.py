@@ -84,3 +84,4 @@ def lambda_handler(event, context):
         return send_response({"cognito_sub": cognito_sub}, 200)
     else:
         return send_response({"error_message": "Something went wrong"}, 400)
+

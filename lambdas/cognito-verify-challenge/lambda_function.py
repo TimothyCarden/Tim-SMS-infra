@@ -15,3 +15,4 @@ def lambda_handler(event, context):
     event['response']['answerCorrect'] = event['request']['challengeAnswer'] == expected_answer
 
     return event
+
