@@ -41,14 +41,14 @@ module "infrastructure" {
   fcm_api_key                       = local.fcm_api_key
 }
 
-module "argocd" {
-  source = "git::git@github.com:ZapNURSE/terraform-module-infra.git//modules/argocd?ref=develop"
-  cluster_endpoint   = module.infrastructure.cluster_endpoint
-  authority_data     = module.infrastructure.authority_data
-  cluster_name       = module.infrastructure.cluster_name
-  argocd_namespace   = "argocd"
-  hostname           = "argo-cd.${var.endpoint}"
-  certificate_arn    = module.infrastructure.certificate_arn
-}
+# module "argocd" {
+#   source = "git::git@github.com:ZapNURSE/terraform-module-infra.git//modules/argocd?ref=develop"
+#   cluster_endpoint   = module.infrastructure.cluster_endpoint
+#   authority_data     = module.infrastructure.authority_data
+#   cluster_name       = module.infrastructure.cluster_name
+#   argocd_namespace   = "argocd"
+#   hostname           = "argo-cd.${var.endpoint}"
+#   certificate_arn    = module.infrastructure.certificate_arn
+# }
 
 
