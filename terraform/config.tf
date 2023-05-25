@@ -21,7 +21,7 @@ terraform {
 
   backend "s3" {
     region               = "us-west-2"
-    bucket               = "actriv-stage-terraform-remote-state-us-west-2"
+    bucket               = "actriv-develop-terraform-remote-state-us-west-2"
     workspace_key_prefix = "workspaces"
     key                  = "sms-infrastructure/state.tfstate"
     encrypt              = true
