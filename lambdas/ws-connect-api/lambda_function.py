@@ -69,3 +69,4 @@ def lambda_handler(event, context):
         response['statusCode'] = 404
 
     return response
+
