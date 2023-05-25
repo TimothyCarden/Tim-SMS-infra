@@ -7,7 +7,7 @@ from urllib.parse import unquote_plus
 
 import boto3
 import psycopg2
-from PIL import Image
+from PIL import Image, ImageOps
 from botocore.exceptions import ClientError
 
 logger = logging.getLogger()
@@ -75,6 +75,7 @@ def resize_image(image_path, file_extension):
     buffer = BytesIO()
     try:
         with Image.open(image_path) as image:
+            image = ImageOps.exif_transpose(image)
             image.thumbnail(size)
             try:
                 image.save(buffer, format=file_extension)
