@@ -38,16 +38,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: Get subfolders in lambdas folder
-        id: subfolders-specific
-        run: |
-          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
-          echo "::set-output name=subfolders::${subfolders}"
 
       - name: Iterate over subfolders and build lambdas
-        if: steps.subfolders-specific.outputs.subfolders != ''
         run: |
-          subfolders="${{ steps.subfolders-specific.outputs.subfolders }}"
+          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
           echo $subfolders
           for lambda in $subfolders
           do 
