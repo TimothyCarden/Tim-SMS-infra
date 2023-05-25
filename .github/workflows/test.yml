@@ -48,7 +48,7 @@ jobs:
         if: steps.subfolders-specific.outputs.subfolders != ''
         run: |
           subfolders="${{ steps.subfolders-specific.outputs.subfolders }}"
-          for lambda in $subfolders
+          for lambda in $subfolders; do dirname $change; done
           do 
             real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
             echo "Build $real_name"
