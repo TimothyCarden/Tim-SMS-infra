@@ -168,39 +168,32 @@ jobs:
            aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
            aws dms start-replication-task --replication-task-arn ${{ env.SQL_TO_POSTGRES_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
 
-      - name: Get changed files in lambdas folder
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v35
-        with:
-          files: lambdas/*
-
-      - name: Build lambdas
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+      - name: Iterate over subfolders and build lambdas
         run: |
-          changes="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          for lambda in `for change in $changes; do dirname $change; done | sort | uniq`
-            do 
-            real_name=`echo $lambda | grep -oP '\K(lambdas/[^/]*)'`
-            echo Build $real_name
+          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
+          echo $subfolders
+          for lambda in $subfolders
+          do 
+            real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
+            echo "Build $real_name"
             cd $real_name
             sh build.sh
             cd -
           done
 
       - name: Deploy lambdas to AWS
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          changes="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          for lambda in `for change in $changes; do dirname $change; done | sort | uniq`
-            do 
-            real_name=`echo $lambda | grep -oP '\K(lambdas/[^/]*)'`
-            echo Build $real_name
+          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
+          for lambda in $subfolders
+          do 
+            real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
+            echo "Build $real_name"
             cd $real_name
             NAME=$(basename `pwd`)
             aws lambda update-function-code --function-name ${{ vars.ENV }}-$NAME --zip-file fileb://$NAME-package.zip
             cd -
           done
-          
+
   deploy_to_stage:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/heads/release/')
@@ -256,33 +249,26 @@ jobs:
            aws dms start-replication-task --replication-task-arn ${{ env.POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
            aws dms start-replication-task --replication-task-arn ${{ env.WORKFORCE_TO_S3_REPLICATION_TASK_ARN }} --start-replication-task-type resume-processing
       
-      - name: Get changed files in lambdas folder
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v35
-        with:
-          files: lambdas/*
-
-      - name: Build lambdas
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+      - name: Iterate over subfolders and build lambdas
         run: |
-          changes="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          for lambda in `for change in $changes; do dirname $change; done | sort | uniq`
-            do 
-            real_name=`echo $lambda | grep -oP '\K(lambdas/[^/]*)'`
-            echo Build $real_name
+          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
+          echo $subfolders
+          for lambda in $subfolders
+          do 
+            real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
+            echo "Build $real_name"
             cd $real_name
             sh build.sh
             cd -
           done
 
       - name: Deploy lambdas to AWS
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          changes="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          for lambda in `for change in $changes; do dirname $change; done | sort | uniq`
-            do 
-            real_name=`echo $lambda | grep -oP '\K(lambdas/[^/]*)'`
-            echo Build $real_name
+          subfolders=$(find lambdas -mindepth 1 -maxdepth 1 -type d)
+          for lambda in $subfolders
+          do 
+            real_name=$(echo $lambda | grep -oP '\K(lambdas/[^/]*)')
+            echo "Build $real_name"
             cd $real_name
             NAME=$(basename `pwd`)
             aws lambda update-function-code --function-name ${{ vars.ENV }}-$NAME --zip-file fileb://$NAME-package.zip
