@@ -54,6 +54,17 @@
       },
       "rule-action": "include",
       "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "789545783",
+      "rule-name": "789445783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider"
+      },
+      "rule-action": "include",
+      "filters": []
     }
   ]
 }
