@@ -8,7 +8,7 @@ resource "helm_release" "argocd" {
   name       = var.release_name
   chart      = "argo-cd"
   repository = "https://argoproj.github.io/argo-helm"
-  namespace  = "default"
+  namespace  = kubernetes_namespace.argocd.id
   version    = var.chart_version
   values = [<<EOF
 server:
