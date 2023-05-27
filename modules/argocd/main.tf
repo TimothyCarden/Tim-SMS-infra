@@ -25,7 +25,7 @@ server:
             nginx.ingress.kubernetes.io/rewrite-target: "/"
             nginx.ingress.kubernetes.io/certificate: ${var.certificate_arn}
         ingressClassName: ${var.ingress_class_name}
-        host: ${var.hostname}
+        host: "argo-cd.dev.actrusfm.com"
 image:
     tag: v2.6.7
 EOF
