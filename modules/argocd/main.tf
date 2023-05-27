@@ -21,7 +21,6 @@ server:
         paths:
             - /argo-cd
         annotations:
-            kubernetes.io/ingress.class: "nginx"
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/rewrite-target: "/"
             nginx.ingress.kubernetes.io/certificate: ${var.certificate_arn}
