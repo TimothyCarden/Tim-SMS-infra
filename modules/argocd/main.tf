@@ -23,7 +23,6 @@ server:
             - /argo-cd
         annotations:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/rewrite-target: "/"
             nginx.ingress.kubernetes.io/certificate: ${var.certificate_arn}
         ingressClassName: ${var.ingress_class_name}
         hosts: ["argo-cd.dev.actrusfm.com"]
