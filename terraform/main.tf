@@ -41,15 +41,15 @@ module "infrastructure" {
   fcm_api_key                       = local.fcm_api_key
 }
 
-module "argocd" {
-  source = "../modules/argocd"
-  cluster_endpoint   = module.infrastructure.cluster_endpoint
-  authority_data     = module.infrastructure.authority_data
-  cluster_name       = module.infrastructure.cluster_name
-  argocd_namespace   = "argocd"
-  hostname           = "argo-cd.${lookup(var.endpoint, local.env)}"
-  certificate_arn    = module.infrastructure.certificate_arn
-}
+# module "argocd" {
+#   source = "../modules/argocd"
+#   cluster_endpoint   = module.infrastructure.cluster_endpoint
+#   authority_data     = module.infrastructure.authority_data
+#   cluster_name       = module.infrastructure.cluster_name
+#   argocd_namespace   = "argocd"
+#   hostname           = "argo-cd.${lookup(var.endpoint, local.env)}"
+#   certificate_arn    = module.infrastructure.certificate_arn
+# }
 
 
 
