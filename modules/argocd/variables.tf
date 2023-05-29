@@ -31,5 +31,5 @@ variable "authority_data" {
 }
 
 variable "ingress_class_name"{
-  default = "nginx-ingress-controller"
+  default = "nginx"
 }
