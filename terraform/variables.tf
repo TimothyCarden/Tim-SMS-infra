@@ -252,3 +252,7 @@ variable "florence_domain_name" {
   }
 }
 
+variable "github_token"{
+  default = "example"
+}
+

@@ -33,7 +33,7 @@ configs:
     repositories:
         private-repo:
             url: https://github.com/ZapNURSE/sms-infrastructure.git
-            password: "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"
+            password: ${var.github_token}
 image:
     tag: v2.6.7
 EOF

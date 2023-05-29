@@ -65,7 +65,7 @@ jobs:
       - name: Terraform apply
         working-directory: ./terraform
         run: |
-          terraform apply -auto-approve
+          terraform apply "github_token=${{ secrets.AWS_ACCESS_KEY_ID }}" -auto-approve
           echo "POSTGRES_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_s3_replication_task_arn`" >> $GITHUB_ENV
           echo "POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_kinesis_replication_task_arn`" >> $GITHUB_ENV
           echo "WORKFORCE_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw workforce_to_s3_replication_task_arn`" >> $GITHUB_ENV
@@ -153,7 +153,7 @@ jobs:
       - name: Terraform apply
         working-directory: ./terraform
         run: |
-          terraform apply -auto-approve
+          terraform apply "github_token=${{ secrets.AWS_ACCESS_KEY_ID }}" -auto-approve
           echo "POSTGRES_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_s3_replication_task_arn`" >> $GITHUB_ENV
           echo "POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_kinesis_replication_task_arn`" >> $GITHUB_ENV
           echo "WORKFORCE_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw workforce_to_s3_replication_task_arn`" >> $GITHUB_ENV
@@ -238,7 +238,7 @@ jobs:
       - name: Terraform apply
         working-directory: ./terraform
         run: |
-          terraform apply -auto-approve
+          terraform apply "github_token=${{ secrets.AWS_ACCESS_KEY_ID }}" -auto-approve
           echo "POSTGRES_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_s3_replication_task_arn`" >> $GITHUB_ENV
           echo "POSTGRES_TO_KINESIS_REPLICATION_TASK_ARN=`terraform output -raw postgres_to_kinesis_replication_task_arn`" >> $GITHUB_ENV
           echo "WORKFORCE_TO_S3_REPLICATION_TASK_ARN=`terraform output -raw workforce_to_s3_replication_task_arn`" >> $GITHUB_ENV
