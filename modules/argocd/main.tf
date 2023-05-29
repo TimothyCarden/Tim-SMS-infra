@@ -29,7 +29,6 @@ server:
             external-dns.alpha.kubernetes.io/hostname: "argo-cd.dev.actrusfm.com"
             alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
             alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
-        ingressClassName: ${var.ingress_class_name}
         hosts: ["argo-cd.dev.actrusfm.com"]
 image:
     tag: v2.6.7
