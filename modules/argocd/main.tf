@@ -24,13 +24,43 @@ server:
         annotations:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/certificate: ${var.certificate_arn}
-            external-dns.alpha.kubernetes.io/hostname: "argo-cd.dev.actrusfm.com"
+            external-dns.alpha.kubernetes.io/hostname: "argo-cd.${var.domain_name}"
             alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
             alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
         ingressClassName: ${var.ingress_class_name}
-        hosts: ["argo-cd.dev.actrusfm.com"]
+        hosts: ["argo-cd.${var.domain_name}"]
 image:
     tag: v2.6.7
+EOF
+  ]
+}
+
+
+resource "helm_release" "argocd-apps" {
+  depends_on = [helm_release.argocd]
+  chart      = "argocd-apps"
+  name       = "argocd-apps"
+  namespace  = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
+
+  values = [<<EOF
+applications:
+  - name: applications
+    namespace: argocd
+    additionalLabels:
+      owner: Mher
+    project: default
+    source:
+      repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
+      targetRevision: develop
+      path: modules/argocd/applications
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+          prune: true
+          selfHeal: true
 EOF
   ]
 }

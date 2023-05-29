@@ -49,6 +49,7 @@ module "argocd" {
   argocd_namespace   = "argocd"
   hostname           = "argo-cd.${lookup(var.endpoint, local.env)}"
   certificate_arn    = module.infrastructure.certificate_arn
+  domain_name        = lookup(var.domain_name, local.env)
 }
 
 

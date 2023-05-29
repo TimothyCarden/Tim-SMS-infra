@@ -33,3 +33,8 @@ variable "authority_data" {
 variable "ingress_class_name"{
   default = "nginx-nlb"
 }
+
+variable "domain_name" {
+  description = "Domain name"
+  type        = string
+}

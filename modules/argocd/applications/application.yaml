@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-guestbook
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kubernetes/examples
+    targetRevision: HEAD
+    path: guestbook/all-in-one/frontend.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
