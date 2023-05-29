@@ -29,6 +29,11 @@ server:
             alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
         ingressClassName: ${var.ingress_class_name}
         hosts: ["argo-cd.${var.domain_name}"]
+configs:
+    repositories:
+        private-repo:
+            url: https://github.com/ZapNURSE/sms-infrastructure.git
+            password: "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"
 image:
     tag: v2.6.7
 EOF
