@@ -24,6 +24,11 @@ server:
         annotations:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/certificate: ${var.certificate_arn}
+            kubernetes.io/ingress.class: "nginx"
+            ingressClassName: "nginx"
+            external-dns.alpha.kubernetes.io/hostname: "argo-cd.dev.actrusfm.com"
+            alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
         ingressClassName: ${var.ingress_class_name}
         hosts: ["argo-cd.dev.actrusfm.com"]
 image:
