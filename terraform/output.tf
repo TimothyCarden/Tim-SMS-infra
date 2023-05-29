@@ -61,3 +61,7 @@ output "sql_to_s3_replication_task_arn" {
 output "sql_to_postgres_replication_task_arn" {
   value = length(module.infrastructure.sql_to_postgres_replication_task_arn) > 0 ? module.infrastructure.sql_to_postgres_replication_task_arn[0] : (null)
 }
+
+output "certificate_arn" {
+  value = module.infrastructure.certificate_arn
+}
