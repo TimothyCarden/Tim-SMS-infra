@@ -181,45 +181,45 @@ variable "namespace_service_accounts" {
 variable "bucket_name" {
   type = map(string)
   default = {
-    prod  = "app.actrusfm.com"
-    dev   = "app.dev.actrusfm.com"
-    stage = "app.stage.actrusfm.com"
+    prod  = "app.app.actriv.com"
+    dev   = "app.dev.actriv.com"
+    stage = "app.stage.actriv.com"
   }
 }
 
 variable "bucket_name_custom_data" {
   type = map(string)
   default = {
-    prod  = "custom.data.actrusfm.com"
-    dev   = "custom.data.dev.actrusfm.com"
-    stage = "custom.data.stage.actrusfm.com"
+    prod  = "custom.data.app.actriv.com"
+    dev   = "custom.data.dev.actriv.com"
+    stage = "custom.data.stage.actriv.com"
   }
 }
 
 variable "florence_bucket_name" {
   type = map(string)
   default = {
-    prod  = "florence-app.actrusfm.com"
-    dev   = "florence-app.dev.actrusfm.com"
-    stage = "florence-app.stage.actrusfm.com"
+    prod  = "florence-app.app.actriv.com"
+    dev   = "florence-app.dev.actriv.com"
+    stage = "florence-app.stage.actriv.com"
   }
 }
 
 variable "endpoint" {
   type = map(string)
   default = {
-    prod  = "actrusfm.com"
-    dev   = "dev.actrusfm.com"
-    stage  = "stage.actrusfm.com"
+    prod  = "app.actriv.com"
+    dev   = "dev.actriv.com"
+    stage  = "stage.actriv.com"
   }
 }
 
 variable "florence_endpoint" {
   type = map(string)
   default = {
-    prod  = "florence.actrusfm.com"
-    dev   = "florence.dev.actrusfm.com"
-    stage  = "florence.stage.actrusfm.com"
+    prod  = "florence.app.actriv.com"
+    dev   = "florence.dev.actriv.com"
+    stage  = "florence.stage.actriv.com"
   }
 }
 
@@ -237,18 +237,18 @@ variable "florence_service_name" {
 variable "domain_name" {
   type = map(string)
   default = {
-    prod  = "actrusfm.com"
-    dev   = "dev.actrusfm.com"
-    stage =  "stage.actrusfm.com"
+    prod  = "app.actriv.com"
+    dev   = "dev.actriv.com"
+    stage =  "stage.actriv.com"
   }
 }
 
 variable "florence_domain_name" {
   type = map(string)
   default = {
-    prod  = "florence.actrusfm.com"
-    dev   = "florence.dev.actrusfm.com"
-    stage =  "florence.stage.actrusfm.com"
+    prod  = "florence.app.actriv.com"
+    dev   = "florence.dev.actriv.com"
+    stage =  "florence.stage.actriv.com"
   }
 }
 
