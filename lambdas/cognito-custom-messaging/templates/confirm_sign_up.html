@@ -1,151 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Email</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
-      rel="stylesheet">
     <style>
-      html {
-        font-size: 16px;
-        line-height: 1.5;
-        font-family: "Poppins", sans-serif;
-        color: black;
-      }
+        html {
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: "Poppins", sans-serif;
+            color: #000000;
+        }
 
-      body {
-        margin: 0;
-        background-color: white;
-      }
+        .container {
+            background: #D4E0E2;
+            padding: 40px;
+            text-align: center;
+        }
 
-      h1 {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
+        .table_container {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
 
-      p {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
+        .content__heading {
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: 0;
+            margin-bottom: 40px; 
+            text-align: left;
+            margin-left: 20px;
+        }
 
-      table {
-        border-collapse: collapse;
-      }
+        .content__section {
+            margin-bottom: 30px;
+            padding-left: 30px;
+            text-align: left;
+            margin-left: -10px;
+        }
 
-      td {
-        padding: 0;
-      }
+        .content__section p:last-child {
+            margin-bottom: 0;
+        }
 
-      a {
-        text-decoration: none;
-        color: #0288e6;
-      }
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px 0; 
+            line-height: 24px;
+            color: #ffffff;
+            background: #0288E6;
+            border-radius: 8px;
+            text-decoration: none;
+        }
 
-      .container {
-        display: flex;
-        height: 100vh;
-        background: #D4E0E2;
-      }
-
-      .table_container {
-        width: 640px;
-        margin: auto;
-        background: #FFFFFF;
-      }
-
-      .strip {
-        height: 40px;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 640 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_3268_111793' x1='-2.14577e-05' y1='40' x2='48.8741' y2='-241.515' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230288E6'/%3E%3Cstop offset='1' stop-color='%2300C294'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_3268_111793' x1='-2.14577e-05' y1='40' x2='48.8741' y2='-241.515' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230288E6'/%3E%3Cstop offset='1' stop-color='%2300C294'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint2_linear_3268_111793' x1='20' y1='220' x2='246.209' y2='183.807' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230288E6'/%3E%3Cstop offset='1' stop-color='%2300C294'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint3_linear_3268_111793' x1='160' y1='117' x2='883.869' y2='1.1809' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230288E6'/%3E%3Cstop offset='1' stop-color='%2300C294'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_3268_111793'%3E%3Crect width='640' height='40' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0_3268_111793)'%3E%3Crect width='1440' height='40' fill='url(%23paint0_linear_3268_111793)'/%3E%3Cmask id='mask0_3268_111793' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='1440' height='40'%3E%3Crect width='1440' height='40' fill='url(%23paint1_linear_3268_111793)'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_3268_111793)'%3E%3Ccircle cx='120' cy='120' r='100' transform='rotate(-90 120 120)' fill='url(%23paint2_linear_3268_111793)'/%3E%3Ccircle cx='480' cy='-203' r='320' transform='rotate(-180 480 -203)' fill='url(%23paint3_linear_3268_111793)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
-
-      .logo-cell {
-        padding-top: 40px;
-        text-align: center;
-      }
-
-      .content {
-        padding: 40px;
-      }
-
-      .content > * + * {
-        margin-top: 40px;
-      }
-
-      .content__heading {
-        font-weight: 500;
-        font-size: 20px;
-      }
-
-      .content__email-address {
-        color: #0288e6;
-      }
-
-      .content__copyright {
-        font-size: 14px;
-        color: #5e838c;
-      }
+        .grey {
+            color: #808080;
+            margin-top: 10px;
+        }
     </style>
   </head>
-
-  <body>
-  <div class="container">
-  <div class="table_container">
-    <table>
-      <tbody>
-        <tr aria-hidden="true">
-          <td class="strip"></td>
-        </tr>
+<body>
+<div class="container">
+    <table class="table_container" cellpadding="0" cellspacing="0">
+        <tbody>
         <tr>
-          <td class="logo-cell">
-            <svg width="168" height="40" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1334 3C16.9884 3 15.9291 4.55512 15.3994 5.38231L12.42 10.5109C12.0558 11.1065 11.5394 12.501 12.42 13.6211C13.1483 14.5476 13.8435 14.8454 15.1015 14.8454H17.3526C18.7099 14.8454 20.4314 15.2093 20.4314 17.4593C20.4314 19.5107 19.0409 19.9078 17.5843 19.9078C15.7636 19.9078 12.3001 20.3191 9.37432 21.9261C5.66657 23.9627 3.28302 26.6246 1.46225 29.404C-0.358524 32.1833 -0.358519 34.1024 0.800151 35.7237C2.09211 37.5315 4.50791 37.7751 5.86521 37.4443C7.19199 37.1208 8.08614 35.9004 8.97205 34.6913C9.23556 34.3316 9.49835 33.9729 9.77158 33.6392C11.0988 32.0179 14.0752 28.7422 20.1334 28.7422C26.1916 28.7422 29.4614 32.57 30.429 33.7715C30.6563 34.0538 30.8778 34.3721 31.1068 34.7011C31.9783 35.9536 32.9567 37.3598 34.7658 37.5104C37.05 37.7007 39.3937 36.7163 39.897 34.2678C40.2943 32.3355 39.4446 30.7826 39.0032 30.0657L24.6026 5.38231C24.6026 5.38231 23.2784 3 20.1334 3ZM25.2647 19.9409C26.6542 19.9409 27.7806 18.815 27.7806 17.4262C27.7806 16.0374 26.6542 14.9116 25.2647 14.9116C23.8751 14.9116 22.7487 16.0374 22.7487 17.4262C22.7487 18.815 23.8751 19.9409 25.2647 19.9409Z" fill="url(#paint0_linear_11743_248986)"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M93.8918 15.2089C93.4756 13.6474 91.4076 10.5244 86.4649 10.5244C80.2866 10.5244 77.4375 14.622 77.4375 19.968C77.4375 25.314 80.4146 29.4756 86.4649 29.4756C91.3052 29.4756 93.6037 26.0468 94.1479 24.3323L92.8887 23.8308C92.2485 23.6174 91.5229 23.436 90.9573 23.7134C90.687 23.8461 90.4318 24.1375 90.1308 24.4814C89.4218 25.2913 88.4585 26.3918 86.4436 26.3918C83.3384 26.3918 81.343 24.1936 81.343 19.968C81.343 15.7424 83.7652 13.6189 86.4649 13.6189C88.3448 13.6189 89.2158 14.5387 89.8957 15.2567C90.1921 15.5698 90.4523 15.8445 90.7439 15.9878C91.3735 16.2973 92.4085 16.0412 92.8887 15.7851L93.8918 15.2089ZM67.0549 10.8445H62.6479L56 29.1555H59.9055L60.9619 26.0521L60.9779 26.009C61.0751 25.7471 61.2018 25.406 61.4848 25.1433C61.7835 24.8658 62.1143 24.751 62.6479 24.751H66.7027V23.9619C66.7027 23.5533 66.4893 22.9131 66.0412 22.5183C65.6131 22.1412 64.9207 21.9463 64.3125 21.9463H62.3171L64.8674 14.3211L69.8613 29.1555H73.8628L67.0549 10.8445ZM114.497 10.8445H98.4054V13.93H104.622V29.1555H108.429V13.93H114.497V10.8445ZM119.928 10.8445V29.1555H123.684V13.9034L127.761 13.9568C128.956 13.9568 130.866 14.3877 130.866 16.58C130.866 18.7722 128.849 19.157 127.814 19.157C126.726 19.157 126.224 19.2744 125.712 19.9253C125.221 20.5491 125.221 21.3206 125.221 22.0992V22.103H126.139C126.512 22.103 126.962 22.1256 127.248 22.4116C127.453 22.6165 127.591 22.8512 127.731 23.0883C127.758 23.1351 127.786 23.182 127.814 23.2288L131.549 29.1555H135.828L130.866 21.8056C132.584 21.2378 134.793 19.7663 134.793 16.58C134.793 12.2637 131.282 10.8445 128.55 10.8445H119.928ZM141.12 10.8445H144.919V27.2168C144.919 27.8544 144.845 28.2066 144.408 28.6334C143.972 29.0603 143.302 29.1555 142.653 29.1555H141.12V10.8445ZM154.147 10.8445H150.116L156.813 29.1555H161.324L168 10.8445H163.99L159.106 25.6358L154.147 10.8445Z" fill="#0288E6"/>
-              <defs>
-                <linearGradient id="paint0_linear_11743_248986" x1="2.98023e-07" y1="20.2848" x2="40" y2="20.2848" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#1398FE"/>
-                  <stop offset="1" stop-color="#01D4AD"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </td>
+            <td>
+                <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" style="width: 100%; height: auto;">
+                <table style="margin: 20px auto; width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Image 1" style="display: inline-block;">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h1 class="content__heading">Dear Facility Manager,</h1>
+                <div class="content__section">
+                  <p>We are excited to announce the launch of Actriv Facility Portal, a new platform designed to streamline communication and enhance collaboration between healthcare facilities and providers.</p>
+                  <p>&nbsp;</p>
+                  <p>We would like to invite you to join on behalf of “Facility name” our platform and start enjoying the benefits of this innovative solution. With Actriv Facility’s Portal, you will be able to easily manage your facility's workflow, share information with your team, and improve patient care through advanced features and tools.</p>
+                  <p>&nbsp;</p>
+                  <p>Follow the link below to confirm signup.</p>
+                  <p><a href="{{%20actrusfm_url%20}}/auth/sign-in">Actriv Facility Portal</a></p>
+                </div>
+                <div class="content__section">
+                  <p>Please use the following credentials. You will be prompted to set up your password the first time.</p>
+                  <p>Email: <b class="content__email-address">{{ user_name }}</b></p>
+                  <p>Temporary password: <b>{{ verification_code }}</b></p>
+                </div>
+                <div class="content__section">
+                  <p>Best regards,<br>Actriv Team</p>
+                    <p>&nbsp;</p>
+                    <p><a href="https://www.actriv.com">www.actriv.com</a></p>
+                    <p class="grey">Copyright 2023 Actriv. All rights reserved.</p>
+                </div>
+            </td>
         </tr>
-        <tr>
-          <td>
-            <div class="content">
-              <h1 class="content__heading">Dear [Facility Manager],</h1>
-              <div class="content__section">
-                <p>We are excited to announce the launch of Actriv Facility Portal, a new platform designed to streamline communication and enhance collaboration between healthcare facilities and providers.</p>
-                <p>&nbsp;</p>
-                <p>We would like to invite you to join on behalf of “Facility name” our platform and start enjoying the benefits of this innovative solution. With Actriv Facility’s Portal, you will be able to easily manage your facility's workflow, share information with your team, and improve patient care through advanced features and tools.</p>
-                <p>&nbsp;</p>
-                <p>Follow the link below to confirm signup.</p>
-                <p><a href="{{ actrusfm_url }}/sign-in">Actriv Facility Portal</a></p>
-              </div>
-
-              <div class="content__section">
-                <p>Please use the following credentials. You will be prompted to set up your password the first time.</p>
-                <p>Email: <b class="content__email-address">{{ user_name }}</b></p>
-                <p>Temporary password: <b>{{ verification_code }}</b></p>
-              </div>
-
-              <div class="content__section">
-                <p>Best regards,<br>Actriv Team</p>
-                <p>&nbsp;</p>
-                <p><a href="https://www.actriv.com">www.actriv.com</a></p>
-                <p>&nbsp;</p>
-                <p class="content__copyright">Copyright 2023 Actriv. All rights reserved.</p>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+        </tbody>
     </table>
-  </div>
-  </div>
-  </body>
+</div>
+</body>
 </html>
