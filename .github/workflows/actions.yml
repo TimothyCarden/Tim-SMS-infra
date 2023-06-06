@@ -46,7 +46,7 @@ jobs:
             && chmod 600 id_rsa known_hosts
             && ssh -i ./id_rsa -o UserKnownHostsFile=./known_hosts"
         run: |
-           terraform init -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
+           terraform init -upgrade -backend-config "bucket=actriv-${{ vars.BUCKET_ENV }}-terraform-remote-state-us-west-2"
       
       - name: kubeconfing
         run: |
