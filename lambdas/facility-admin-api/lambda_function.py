@@ -87,7 +87,7 @@ def get_cognito_user(email):
             Username=email
         )
     except Exception as e:
-        logger.error(e)
+        logger.info(e)
     return None
 
 
