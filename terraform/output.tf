@@ -30,6 +30,10 @@ output "bucket_name" {
   value = module.infrastructure.bucket_name
 }
 
+output "bucket_name_raw_data" {
+  value = module.infrastructure.bucket_name_raw_data
+}
+
 output "bucket_name_custom_data" {
   value = module.infrastructure.bucket_name_custom_data
 }
