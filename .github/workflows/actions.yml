@@ -274,3 +274,11 @@ jobs:
             aws lambda update-function-code --function-name ${{ vars.ENV }}-$NAME --zip-file fileb://$NAME-package.zip
             cd -
           done
+
+      - name: Deploy emails templates to AWS
+        if: github.event_name != 'pull_request' && vars.ENV != ''
+        working-directory: ./templates/emails
+        env:
+          BUCKET_NAME: ${{ env.EMAILS_BUCKET_NAME }}
+        run: |
+          aws s3 sync . s3://${{ env.EMAILS_BUCKET_NAME }}/templates/emails
