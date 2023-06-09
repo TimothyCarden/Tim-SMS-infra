@@ -71,7 +71,7 @@ def lambda_handler(event, context):
             sql = """select cf.id, cf.ctms_id
                      from workforce.client_facility_manager cfm
                      left join workforce.client_facility cf on cfm.client_facility_id = cf.id
-                     where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s)"""
+                     where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s) and lower(cfm.ctms_status) = 'active'"""
             cur.execute(sql, [email])
             records = cur.fetchall()
             if len(records) > 1:
