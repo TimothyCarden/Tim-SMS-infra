@@ -10,6 +10,14 @@ spec:
     repoURL: https://kubernetes-sigs.github.io/metrics-server
     targetRevision: "3.8.0"
     chart: "metrics-server"
+    helm:
+      values: |
+        "hostNetwork.enabled" = true
+        "podAnnotations.custom\\.annotation\\.io" = "test"
+        "podAnnotations.environment"              = "test"
+        "metrics.enabled"                         = "true"
+        "args[0]"                                 = "--kubelet-insecure-tls"
+        "args[1]"                                 = "--kubelet-preferred-address-types=InternalIP"
   project: default
   syncPolicy:
     automated:
