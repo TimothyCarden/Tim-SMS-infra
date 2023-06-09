@@ -67,20 +67,25 @@ def lambda_handler(event, context):
     try:
         conn = get_connection()
         with conn.cursor() as cur:
+            email = event['request']['userAttributes']['email']
             sql = """select cf.id, cf.ctms_id
                      from workforce.client_facility_manager cfm
                      left join workforce.client_facility cf on cfm.client_facility_id = cf.id
-                     where lower(cfm.email) = lower(%s)"""
-            cur.execute(sql, [event['request']['userAttributes']['email']])
-            record = cur.fetchone()
-            if record:
-                logger.info(record)
-                event['response']['claimsOverrideDetails'] = {
-                    'claimsToAddOrOverride': {
-                        'facility_id': record[0],
-                        'facility_ctms_id': record[1]
-                    }
+                     where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s)"""
+            cur.execute(sql, [email])
+            records = cur.fetchall()
+            if len(records) > 1:
+                raise Exception(f"More than one manager with email: {email}")
+            if len(records) == 0:
+                raise Exception(f"Manager with email: {email} doesn't exist")
+            record = records[0]
+            logger.info(record)
+            event['response']['claimsOverrideDetails'] = {
+                'claimsToAddOrOverride': {
+                    'facility_id': record[0],
+                    'facility_ctms_id': record[1]
                 }
+            }
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         raise error
@@ -89,4 +94,3 @@ def lambda_handler(event, context):
             conn.close()
 
     return event
-
