@@ -4,7 +4,7 @@ metadata:
   name: metrics-server
 spec:
   destination:
-    namespace: default
+    namespace: kube-system  # Updated namespace to kube-system
     server: https://kubernetes.default.svc
   source:
     repoURL: https://kubernetes-sigs.github.io/metrics-server
