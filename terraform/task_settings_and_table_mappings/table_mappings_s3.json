@@ -1,408 +1,419 @@
+
 {
-    "rules": [
-      {
-        "rule-type": "selection",
-        "rule-id": "398800311",
-        "rule-name": "398800311",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "orders"
-        },
-        "rule-action": "include",
-        "filters": []
+  "rules": [
+    {
+      "rule-type": "selection",
+      "rule-id": "398800311",
+      "rule-name": "398800311",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "orders"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800312",
-        "rule-name": "398800312",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "order_type"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800312",
+      "rule-name": "398800312",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "order_type"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800313",
-        "rule-name": "398800313",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "order_type_LT"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800313",
+      "rule-name": "398800313",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "order_type_LT"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800314",
-        "rule-name": "398800314",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "lt_order"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800314",
+      "rule-name": "398800314",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "lt_order"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800315",
-        "rule-name": "398800315",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "lt_order_rates"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800315",
+      "rule-name": "398800315",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "lt_order_rates"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800316",
-        "rule-name": "398800316",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "orders_OrderSources"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800316",
+      "rule-name": "398800316",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "orders_OrderSources"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800317",
-        "rule-name": "398800317",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "profile_client"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800317",
+      "rule-name": "398800317",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "profile_client"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800318",
-        "rule-name": "398800318",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "profile_temp"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800318",
+      "rule-name": "398800318",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "profile_temp"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800319",
-        "rule-name": "398800319",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "schedule"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800319",
+      "rule-name": "398800319",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "schedule"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800320",
-        "rule-name": "398800320",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "shift_options"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800320",
+      "rule-name": "398800320",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "shift_options"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800321",
-        "rule-name": "398800321",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "shift_client_sel"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800321",
+      "rule-name": "398800321",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "shift_client_sel"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800322",
-        "rule-name": "398800322",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "tempRequestedShifts"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800322",
+      "rule-name": "398800322",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "tempRequestedShifts"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800323",
-        "rule-name": "398800323",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "facilities"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800323",
+      "rule-name": "398800323",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "facilities"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800324",
-        "rule-name": "398800324",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "specs"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800324",
+      "rule-name": "398800324",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "specs"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800325",
-        "rule-name": "398800325",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "TempSpec"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800325",
+      "rule-name": "398800325",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "TempSpec"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800326",
-        "rule-name": "398800326",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "certs"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800326",
+      "rule-name": "398800326",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "certs"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800327",
-        "rule-name": "398800327",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "TempCert"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800327",
+      "rule-name": "398800327",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "TempCert"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800328",
-        "rule-name": "398800328",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "regions"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800328",
+      "rule-name": "398800328",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "regions"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800329",
-        "rule-name": "398800329",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "ClientTaxParameter"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800329",
+      "rule-name": "398800329",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "ClientTaxParameter"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800330",
-        "rule-name": "398800330",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "invoice_period_codes"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800330",
+      "rule-name": "398800330",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "invoice_period_codes"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800331",
-        "rule-name": "398800331",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "invoiceBillTypes"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800331",
+      "rule-name": "398800331",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "invoiceBillTypes"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800332",
-        "rule-name": "398800332",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "InvoiceHistory"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800332",
+      "rule-name": "398800332",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "InvoiceHistory"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800333",
-        "rule-name": "398800333",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "InvoiceLineItems"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800333",
+      "rule-name": "398800333",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "InvoiceLineItems"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800334",
-        "rule-name": "398800334",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "invoices"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800334",
+      "rule-name": "398800334",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "invoices"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800335",
-        "rule-name": "398800335",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "PaybillCodes"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800335",
+      "rule-name": "398800335",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "PaybillCodes"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800336",
-        "rule-name": "398800336",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "PaybillCodes_Other"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800336",
+      "rule-name": "398800336",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "PaybillCodes_Other"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800337",
-        "rule-name": "398800337",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "paycheck"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800337",
+      "rule-name": "398800337",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "paycheck"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800338",
-        "rule-name": "398800338",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "paycheck_lineitems"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800338",
+      "rule-name": "398800338",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "paycheck_lineitems"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800339",
-        "rule-name": "398800339",
-        "object-locator": {
-          "schema-name": "dbo",
-          "table-name": "notes"
-        },
-        "rule-action": "include",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800339",
+      "rule-name": "398800339",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "notes"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800340",
-        "rule-name": "398800340",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%PayNotes",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800340",
+      "rule-name": "398800340",
+      "object-locator": {
+        "schema-name": "dbo",
+        "table-name": "users"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800341",
-        "rule-name": "398800341",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%notes",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800340",
+      "rule-name": "398800340",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%PayNotes",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800342",
-        "rule-name": "398800342",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%resume_text",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
+      "rule-action": "remove-column",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800341",
+      "rule-name": "398800341",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%notes",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800343",
-        "rule-name": "398800343",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%resume_html",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
+      "rule-action": "remove-column",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800342",
+      "rule-name": "398800342",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%resume_text",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800344",
-        "rule-name": "398800344",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%notes2",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
+      "rule-action": "remove-column",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800343",
+      "rule-name": "398800343",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%resume_html",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
       },
-      {
-        "rule-type": "transformation",
-        "rule-id": "398800345",
-        "rule-name": "398800345",
-        "rule-target" : "column",
-        "value" : null , 
-        "object-locator": {
-          "column-name" : "%HRNotes",
-          "schema-name": "%dbo",
-          "table-name": "%profile_temp"
-        },
-        "rule-action": "remove-column",
-        "filters": []
-      }
-     
-    ]
-  }
+      "rule-action": "remove-column",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800344",
+      "rule-name": "398800344",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%notes2",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
+      },
+      "rule-action": "remove-column",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "398800345",
+      "rule-name": "398800345",
+      "rule-target": "column",
+      "value": null,
+      "object-locator": {
+        "column-name": "%HRNotes",
+        "schema-name": "%dbo",
+        "table-name": "%profile_temp"
+      },
+      "rule-action": "remove-column",
+      "filters": []
+    }
+  ]
+}
