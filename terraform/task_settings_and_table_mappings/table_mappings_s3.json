@@ -322,8 +322,8 @@
     },
     {
       "rule-type": "selection",
-      "rule-id": "398800340",
-      "rule-name": "398800340",
+      "rule-id": "398800346",
+      "rule-name": "398800346",
       "object-locator": {
         "schema-name": "dbo",
         "table-name": "users"
