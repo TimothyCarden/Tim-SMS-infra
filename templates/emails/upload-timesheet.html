@@ -1,125 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Email</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
-      rel="stylesheet">
-    <style>
-      html {
-        font-size: 16px;
-        line-height: 1.5;
-        font-family: "Poppins", sans-serif;
-        color: black;
-      }
+<head>
+  <meta charset="utf-8">
+  <title>Email</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html {
+      font-size: 16px;
+      line-height: 1.5;
+      font-family: "Poppins", sans-serif;
+      color: #000000;
+    }
 
-      body {
-        margin: 0;
-        background-color: white;
-      }
+    .container {
+      background: #D4E0E2;
+      padding: 0;
+      text-align: center;
+    }
 
-      h1 {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
+    .table_container {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 0;
+      border-spacing: 0;
+      border-collapse: collapse;
+      padding-bottom: 40px; 
+    }
 
-      p {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
+    .content__heading {
+      font-weight: 500;
+      font-size: 20px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      align-items: center;
+      text-align: left;
+      margin-left: 300px;
+    }
 
-      table {
-        border-collapse: collapse;
-      }
+    .content__section {
+      margin-bottom: 20px;
+      padding-left: 30px;
+      align-items: center;
+      text-align: left;
+      margin-left: 300px;
+    }
 
-      td {
-        padding: 0;
-      }
+    .content__section p:last-child {
+      margin-bottom: 0;
+    }
 
-      a {
-        text-decoration: none;
-        color: #0288e6;
-      }
+    .button {
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 5px 0;
+      line-height: 24px;
+      color: #ffffff;
+      background: #0288E6;
+      border-radius: 8px;
+      text-decoration: none;
+    }
 
+    .grey {
+      color: #808080;
+    }
+
+    .content__footer {
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .content__footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #5e838c;
+    }
+
+    .content__copyright {
+      font-size: 14px;
+      color: #5e838c;
+    }
+    .logo{
+      position: relative;
+      margin-top: 35px;
+    }
+    .web_link{
+        margin-top: -30px;
+    }
+
+
+
+
+    @media only screen and (min-width: 600px) {
       .container {
         display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100vh;
-        background: #D4E0E2;
       }
 
       .table_container {
-        width: 640px;
-        margin: auto;
-        background: #FFFFFF;
+        text-align: left;
+        max-height: 1500px;
       }
 
-      .logo-cell {
-        padding-top: 40px;
-        text-align: center;
+      .content__heading{
+        text-align: left;
+        margin-left: 30px;
+        position: relative;
+        margin-top: 5px;
       }
-
-      .content {
-        padding: 40px;
+      .content__section {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        margin-top: 5px;
       }
-
-      .content > * + * {
-        margin-top: 40px;
-      }
-
-      .content__heading {
-        font-weight: 500;
-        font-size: 20px;
-      }
-
-      .content__copyright {
+      .content__footer {
         font-size: 14px;
         color: #5e838c;
+        margin-top: -30px;
       }
-    </style>
-  </head>
+      .web_link{
+        margin-top: -30px;
+      }
+    }
 
-  <body>
+    img.banner {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    img.logo {
+      margin-bottom: 20px; 
+    }
+    .logo{
+      position: relative;
+      margin-top: 35px;
+    }
+  </style>
+</head>
+<body>
   <div class="container">
     <div class="table_container">
-    <table>
-      <tbody>
-      <tr aria-hidden="true">
-        <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" style="width: 100%; height: auto;">
-      </tr>
-      <tr>
-        <td class="logo-cell">
-          <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Image 1" style="display: inline-block;">
-        </td>
-      </tr>
-        <tr>
-          <td>
-            <div class="content">
-              <h1 class="content__heading">Dear Actriv Payroll Team,</h1>
-              <div class="content__section">
-                <p>I am writing to inform you that {{ provider_name }} has submitted their Timesheet for their shift on {{ shift_start_date }}. Please find the details of the time sheet below:</p>
-                <p>&nbsp;</p>
-                  <p>Provider Name: {{ provider_name }}</p>
-                <p>Date: {{ timesheet_date }}</p>
-                <p>Shift Start Time: {{ shift_start_date }}</p>
-                <p>Shift End Time: {{ shift_end_date }}</p>
-                <p>&nbsp;</p>
-                <p>Please review the Timesheet and ensure that all details are accurate. If there are any discrepancies or errors, please inform us as soon as possible, so we can rectify them.</p>
-              </div>
-              <div class="content__section">
-                <p>Best regards,<br>Actriv Team</p>
-                <p>&nbsp;</p>
-                <p><a href="https://www.actriv.com">www.actriv.com</a></p>
-                <p>&nbsp;</p>
-                <p class="content__copyright">Copyright 2023 Actriv. All rights reserved.</p>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" class="banner">
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Logo" class="logo" style="display: inline-block;">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <main class="content">
+                <h1 class="content__heading">Dear Actriv Payroll Team,</h1>
+                <div class="content__section">
+                    <p>I am writing to inform you that {{ provider_name }} has submitted their Timesheet for their shift on {{ timesheet_date }}. Please find the details of the time sheet below:</p>
+                    <p>&nbsp;</p>
+                    <p>Provider Name: {{ provider_name }}</p>
+                    <p>Date: {{ timesheet_date }}</p>
+                    <p>Shift Start Time: {{ shift_start_date }}</p>
+                    <p>Shift End Time: {{ shift_end_date }}</p>
+                    <p>&nbsp;</p>
+                    <p>Please review the Timesheet and ensure that all details are accurate. If there are any discrepancies or errors, please inform us as soon as possible, so we can rectify them.</p>
+                </div>
+                <div class="content__section">
+                  <p>Best regards,<br>Actriv Team</p>
+                  <p>&nbsp;</p>
+                  <p class="web_link"><a href="https://www.actriv.com">www.actriv.com</a></p>
+                  <p>&nbsp;</p>
+                  <p class="content__footer">Copyright 2023 Actriv. All rights reserved.</p>
+                </div>
+              </main>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  </body>
+</body>
 </html>

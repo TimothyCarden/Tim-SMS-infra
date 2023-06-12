@@ -27,7 +27,7 @@
       padding: 0;
       border-spacing: 0;
       border-collapse: collapse;
-      padding-bottom: 40px;
+      padding-bottom: 40px; 
     }
 
     .content__heading {
@@ -95,9 +95,10 @@
       .table_container {
         text-align: left;
         max-width: 700px;
+
       }
 
-      .content__heading {
+      .content__heading{
         text-align: left;
         margin-left: 30px;
         font-family: "Poppins", sans-serif;
@@ -110,73 +111,73 @@
         margin-right: auto;
         font-weight: 500;
         font-size: 16px;
+
       }
     }
 
     img.banner {
       height: calc(100% + 10px);
-      margin-bottom: 20px;
+      margin-bottom: 20px; 
     }
 
     img.logo {
-      margin-bottom: 20px;
+      margin-bottom: 20px; 
     }
 
-    .button {
+    .button{
       border-radius: 8px;
       font-family: "Poppins", sans-serif;
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="table_container">
-    <table>
-      <tbody>
-      <tr aria-hidden="true">
-        <td class="strip"></td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">
-          <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" class="banner"
-               style="width: 100%; height: auto; ">
-        </td>
-      </tr>
-      <tr>
-        <td style="text-align: center;">
-          <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Logo" class="logo"
-               style="display: inline-block; ">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <main class="content">
-            <h1 class="content__heading">Dear Actriv Staffing Team,</h1>
-            <div class="content__section">
-              <p> We are writing to inform you that {{ facility_name }} has made changes to their Facility
-                Manager settings. Specifically, they have updated the {{ setting }} setting. </p>
-              <p>&nbsp;</p>
-              <p>It is crucial that you are aware of any changes made to our clients' accounts, as this
-                may affect our operations and scheduling processes. Therefore, we kindly request that
-                you take note of this change and ensure that all shifts and assignments are scheduled
-                accordingly.</p>
-            </div>
-            <div class="content__section">
-            </div>
-            <div class="content__section">
-              <p>Best regards,<br>Actriv Team</p>
-              <p>&nbsp;</p>
-              <p><a href="https://www.actriv.com">www.actriv.com</a></p>
-              <div class="content__footer">
-                <p>Copyright 2023 Actriv. All rights reserved.</p>
-              </div>
-            </div>
-          </main>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <div class="table_container">
+      <table>
+        <tbody>
+          <tr aria-hidden="true">
+            <td class="strip"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" class="banner" style="width: 100%; height: auto; ">
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Logo" class="logo" style="display: inline-block; ">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <main class="content">
+                <h1 class="content__heading">Dear Facility Manager,</h1>
+                <div class="content__section">
+                  <p>We regret to inform you that {{ provideR_name }}, has called-out of their shift scheduled for
+                    {{ shift_date_time }} at your facility. </p>
+                  <p>&nbsp;</p>
+                  <p>We have already taken steps to find a suitable replacement for this shift.</p>
+                  <p>&nbsp;</p>
+                  <p>We apologize for any inconvenience this may cause and assure you that we will make every effort to minimize the impact on your facility. Please do not hesitate to contact us if you have any concerns or questions regarding this matter.</p>
+                  <p>&nbsp;</p>
+                  <p> Thank you for your understanding. </p>
+                </div>
+                <div class="content__section">
+                </div>
+                <div class="content__section">
+                  <p>Best regards,<br>Actriv Team</p>
+                  <p>&nbsp;</p>
+                  <p><a href="https://www.actriv.com">www.actriv.com</a></p>
+                  <div class="content__footer">
+                    <p>Copyright 2023 Actriv. All rights reserved.</p>
+                  </div>
+                </div>
+              </main>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </body>
 </html>
