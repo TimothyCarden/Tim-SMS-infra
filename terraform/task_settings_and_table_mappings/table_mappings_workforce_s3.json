@@ -1,115 +1,224 @@
 {
-    "rules": [
-      {
-        "rule-type": "selection",
-        "rule-id": "398800313",
-        "rule-name": "398800313",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "shift_invoice"
-        },
-        "rule-action": "include",
-        "filters": []
+  "rules": [
+    {
+      "rule-type": "selection",
+      "rule-id": "398800313",
+      "rule-name": "398800313",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_invoice"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800314",
-        "rule-name": "398800314",
-        "object-locator": {
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800314",
+      "rule-name": "398800314",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_payroll"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800315",
+      "rule-name": "398800315",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_shift_clocking"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800316",
+      "rule-name": "398800316",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800317",
+      "rule-name": "398800317",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_option"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800318",
+      "rule-name": "398800318",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800319",
+      "rule-name": "398800319",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_geo_position"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800320",
+      "rule-name": "398800320",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "client_facility"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800321",
+      "rule-name": "398800321",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "region"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800322",
+      "rule-name": "398800322",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order_time_sheet"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800323",
+      "rule-name": "398800323",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_cert"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800324",
+      "rule-name": "398800324",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order_cert"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800325",
+      "rule-name": "398800325",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "cert"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800326",
+      "rule-name": "398800326",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_spec"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800327",
+      "rule-name": "398800327",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "shift_order_spec"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800328",
+      "rule-name": "398800328",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "spec"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "398800329",
+      "rule-name": "398800329",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "spec_cert_mapping"
+      },
+      "rule-action": "include",
+      "filters": []
+    },
+    {
+      "rule-type": "transformation",
+      "rule-id": "5",
+      "rule-name": "uint32-to-int32",
+      "rule-action": "change-data-type",
+      "rule-target": "column",
+      "object-locator": {
           "schema-name": "workforce",
-          "table-name": "shift_payroll"
-        },
-        "rule-action": "include",
-        "filters": []
+          "table-name": "%",
+          "column-name": "%",
+          "data-type": "uint4"
+      },
+      "data-type": {
+          "type": "int4"
       }
-      ,
-      {
-        "rule-type": "selection",
-        "rule-id": "398800315",
-        "rule-name": "398800315",
-        "object-locator": {
+ },
+ {
+      "rule-type": "transformation",
+      "rule-id": "6",
+      "rule-name": "time-to-string",
+      "rule-action": "change-data-type",
+      "rule-target": "column",
+      "object-locator": {
           "schema-name": "workforce",
-          "table-name": "provider_shift_clocking"
-        },
-        "rule-action": "include",
-        "filters": []
+          "table-name": "%",
+          "column-name": "%",
+          "data-type": "time"
       },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800316",
-        "rule-name": "398800316",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "shift_order"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800317",
-        "rule-name": "398800317",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "shift_option"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800318",
-        "rule-name": "398800318",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "provider"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800319",
-        "rule-name": "398800319",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "provider_geo_position"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800320",
-        "rule-name": "398800320",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "client_facility"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800321",
-        "rule-name": "398800321",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "region"
-        },
-        "rule-action": "include",
-        "filters": []
-      },
-      {
-        "rule-type": "selection",
-        "rule-id": "398800322",
-        "rule-name": "398800322",
-        "object-locator": {
-          "schema-name": "workforce",
-          "table-name": "shift_order_time_sheet"
-        },
-        "rule-action": "include",
-        "filters": []
+      "data-type": {
+          "type": "string",
+          "length": 50
       }
-    ]
-  }
+ }
+  ]
+}
