@@ -40,15 +40,11 @@ spec:
               alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
               alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
   project: default
-  ignoreDifferences:
-  - group: monitoring.coreos.com
-    kind: ServiceMonitor
-    jqPathExpressions:
-    - .spec.endpoints[]?.relabelings[]?.action
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - Replace = true
+      - ServerSideApply=true
       - CreateNamespace=true
