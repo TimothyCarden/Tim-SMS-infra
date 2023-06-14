@@ -27,8 +27,6 @@ spec:
             port: 9090
           ingress:
             enabled: true
-            paths:
-              - /prometheus
             hosts: 
               - "prometheus.dev.actriv.com"
             annotations:
@@ -44,5 +42,6 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
+      - Replace = true
       - CreateNamespace=true
       - ServerSideApply=true
