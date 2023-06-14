@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: kube-prometheus-stack
+    targetRevision: 46.4.1
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        prometheus:
+          enabled: true
+          serviceAccount:
+            create: true
+            name: prometheus-service-account
+          pdb:
+            minAvailable: 2
+          service:
+            type: ClusterIP
+            port: 9090
+          ingress:
+            enabled: true
+            path: /prometheus
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              external-dns.alpha.kubernetes.io/hostname: "prometheus.dev.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
