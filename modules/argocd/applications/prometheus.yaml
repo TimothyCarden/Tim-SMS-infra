@@ -27,7 +27,10 @@ spec:
             port: 9090
           ingress:
             enabled: true
-            path: /prometheus
+            paths:
+              - /prometheus
+            hosts: 
+              - "prometheus.dev.actriv.com"
             annotations:
               kubernetes.io/ingress.class: "nginx"
               ingressClassName: "nginx"
