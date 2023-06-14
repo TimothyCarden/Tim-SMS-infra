@@ -15,6 +15,9 @@ spec:
     chart: kube-prometheus-stack
     helm:
       values: |
+        prometheusOperator:
+           admissionWebhooks:
+             failurePolicy: Ignore
         prometheus:
           enabled: true
           serviceAccount:
