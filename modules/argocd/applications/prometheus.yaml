@@ -33,7 +33,7 @@ spec:
             annotations:
               kubernetes.io/ingress.class: "nginx"
               ingressClassName: "nginx"
-              nginx.ingress.kubernetes.io/rewrite-target: /$2
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:415172466759:certificate/6f9e5a08-f007-4fa2-ab9d-810ddf282c11"
               external-dns.alpha.kubernetes.io/hostname: "prometheus.dev.actriv.com"
               alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
               alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
