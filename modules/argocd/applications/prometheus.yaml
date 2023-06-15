@@ -1,47 +1,47 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: prometheus
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-options: Replace=true
-spec:
-  destination:
-    namespace: monitoring
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 46.6.0
-    chart: kube-prometheus-stack
-    helm:
-      values: |
-        prometheus:
-          enabled: true
-          serviceAccount:
-            create: true
-            name: prometheus-service-account
-          pdb:
-            minAvailable: 2
-          service:
-            type: ClusterIP
-            port: 9090
-          ingress:
-            enabled: true
-            hosts: 
-              - "prometheus.dev.actriv.com"
-            annotations:
-              kubernetes.io/ingress.class: "nginx"
-              ingressClassName: "nginx"
-              nginx.ingress.kubernetes.io/rewrite-target: /$2
-              external-dns.alpha.kubernetes.io/hostname: "prometheus.dev.actriv.com"
-              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
-              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - Replace = true
-      - ServerSideApply=true
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: prometheus
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-options: Replace=true
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: https://kubernetes.default.svc
+#   source:
+#     repoURL: https://prometheus-community.github.io/helm-charts
+#     targetRevision: 46.6.0
+#     chart: kube-prometheus-stack
+#     helm:
+#       values: |
+#         prometheus:
+#           enabled: true
+#           serviceAccount:
+#             create: true
+#             name: prometheus-service-account
+#           pdb:
+#             minAvailable: 2
+#           service:
+#             type: ClusterIP
+#             port: 9090
+#           ingress:
+#             enabled: true
+#             hosts: 
+#               - "prometheus.dev.actriv.com"
+#             annotations:
+#               kubernetes.io/ingress.class: "nginx"
+#               ingressClassName: "nginx"
+#               nginx.ingress.kubernetes.io/rewrite-target: /$2
+#               external-dns.alpha.kubernetes.io/hostname: "prometheus.dev.actriv.com"
+#               alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#               alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - Replace = true
+#       - ServerSideApply=true
+#       - CreateNamespace=true
