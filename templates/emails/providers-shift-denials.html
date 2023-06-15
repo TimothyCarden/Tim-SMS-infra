@@ -24,14 +24,14 @@
               <table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
                 <tr>
                   <td style="padding: 20px;">
-                    <h1 style="font-weight: 530; font-size: 20px; margin-top: 0; margin-bottom: 20px; text-align: left; margin-left: 30px;">Dear “Provider Name”,</h1>
-                    <p style="font-weight: 530; font-size: 16px; margin-bottom: 20px; text-align: left; margin-left: 30px;">Hallmark Manor has denied the requested shift on Sun, Jan 15, 6:00 AM - 2:00 PM PST.</p>
+                    <h1 style="font-weight: 530; font-size: 20px; margin-top: 0; margin-bottom: 20px; text-align: left; margin-left: 30px;">Dear {{ provider_name }},</h1>
+                    <p style="font-weight: 530; font-size: 16px; margin-bottom: 20px; text-align: left; margin-left: 30px;">{{ facility_name }} has denied the requested shift on {{ shift_date }}</p>
                     <div style="text-align: left; margin-left: 30px; margin-top: 30px;">
                       <a href="" target="_blank" style="display: inline-block; padding: 8px 16px; margin-bottom: 30px; line-height: 24px; color: #ffffff; background: #0288E6; border-radius: 8px; text-decoration: none; text-align: center;">View Shifts</a>
                     </div>
                     <p style="font-weight: 530; font-size: 16px; margin-bottom: 20px; text-align: left; margin-left: 30px;">
                         If you’re having trouble with the button above, copy and paste the URL below into your web browser.<br><br>
-                        <a href="http://partner.actriv.care/invite?erhl;sn;klns9uLJLGGULblsfg76oJ" style="text-decoration: none; color: #0288E6;">http://partner.actriv.care/invite?erhl;sn;klns9uLJLGGULblsfg76oJ</a>
+                        <a href="http://partner.actriv.care/invite?erhl;sn;klns9uLJLGGULblsfg76oJ" style="text-decoration: none; color: #0288E6;">{{ shift_url }}</a>
                     </p>                      
                     <p style="font-weight: 530; font-size: 16px; margin-bottom: -30px; text-align: left; margin-left: 30px;">Best regards,<br>Actriv Team</p>
                     <p>&nbsp;</p>
