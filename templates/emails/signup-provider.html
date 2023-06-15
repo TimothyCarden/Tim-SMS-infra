@@ -3,183 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>Email</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <style>
-        html {
-            font-size: 16px;
-            line-height: 1.5;
-            font-family: "Poppins", sans-serif;
-            color: #000000;
-        }
-
-        .container {
-            background: #D4E0E2;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .table_container {
-            max-width: 640px;
-            margin: 0 auto;
-            background: #FFFFFF;
-            padding: 0;
-            border-spacing: 0;
-            border-collapse: collapse;
-            padding-bottom: 40px;
-        }
-
-        .content__heading {
-            font-weight: 500;
-            font-size: 20px;
-            font-family: 'Poppins';
-            align-items: center;
-            text-align: left;
-            margin-left: 300px;
-            width: 560px;
-            font-style: normal;
-            line-height: 30px;
-            color: #02242C;
-            flex: none;
-            order: 0;
-            align-self: stretch;
-            flex-grow: 0;
-        }
-
-        .content__section {
-            margin-bottom: 20px;
-            padding-left: 30px;
-            align-items: center;
-            text-align: left;
-            margin-left: 300px;
-        }
-
-        .content__section p:last-child {
-            margin-bottom: 0;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 5px 0;
-            line-height: 24px;
-            color: #ffffff;
-            border-radius: 8px;
-            text-decoration: none;
-        }
-
-        .grey {
-            color: #808080;
-        }
-
-        .content__footer {
-            text-align: left;
-            margin-top: 10px;
-        }
-
-        .content__footer p {
-            margin: 0;
-            font-size: 14px;
-            color: #5e838c;
-        }
-
-        @media only screen and (min-width: 600px) {
-            .container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-            }
-
-            .table_container {
-                text-align: left;
-                max-width: 700px;
-            }
-
-            .content__heading {
-                text-align: left;
-                margin-left: 30px;
-                font-family: "Poppins", sans-serif;
-            }
-
-            .content__section {
-                margin-top: 50px;
-                text-align: left;
-                margin-left: auto;
-                margin-right: auto;
-                font-weight: 500;
-                font-size: 16px;
-            }
-        }
-
-        img.banner {
-            height: calc(100% + 10px);
-            margin-bottom: 20px;
-        }
-
-        img.logo {
-            margin-bottom: 20px;
-        }
-
-        .button {
-            border-radius: 8px;
-            font-family: "Poppins", sans-serif;
-        }
-    </style>
 </head>
-<body>
-<div class="container">
-    <div class="table_container">
-        <table>
-            <tbody>
-            <tr aria-hidden="true">
-                <td class="strip"></td>
-            </tr>
-            <tr>
-                <td style="text-align: center;">
-                    <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" class="banner"
-                         style="width: 100%; height: auto; ">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: center;">
-                    <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Logo" class="logo"
-                         style="display: inline-block; ">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <main class="content">
-                        <h1 class="content__heading">Dear Actriv Recruiting Team,</h1>
-                        <div class="content__section">
-                            <p>We are pleased to inform you that {{ provider_name }} has signed up through our app, and
-                                we
-                                are excited to have them on board as a new provider. </p>
-                            <p>&nbsp;</p>
-                            <p>As the Recruiting team, we would like you to reach out to {{ provider_name }} to start
-                                the
-                                onboarding process. It is crucial to ensure that they have a smooth onboarding
-                                experience.</p>
-                            <p>&nbsp;</p>
-                            <p>Thank you for your hard work.</p>
-                        </div>
-                        <div class="content__section">
-                        </div>
-                        <div class="content__section">
-                            <p>Best regards,<br>Actriv Team</p>
-                            <p>&nbsp;</p>
-                            <p><a href="https://www.actriv.com">www.actriv.com</a></p>
-                            <div class="content__footer">
-                                <p>Copyright 2023 Actriv. All rights reserved.</p>
-                            </div>
-                        </div>
-                    </main>
-                </td>
-            </tr>
-            </tbody>
+<body style="font-size: 16px; line-height: 1.5; font-family: 'Poppins', sans-serif; color: #000000; margin: 0; padding: 0;">
+  <table role="presentation" cellspacing="0" cellpadding="0" width="100%" style="border-collapse: collapse;">
+    <tr>
+      <td style="background: #D4E0E2; padding: 40px; text-align: center;">
+        <table role="presentation" align="center" cellspacing="0" cellpadding="0" width="640" style="border-collapse: collapse; margin: 0 auto; background: #FFFFFF;">
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/banner.png" alt="Banner" width="100%" style="display: block; height: auto; margin-bottom: 30px;">
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <img src="https://dev.actriv.com/custom-data/emails/images/logo.png" alt="Logo" style="display: inline-block; margin-bottom: 30px;">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <h1 style="font-weight: 530; font-size: 20px; margin-top: 0; margin-bottom: 30px; text-align: left; margin-left: 30px;">Dear Actriv Recruiting Team,</h1>
+                    <p style="font-weight: 530; font-size: 16px; margin-bottom: 30px; text-align: left; margin-left: 30px;">We are pleased to inform you that (Provider Name) has signed up through our app, and we are excited to have them on board as a new provider.</p>
+                    <p style="font-weight: 530; font-size: 16px; margin-bottom: 30px; text-align: left; margin-left: 30px;">As the Recruiting team, we would like you to reach out to (Provider Name) to start the onboarding process. It is crucial to ensure that they have a smooth onboarding experience.</p>
+                    <p style="font-weight: 530; font-size: 16px; margin-bottom: 30px; text-align: left; margin-left: 30px;">Thank you for your hard work.</p>
+                    <p style="font-weight: 530; font-size: 16px; margin-bottom: -30px; text-align: left; margin-left: 30px;">Best regards,<br>Actriv Team</p>
+                    <p>&nbsp;</p>
+                    <p style="text-align: left; margin-left: 30px;"><a href="https://www.actriv.com" style="text-decoration: none;">www.actriv.com</a></p>
+                    <div style="text-align: left; margin-left: 30px;">
+                    <p style="font-size: 12px; margin-top: 20px; color: #5E838C;">Copyright 2023 Actriv. All rights reserved.</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
         </table>
-    </div>
-</div>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
