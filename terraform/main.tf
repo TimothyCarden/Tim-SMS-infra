@@ -51,6 +51,7 @@ module "argocd" {
   certificate_arn    = module.infrastructure.certificate_arn
   domain_name        = lookup(var.domain_name, local.env)
   github_token       = var.github_token
+  env                = local.env
 }
 
 

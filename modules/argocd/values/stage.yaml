@@ -1,0 +1,17 @@
+applications:
+  - name: applications
+    namespace: argocd
+    additionalLabels:
+      owner: Mher
+    project: default
+    source:
+      repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
+      targetRevision: develop
+      path: modules/argocd/applications/staging
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+          prune: true
+          selfHeal: true

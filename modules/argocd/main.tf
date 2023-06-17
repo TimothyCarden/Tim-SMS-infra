@@ -48,24 +48,7 @@ resource "helm_release" "argocd-apps" {
   namespace  = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
 
-  values = [<<EOF
-applications:
-  - name: applications
-    namespace: argocd
-    additionalLabels:
-      owner: Mher
-    project: default
-    source:
-      repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
-      targetRevision: develop
-      path: modules/argocd/applications
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: default
-    syncPolicy:
-      automated:
-          prune: true
-          selfHeal: true
-EOF
+  values = [
+    "${file("./values/${var.env}.yaml")}"
   ]
 }
