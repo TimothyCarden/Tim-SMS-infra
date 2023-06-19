@@ -68,7 +68,7 @@ def lambda_handler(event, context):
         conn = get_connection()
         with conn.cursor() as cur:
             email = event['request']['userAttributes']['email']
-            sql = """select cf.id, cf.ctms_id,cf.company_client_facility_id
+            sql = """select cf.id, cf.ctms_id,cf.is_company
                      from workforce.client_facility_manager cfm
                      left join workforce.client_facility cf on cfm.client_facility_id = cf.id
                      where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s) and lower(cfm.ctms_status) = 'active'"""
@@ -84,7 +84,7 @@ def lambda_handler(event, context):
                 'claimsToAddOrOverride': {
                     'facility_id': record[0],
                     'facility_ctms_id': record[1],
-                    'company_facility_id': record[2] if record[2] else "-1"
+                    'is_company': record[2]
                 }
             }
     except (Exception, psycopg2.DatabaseError) as error:
