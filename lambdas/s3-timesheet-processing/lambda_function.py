@@ -128,11 +128,18 @@ def process_timesheet(bucket_name, object_key, cur):
         if path.startswith('shift='):
             shift_id = path.split('=')[1]
             logger.info(f'shift {shift_id}')
-            sql = "update workforce.shift_order_time_sheet set file_url = %s, upload_datetime = now() where shift_order_id = %s RETURNING id;"
-            cur.execute(sql, (object_key, shift_id))
+            obj, file_extension = get_object(bucket_name, object_key)
+            thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
+            sql = """update workforce.shift_order_time_sheet 
+                        set file_url = %s, 
+                            file_type = %s,
+                            thumbnail_file_url = %s,
+                            thumbnail_type = %s,
+                            upload_datetime = now() 
+                      where shift_order_id = %s RETURNING id;"""
+            cur.execute(sql, (object_key, file_extension, thumbnail_link, thumbnail_extension, shift_id))
             id = cur.fetchone()[0]
             logger.info(f"updated id = {id}")
-            make_thumbnail(bucket_name, object_key)
 
 
 def process_credentials(bucket_name, object_key, cur):
@@ -145,13 +152,19 @@ def process_credentials(bucket_name, object_key, cur):
         if path.endswith('.original'):
             id = path.split('.')[0]
             logger.info(f'{object_type}Id={id}')
-            sql = f'update workforce.provider_credentials_{object_type} set file_link = %s where id = %s RETURNING id;'
-            cur.execute(sql, (object_key, id))
+            obj, file_extension = get_object(bucket_name, object_key)
+            thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
+            sql = f"""update workforce.provider_credentials_{object_type} 
+                         set file_link = %s, 
+                             file_type = %s,
+                             thumbnail_file_link = %s,
+                             thumbnail_type = %s 
+                       where id = %s RETURNING id;"""
+            cur.execute(sql, (object_key, file_extension, thumbnail_link, thumbnail_extension, id))
             record = cur.fetchone()
             if record and record[0]:
                 id = record[0]
                 logger.info(f"updated id = {id}")
-                make_thumbnail(bucket_name, object_key)
             else:
                 logger.error(f"Couldn't update {object_key} with id {id}. Reason - not found")
 
@@ -166,7 +179,6 @@ def get_file_extension(obj_key, obj):
         extension = elements[len(elements) - 2]
         if extension in valid_extensions:
             return extension
-
     return None
 
 
@@ -195,16 +207,16 @@ def pdf_to_image(pdf_file_bytes):
 def upload_to_s3(bucket_name, head, tail, buffer):
     logger.info('thumbnail uploading')
     buffer.seek(0)
-    s3_client.upload_fileobj(buffer,
-                             bucket_name,
-                             '{}/{}'.format(
-                                 head,
-                                 tail.replace('.original', '.thumbnail')
-                             ))
+    obj_key = '{}/{}'.format(
+        head,
+        tail.replace('.original', '.thumbnail')
+    )
+    s3_client.upload_fileobj(buffer, bucket_name, obj_key)
     logger.info("thumbnail uploaded")
+    return obj_key
 
 
-def make_thumbnail(bucket_name, object_key):
+def get_object(bucket_name, object_key):
     logger.info(f'downloading image {object_key}')
     obj = s3_client.get_object(
         Bucket=bucket_name, Key=object_key
@@ -212,22 +224,37 @@ def make_thumbnail(bucket_name, object_key):
     logger.info(obj)
     if not obj.get('ContentLength') or obj.get('ContentLength') == 0:
         logger.info(f"File {object_key} has 0 size")
-        return
+        return None
+    file_extension = get_file_extension(object_key, obj)
+    return obj, file_extension
 
+
+def make_thumbnail(bucket_name, object_key, obj):
     file_extension = get_file_extension(object_key, obj)
     logger.info(f"extension {file_extension}")
     head, tail = os.path.split(object_key)
 
+    if file_extension not in valid_extensions:
+        logger.error(f"File extension {file_extension} is not valid")
+        return None
+
     if file_extension in image_extensions:
         logger.info('resizing image')
         buffer = resize_image(BytesIO(obj['Body'].read()), file_extension)
-        upload_to_s3(bucket_name, head, tail, buffer)
+        uploaded_key = upload_to_s3(bucket_name, head, tail, buffer)
+        return uploaded_key, file_extension
 
     if file_extension in pdf_extensions:
         logger.info("PDF to image")
         buffer = pdf_to_image(bytes(obj['Body'].read()))
         if buffer:
-            upload_to_s3(bucket_name, head, tail.replace(f'.{file_extension}.original', '.jpeg.original'), buffer)
+            uploaded_key = upload_to_s3(bucket_name, head,
+                                        tail.replace(f'.{file_extension}.original', '.jpeg.original'), buffer
+                                        )
+            return uploaded_key, "jpeg"
+        else:
+            logger.error("Failed to process pdf to image")
+            return None
 
 
 def lambda_handler(event, context):
