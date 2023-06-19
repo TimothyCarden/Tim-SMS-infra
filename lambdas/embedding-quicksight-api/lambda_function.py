@@ -13,8 +13,10 @@ domain_name = os.environ.get('CORS_DOMAIN_NAME')
 region_name = os.environ['AWS_REGION']
 account_id = os.environ['AWS_ACCOUNT_ID']
 quicksight_namespace = os.environ['QUICKSIGHT_NAMESPACE']
-authorized_resource_arns = os.environ['AUTHORIZED_RESOURCE_ARNS']
-dashboard_id = os.environ['DASHBOARD_ID']
+facility_resource_arn = os.environ['FACILITY_RESOURCE_ARN']
+facility_dashboard_id = os.environ['FACILITY_DASHBOARD_ID']
+company_resource_arn = os.environ['COMPANY_RESOURCE_ARN']
+company_dashboard_id = os.environ['COMPANY_DASHBOARD_ID']
 prod_quicksight_role_arn = os.environ['PROD_QUICKSIGHT_ROLE_ARN']
 env_name = os.environ['ENV_NAME']
 
@@ -57,15 +59,14 @@ def send_data_response(data, status_code):
     }
 
 
-def get_embedding_url(event):
-    session_tags = event.get("requestContext").get("authorizer").get("claims").get("facility_ctms_id")
+def get_embedding_url(sessionTags, dashboard_id, resource_arns):
     try:
         response = quicksight_client.generate_embed_url_for_anonymous_user(
             AwsAccountId=account_id,
             Namespace=quicksight_namespace,
-            AuthorizedResourceArns=[authorized_resource_arns],
+            AuthorizedResourceArns=[resource_arns],
             ExperienceConfiguration={"Dashboard": {"InitialDashboardId": dashboard_id}},
-            SessionTags=[{"Key": " customer_id", "Value": session_tags}],
+            SessionTags=sessionTags,
             SessionLifetimeInMinutes=600
         )
         return {
@@ -79,6 +80,26 @@ def get_embedding_url(event):
         return "Error generating embeddedURL: " + str(e)
 
 
+def get_facility_embedding_url(event):
+    facility_ctms_id = event.get("requestContext").get("authorizer").get("claims").get("facility_ctms_id")
+    return get_embedding_url([{"Key": " customer_id", "Value": facility_ctms_id}], facility_dashboard_id,
+                             facility_resource_arn)
+
+
+def get_company_embedding_url(event):
+    facility_ctms_id = event.get("requestContext").get("authorizer").get("claims").get("facility_ctms_id")
+    is_company = event.get("requestContext").get("authorizer").get("claims").get("is_company")
+    if is_company == "false":
+        return {
+            'statusCode': 401,
+            'headers': {"Access-Control-Allow-Origin": domain_name, "Access-Control-Allow-Headers": "Content-Type"},
+            'body': json.dumps({"message": "Access denied"}),
+            'isBase64Encoded': bool('false')
+        }
+    return get_embedding_url([{"Key": " company_id", "Value": facility_ctms_id}], company_dashboard_id,
+                             company_resource_arn)
+
+
 def lambda_handler(event, context):
     logger.info(event)
 
@@ -86,7 +107,8 @@ def lambda_handler(event, context):
     logger.info(operation)
     # define the functions used to perform the CRUD operations
     operations = {
-        'GET:dashboards': get_embedding_url
+        'GET:dashboards/facility': get_embedding_url,
+        'GET:dashboards/company': get_embedding_url
     }
 
     if operation in operations:
@@ -97,4 +119,3 @@ def lambda_handler(event, context):
             return send_message_response("Something went wrong", 400)
     else:
         return send_message_response("Not Found", 404)
-
