@@ -47,7 +47,9 @@ def send_email(raw_message):
 
     if 'attachments' in message:
         for attachment in message['attachments']:
-            email_message.attach(get_attachment(attachment))
+            attachment_part = get_attachment(attachment)
+            if attachment_part:
+                email_message.attach(attachment_part)
 
     result = ses_client.send_raw_email(Source=email_message['From'],
                                        Destinations=message['participants']['to'] + (
@@ -58,12 +60,16 @@ def send_email(raw_message):
 
 
 def get_attachment(attachment):
-    head, tail = os.path.split(attachment['file_url'])
-    filename = tail if not attachment['extension'] else tail + f'.{attachment["extension"]}'
-    file = download_file(attachment['bucket_name'], attachment['file_url'])
-    part = MIMEApplication(file['Body'].read())
-    part.add_header('Content-Disposition', 'attachment', filename=filename)
-    return part
+    try:
+        head, tail = os.path.split(attachment['file_url'])
+        filename = tail if not attachment['extension'] else tail + f'.{attachment["extension"]}'
+        file = download_file(attachment['bucket_name'], attachment['file_url'])
+        part = MIMEApplication(file['Body'].read())
+        part.add_header('Content-Disposition', 'attachment', filename=filename)
+        return part
+    except:
+        logger.error('Failed to get an attachment: %s', attachment['file_url'], exc_info=True)
+        return None
 
 
 def get_email_body(message):
@@ -77,4 +83,3 @@ def lambda_handler(event, context):
         for record in event['Records']:
             send_email(base64.b64decode(record['body']))
     return event
-
