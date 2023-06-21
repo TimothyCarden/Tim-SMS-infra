@@ -60,7 +60,7 @@ spec:
           spec:
             refreshInterval: 15s
             secretStoreRef:
-              name: aws-secretsmanager
+              name: secrets-store-csi-driver
               kind: ClusterSecretStore
             target:
               name: grafana-secrets-ext
