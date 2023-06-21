@@ -52,25 +52,6 @@ spec:
               external-dns.alpha.kubernetes.io/hostname: "prometheus.dev.actriv.com"
               alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
               alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
-        extraManifests:
-        - apiVersion: external-secrets.io/v1beta1
-          kind: ExternalSecret
-          metadata:
-            name: grafana-admin-external
-          spec:
-            refreshInterval: 15s
-            secretStoreRef:
-              name: secrets-store-csi-driver
-              kind: ClusterSecretStore
-            target:
-              name: grafana-secrets-ext
-            data:
-            - secretKey: admin-password
-              remoteRef:
-                conversionStrategy: Default    
-                decodingStrategy: None
-                key: dev/CTMSDatabaseUrl
-                property: admin-password
   project: default
   syncPolicy:
     automated:
