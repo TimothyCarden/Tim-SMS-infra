@@ -49,6 +49,6 @@ resource "helm_release" "argocd-apps" {
   repository = "https://argoproj.github.io/argo-helm"
 
   values = [
-    "${file("./argo-apps-values/stage.yaml")}"
+    "${file("./argo-apps-values/${var.env}.yaml")}"
   ]
 }
