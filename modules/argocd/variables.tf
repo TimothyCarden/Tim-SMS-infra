@@ -42,5 +42,5 @@ variable "domain_name" {
 variable "github_token"{
 }
 
-# variable "env"{
-# }
+variable "env"{
+}
