@@ -47,10 +47,10 @@ module "argocd" {
   authority_data     = module.infrastructure.authority_data
   cluster_name       = module.infrastructure.cluster_name
   argocd_namespace   = "argocd"
-  # hostname           = "argo-cd.${lookup(var.endpoint, local.env)}"
-  # certificate_arn    = module.infrastructure.certificate_arn
-  # domain_name        = lookup(var.domain_name, local.env)
-  # github_token       = var.github_token
+  hostname           = "argo-cd.${lookup(var.endpoint, local.env)}"
+  certificate_arn    = module.infrastructure.certificate_arn
+  domain_name        = lookup(var.domain_name, local.env)
+  github_token       = var.github_token
   # env                = local.env
 }
 
