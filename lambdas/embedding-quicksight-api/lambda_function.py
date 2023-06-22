@@ -107,6 +107,7 @@ def lambda_handler(event, context):
     logger.info(operation)
     # define the functions used to perform the CRUD operations
     operations = {
+        'GET:dashboards': get_facility_embedding_url,
         'GET:dashboards/facility': get_facility_embedding_url,
         'GET:dashboards/company': get_company_embedding_url
     }
