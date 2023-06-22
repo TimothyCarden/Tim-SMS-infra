@@ -69,8 +69,8 @@ spec:
               remoteRef:
                 conversionStrategy: Default    
                 decodingStrategy: None
-                key: dev/CTMSDatabaseUrl
-                property: admin-password
+                key: dev/test
+                property: test
   project: default
   syncPolicy:
     automated:
