@@ -16,6 +16,8 @@ spec:
     helm:
       values: |
         grafana:
+          admin:
+            existingSecret: "grafana-secrets-ext"
           ingress:
             enabled: true
             pathType: Prefix
@@ -69,8 +71,14 @@ spec:
               remoteRef:
                 conversionStrategy: Default    
                 decodingStrategy: None
-                key: dev/test
-                property: test
+                key: dev/GrafanaPassword
+                property: admin-password
+            - secretKey: admin-user
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/GrafanaUser
+                property: admin-user
   project: default
   syncPolicy:
     automated:
