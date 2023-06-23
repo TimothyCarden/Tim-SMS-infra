@@ -53,7 +53,7 @@ module "argocd" {
   github_token       = var.github_token
   env                = local.env
   argocd_password    = local.argo_password
-  
+}
 
 
 
