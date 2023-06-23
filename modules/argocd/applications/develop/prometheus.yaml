@@ -79,6 +79,25 @@ spec:
                 decodingStrategy: None
                 key: dev/GrafanaUser
                 property: admin-user
+        extraManifests:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: prometheus-basic-auth
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: prometheus-basic-auth
+            data:
+            - secretKey: auth
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/PrometheusAuth
+                property: auth
   project: default
   syncPolicy:
     automated:
