@@ -52,7 +52,8 @@ module "argocd" {
   domain_name        = lookup(var.domain_name, local.env)
   github_token       = var.github_token
   env                = local.env
-}
+  argocd_password    = local.argo_password
+  
 
 
 

@@ -30,6 +30,8 @@ server:
         ingressClassName: ${var.ingress_class_name}
         hosts: ["argo-cd.${var.domain_name}"]
 configs:
+    secret:
+        argocdServerAdminPassword: ${var.argocd_password}
     repositories:
         private-repo:
             url: https://github.com/ZapNURSE/sms-infrastructure.git

@@ -41,3 +41,14 @@ data "aws_secretsmanager_secret" "fcm_api_key" {
 data "aws_secretsmanager_secret_version" "fcm_api_key" {
   secret_id = data.aws_secretsmanager_secret.fcm_api_key.id
 }
+
+# =================================
+# ArgoCD path
+# =================================
+
+data "aws_secretsmanager_secret" "argo_password" {
+  name = "${local.env}/ArgoCdPassword"
+}
+data "aws_secretsmanager_secret_version" "argo_password" {
+  secret_id = data.aws_secretsmanager_secret.argo_password.id
+}

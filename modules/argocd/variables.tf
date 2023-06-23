@@ -44,3 +44,6 @@ variable "github_token"{
 
 variable "env"{
 }
+
+variable "argocd_password"{
+}
