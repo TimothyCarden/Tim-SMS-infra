@@ -7,9 +7,9 @@ metadata:
     argocd.argoproj.io/sync-options: Replace=true
 spec:
   source:
-    repoURL: https://kubernetes-sigs.github.io/metrics-server
+    repoURL: https://kubernetes-sigs.github.io/metrics-server/
     chart: metrics-server
-    targetRevision: 1.3.4
+    targetRevision: 3.10.0
     helm:
       values: |
         hostNetwork:
