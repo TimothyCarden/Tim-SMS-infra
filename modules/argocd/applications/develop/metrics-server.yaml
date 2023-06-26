@@ -17,6 +17,9 @@ spec:
         metrics:
           enabled: true
         args: ["--kubelet-insecure-tls","--kubelet-preferred-address-types=InternalIP"]
+        podAnnotations:
+          custom.annotation.io = "test"
+          environment          = "dev"
   project: default
   syncPolicy:
     automated:
