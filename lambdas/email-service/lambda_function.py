@@ -40,6 +40,8 @@ def send_email(raw_message):
     email_message['To'] = ','.join(message['participants']['to'])
     if 'cc' in message['participants']:
         email_message['CC'] = ','.join(message['participants']['cc'])
+    if 'reply_to' in message:
+        email_message['Reply-To'] = message['reply_to']
 
     # message body
     part = MIMEText(get_email_body(message), 'html')
