@@ -1,0 +1,122 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 46.6.0
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        grafana:
+          admin:
+            existingSecret: "grafana-secrets-ext"
+          ingress:
+            enabled: true
+            pathType: Prefix
+            paths:
+                - /
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:150042025240:certificate/1f2d482e-78d5-47e0-9fff-9781745735fa"
+              external-dns.alpha.kubernetes.io/hostname: "grafana.stage.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+            hosts: 
+              - "grafana.stage.actriv.com"
+        prometheus:
+          enabled: true
+          serviceAccount:
+            create: true
+            name: prometheus-service-account
+          pdb:
+            minAvailable: 2
+          service:
+            type: ClusterIP
+            port: 9090
+          ingress:
+            pathType: Prefix
+            enabled: true
+            hosts: 
+              - "prometheus.stage.actriv.com"
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              nginx.ingress.kubernetes.io/auth-type: basic
+              nginx.ingress.kubernetes.io/auth-secret: prometheus-basic-auth
+              nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:150042025240:certificate/1f2d482e-78d5-47e0-9fff-9781745735fa"
+              external-dns.alpha.kubernetes.io/hostname: "prometheus.stage.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+        extraManifests:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: grafana-admin-external
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: grafana-secrets-ext
+            data:
+            - secretKey: admin-password
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/GrafanaPassword
+                property: admin-password
+            - secretKey: admin-user
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/GrafanaUser
+                property: admin-user
+        extraManifests:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: prometheus-basic-auth
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: prometheus-basic-auth
+            data:
+            - secretKey: auth
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/PrometheusAuth
+                property: auth
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: prometheusagents.monitoring.coreos.com
+      jsonPointers:
+      - /status
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: prometheuses.monitoring.coreos.com
+      jsonPointers:
+      - /status
