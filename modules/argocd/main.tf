@@ -43,14 +43,14 @@ EOF
 }
 
 
-# resource "helm_release" "argocd-apps" {
-#   depends_on = [helm_release.argocd]
-#   chart      = "argocd-apps"
-#   name       = "argocd-apps"
-#   namespace  = "argocd"
-#   repository = "https://argoproj.github.io/argo-helm"
+resource "helm_release" "argocd-apps" {
+  depends_on = [helm_release.argocd]
+  chart      = "argocd-apps"
+  name       = "argocd-apps"
+  namespace  = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
 
-#   values = [
-#     "${file("./argo-apps-values/${var.env}.yaml")}"
-#   ]
-# }
+  values = [
+    "${file("./argo-apps-values/${var.env}.yaml")}"
+  ]
+}
