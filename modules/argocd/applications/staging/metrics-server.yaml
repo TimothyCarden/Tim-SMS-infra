@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics-server
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  source:
+    repoURL: https://kubernetes-sigs.github.io/metrics-server/
+    chart: metrics-server
+    targetRevision: 3.8.0
+    helm:
+      values: |
+        hostNetwork:
+          enabled: true
+        metrics:
+          enabled: true
+        defaultArgs:
+          - --cert-dir=/tmp
+          - --kubelet-preferred-address-types=InternalIP
+          - --kubelet-use-node-status-port
+          - --metric-resolution=15s
+          - --kubelet-insecure-tls
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
