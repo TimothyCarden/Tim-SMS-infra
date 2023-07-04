@@ -1,41 +1,41 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: image-updater
-#   namespace: argocd
-# spec:
-#   source:
-#     repoURL: https://argoproj.github.io/argo-helm
-#     chart: argocd-image-updater
-#     targetRevision: 0.9.0
-#     helm:
-#       values: |
-#         config:
-#             registries:
-#               - name: ECR
-#                 api_url: https://415172466759.dkr.ecr.us-west-2.amazonaws.com
-#                 prefix: 415172466759.dkr.ecr.us-west-2.amazonaws.com
-#                 default: true
-#                 ping: yes
-#                 insecure: no
-#                 credentials: ext:/scripts/ecr-login.sh  #script name should match here and in authScripts 
-#                 credsexpire: 11h
-#         authScripts:
-#             enabled: true
-#             scripts: 
-#                 ecr-login.sh: |   # notice script name matches above    
-#                   #!/bin/sh
-#                   aws ecr --region us-east-1 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
-#         serviceAccount:
-#             annotations:
-#                 eks.amazonaws.com/role-arn: arn:aws:iam::486614504337:role/develop-image-updater-role
-#   project: default
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
-#   destination:
-#     namespace: kube-addons
-#     server: https://kubernetes.default.svc
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: image-updater
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argocd-image-updater
+    targetRevision: 0.9.0
+    helm:
+      values: |
+        config:
+            registries:
+              - name: ECR
+                api_url: https://415172466759.dkr.ecr.us-west-2.amazonaws.com
+                prefix: 415172466759.dkr.ecr.us-west-2.amazonaws.com
+                default: true
+                ping: yes
+                insecure: no
+                credentials: ext:/scripts/ecr-login.sh  #script name should match here and in authScripts 
+                credsexpire: 11h
+        authScripts:
+            enabled: true
+            scripts: 
+                ecr-login.sh: |   # notice script name matches above    
+                  #!/bin/sh
+                  aws ecr --region us-east-1 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
+        serviceAccount:
+            annotations:
+                eks.amazonaws.com/role-arn: arn:aws:iam::415172466759:role/image-updater-role
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    namespace: kube-addons
+    server: https://kubernetes.default.svc
