@@ -1,114 +1,114 @@
 {
   "rules": [
-    {
-      "rule-type": "selection",
-      "rule-id": "398800311",
-      "rule-name": "398800311",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "sent_message"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800311",
+          "rule-name": "398800311",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "sent_message"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800312",
-      "rule-name": "398800312",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "sent_message_order"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800312",
+          "rule-name": "398800312",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "sent_message_order"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800313",
-      "rule-name": "398800313",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "clinic_clinician_distance"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800313",
+          "rule-name": "398800313",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "clinic_clinician_distance"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800314",
-      "rule-name": "398800314",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "clinic_geo"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800314",
+          "rule-name": "398800314",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "clinic_geo"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800315",
-      "rule-name": "398800315",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "clinic_to_clinic_distance"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800315",
+          "rule-name": "398800315",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "clinic_to_clinic_distance"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800316",
-      "rule-name": "398800316",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "clinician_geo"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800316",
+          "rule-name": "398800316",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "clinician_geo"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "selection",
-      "rule-id": "398800317",
-      "rule-name": "398800317",
-      "object-locator": {
-        "schema-name": "public",
-        "table-name": "clinician_region"
+      {
+          "rule-type": "selection",
+          "rule-id": "398800317",
+          "rule-name": "398800317",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "clinician_region"
+          },
+          "rule-action": "include",
+          "filters": []
       },
-      "rule-action": "include",
-      "filters": []
-    },
-    {
-      "rule-type": "transformation",
-      "rule-id": "5",
-      "rule-name": "uint32-to-int32",
-      "rule-action": "change-data-type",
-      "rule-target": "column",
-      "object-locator": {
-          "schema-name": "public",
-          "table-name": "%",
-          "column-name": "%",
-          "data-type": "uint4"
+      {
+          "rule-type": "transformation",
+          "rule-id": "5",
+          "rule-name": "uint32-to-int32",
+          "rule-action": "change-data-type",
+          "rule-target": "column",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "%",
+              "column-name": "%",
+              "data-type": "uint4"
+          },
+          "data-type": {
+              "type": "int4"
+          }
       },
-      "data-type": {
-          "type": "int4"
+      {
+          "rule-type": "transformation",
+          "rule-id": "6",
+          "rule-name": "time-to-string",
+          "rule-action": "change-data-type",
+          "rule-target": "column",
+          "object-locator": {
+              "schema-name": "florence",
+              "table-name": "%",
+              "column-name": "%",
+              "data-type": "time"
+          },
+          "data-type": {
+              "type": "string",
+              "length": 50
+          }
       }
- },
- {
-      "rule-type": "transformation",
-      "rule-id": "6",
-      "rule-name": "time-to-string",
-      "rule-action": "change-data-type",
-      "rule-target": "column",
-      "object-locator": {
-          "schema-name": "public",
-          "table-name": "%",
-          "column-name": "%",
-          "data-type": "time"
-      },
-      "data-type": {
-          "type": "string",
-          "length": 50
-      }
- }
   ]
 }
