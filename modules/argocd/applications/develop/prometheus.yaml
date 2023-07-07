@@ -33,6 +33,11 @@ spec:
             hosts: 
               - "grafana.dev.actriv.com"
         prometheus:
+          prometheusSpec:
+            additionalScrapeConfigs:
+            - job_name: 'test'
+              static_configs:
+                - targets: ['actrus-dev-api:80']
           enabled: true
           serviceAccount:
             create: true
