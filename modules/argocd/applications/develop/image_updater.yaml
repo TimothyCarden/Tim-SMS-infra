@@ -25,7 +25,7 @@ spec:
             scripts: 
                 ecr-login.sh: |   # notice script name matches above    
                   #!/bin/sh
-                  aws ecr --region us-east-1 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
+                  aws ecr --region us-west-2 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
         serviceAccount:
             annotations:
                 eks.amazonaws.com/role-arn: arn:aws:iam::415172466759:role/image-updater-role
