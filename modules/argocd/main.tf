@@ -36,6 +36,9 @@ configs:
         private-repo:
             url: https://github.com/ZapNURSE/sms-infrastructure.git
             password: ${var.github_token}
+        workforce-management:
+            url: https://github.com/ZapNURSE/workforce-management.git
+            password: ${var.github_token}
 image:
     tag: v2.6.7
 EOF
