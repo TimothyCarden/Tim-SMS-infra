@@ -5,13 +5,25 @@ applications:
       owner: Mher
     project: default
     source:
-        repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
-        targetRevision: develop
-        path: modules/argocd/applications/develop
-    sources:
-      - repoURL: https://github.com/ZapNURSE/workforce-managent.git
-        targetRevision: develop
-        path: modules/argocd/applications/develop
+      repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
+      targetRevision: develop
+      path: modules/argocd/applications/develop
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    syncPolicy:
+      automated:
+          prune: true
+          selfHeal: true
+  - name: actrus
+    namespace: argocd
+    additionalLabels:
+      owner: Mher
+    project: default
+    source:
+      repoURL: https://github.com/ZapNURSE/workforce-managent.git
+      targetRevision: develop
+      path: application
     destination:
       server: https://kubernetes.default.svc
       namespace: default
