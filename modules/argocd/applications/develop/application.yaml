@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: actrus-api
       valueFiles:
-      - dev.yaml
+      - $values/helm/actrus-api/dev.yaml
   syncPolicy:
       automated:
         prune: true
