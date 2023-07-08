@@ -15,19 +15,3 @@ applications:
       automated:
           prune: true
           selfHeal: true
-  - name: actrus
-    namespace: argocd
-    additionalLabels:
-      owner: Mher
-    project: default
-    source:
-      repoURL: https://github.com/ZapNURSE/workforce-managent.git
-      targetRevision: develop
-      path: application
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: default
-    syncPolicy:
-      automated:
-          prune: true
-          selfHeal: true
