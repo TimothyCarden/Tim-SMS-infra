@@ -11,8 +11,73 @@ spec:
     path: helm/actrus-api
     helm:
       releaseName: actrus-api
-      valueFiles:
-      - $values/helm/actrus-api/dev.yaml
+      values: |
+        global:
+          certificate_arn: "arn:aws:acm:us-west-2:415172466759:certificate/70538ee8-9a63-4e54-a3bc-6912eaeae905"
+          image_url: "415172466759.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-actrus-repository:53717cadee94342af6a3392ec6dccea1941d9c98"
+          application_name: "actrus-dev-api"
+          service_account_name: "secret-manager-service-account"
+          actrus_api_container_name: "actrus-api"
+          actrus_container_port: 8081
+          service_port: 80
+          secret_provider_class_name: "dev-secrets-provider"
+          service_account_role: "arn:aws:iam::415172466759:role/actriv-dev-external-secrets-role"
+          replica_count: 1
+          secret_name: "dev-database-connections"
+          external_secret_name: "dev-external-secrets"
+          secret_provider: "aws"
+          # secret_provider_secretObject_ObjectName1: "PostgreDatabasePassword"
+          # secret_provider_secretObject_ObjectName2: "PostgreDatabaseUsername"
+          # secret_provider_secretObject_ObjectName3: "PostgreDatabaseUrl"
+          # secret_provider_secretObject_ObjectName4: "CtmsUsername"
+          # secret_provider_secretObject_ObjectName5: "CtmsPassword"
+          # secret_provider_secretObject_ObjectName6: "CTMSDatabaseUrl"
+          # secret_provider_secretObject_key : "PostgreDatabasePassword"
+          # secret_provider_parameters_objectName1: "dev/PostgreDatabasePassword"
+          # secret_provider_parameters_objectName2: "dev/PostgresDatabaseUsername"
+          # secret_provider_parameters_objectName3: "dev/PostgreDatabaseUrl"
+          # secret_provider_parameters_objectName4: "dev/CtmsUsername"
+          # secret_provider_parameters_objectName5: "dev/CtmsPassword"
+          secret_provider_parameters_objectName6: "dev/CTMSDatabaseUrl"
+          actriv_app_config_application_name_value: "actriv-dev-application"
+          actriv_app_config_environment_name_value: "actriv-dev-environment"
+          actriv_app_config_config_profile_name_value: "actriv-dev-configuration-profile"
+          env1: "_PROD_QUARKUS_DATASOURCE_PASSWORD"
+          env2: "_PROD_QUARKUS_DATASOURCE_USERNAME"
+          env3: "_PROD_QUARKUS_DATASOURCE_JDBC_URL"
+          env4: "_PROD_QUARKUS_DATASOURCE_SMSDB_PASSWORD"
+          env5: "_PROD_QUARKUS_DATASOURCE_SMSDB_USERNAME"
+          env6: "_PROD_CTMS_USERNAME"
+          env7: "_PROD_CTMS_PASSWORD"
+          env8: "_DEV_CTMS_USERNAME"
+          env9: "_DEV_CTMS_PASSWORD"
+          env10: "_TEST_CTMS_USERNAME"
+          env11: "_TEST_CTMS_PASSWORD"
+          env12: "_PROD_QUARKUS_DATASOURCE_SMSDB_JDBC_URL"
+          secrets_manager_postgres_credentials: "dev/PostgresDatabaseCredentials"
+          secrets_manager_ctms_database_credentials: "dev/CtmsDatabaseCredentials"
+          secrets_manager_florence_database_credentials: "dev/FlorenceDatabaseUrl"
+          domain_name: "dev.actriv.com"
+          service_name: "actrus-api"
+          livenessProbe:
+            httpGet:
+              path: /q/health/live
+              port: 8081
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 2
+            successThreshold: 1
+
+          readinessProbe:
+            httpGet:
+              path: /q/health/ready
+              port: 8081
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
   syncPolicy:
       automated:
         prune: true
