@@ -4,10 +4,11 @@ applications:
     additionalLabels:
       owner: Mher
     project: default
-    sources:
-      - repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
+    source:
+        repoURL: https://github.com/ZapNURSE/sms-infrastructure.git
         targetRevision: develop
         path: modules/argocd/applications/develop
+    sources:
       - repoURL: https://github.com/ZapNURSE/workforce-managent.git
         targetRevision: develop
         path: modules/argocd/applications/develop
