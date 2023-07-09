@@ -10,6 +10,7 @@ metadata:
     argocd-image-updater.argoproj.io/actrus-api.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: develop
+    argocd-image-updater.argoproj.io/actrus-api.allow-tags: regexp:^develop-*
 spec:
   project: default
   source:
