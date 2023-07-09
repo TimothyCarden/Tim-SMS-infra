@@ -4,10 +4,10 @@ metadata:
   name: actrus-api
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: java=415172466759.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-actrus-repository
-    argocd-image-updater.argoproj.io/java.helm.image-name: image.repository
-    argocd-image-updater.argoproj.io/java.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/java.update-strategy: latest
+    argocd-image-updater.argoproj.io/image-list: actrus-api=415172466759.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-actrus-repository
+    argocd-image-updater.argoproj.io/actrus-api.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/actrus-api.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/actrus-api.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: develop
 spec:
