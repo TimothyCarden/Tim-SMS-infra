@@ -37,7 +37,7 @@ configs:
             url: https://github.com/ZapNURSE/sms-infrastructure.git
             password: ${var.github_token}
         application-repo:
-            url: https://github.com/ZapNURSE/workforce-management.git
+            url: https://github.com/ZapNURSE/workforce-managent.git
             password: ${var.github_token}
 image:
     tag: v2.6.7
