@@ -10,6 +10,15 @@ spec:
     targetRevision: 2.31.0
     helm:
       values: |
+        spec:
+          analysis:
+            # limits the number of successful analysis runs and experiments to be stored in a history
+            # Defaults to 5.
+            successfulRunHistoryLimit: 1
+            # limits the number of unsuccessful analysis runs and experiments to be stored in a history. 
+            # Stages for unsuccessful: "Error", "Failed", "Inconclusive"
+            # Defaults to 5.
+            unsuccessfulRunHistoryLimit: 1
         dashboard:
           enabled: true
           ingress:
