@@ -35,7 +35,7 @@ spec:
         prometheus:
           prometheusSpec:
             additionalScrapeConfigs:
-            - job_name: quarkus-micrometer
+            - job_name: quarkus
               metrics_path: '/q/metrics'
               scrape_interval: 3s  
               static_configs:
