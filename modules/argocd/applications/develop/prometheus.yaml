@@ -35,8 +35,8 @@ spec:
         prometheus:
           prometheusSpec:
             additionalScrapeConfigs:
-            - job_name: quarkus-micrometer
-              metrics_path: '/q/metrics'
+            - job_name: quarkus-metrics
+              metrics_path: '/metrics'
               scrape_interval: 30s  
               static_configs:
                 - targets: ['actrus-dev-api.default.svc:80']
