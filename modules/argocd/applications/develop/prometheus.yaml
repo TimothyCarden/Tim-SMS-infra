@@ -39,7 +39,7 @@ spec:
               metrics_path: '/q/metrics'
               scrape_interval: 30s  
               static_configs:
-                - targets: ['actrus-dev-api.default.svc:8081']
+                - targets: ['actrus-dev-api.default.svc:80']
           enabled: true
           serviceAccount:
             create: true
