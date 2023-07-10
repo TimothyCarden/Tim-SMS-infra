@@ -37,7 +37,7 @@ spec:
             additionalScrapeConfigs:
             - job_name: quarkus-metrics
               metrics_path: '/q/metrics'
-              scrape_interval: 3s  
+              scrape_interval: 30s  
               static_configs:
                 - targets: ['actrus-dev-api.default.svc:8081']
           enabled: true
