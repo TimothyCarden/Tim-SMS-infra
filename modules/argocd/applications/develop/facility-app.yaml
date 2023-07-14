@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: actrus-api
+  name: facility-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: actrus=415172466759.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-actrus-repository
-    argocd-image-updater.argoproj.io/actrus.helm.image-name: image.repository
-    argocd-image-updater.argoproj.io/actrus.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/actrus.update-strategy: latest
+    argocd-image-updater.argoproj.io/image-list: facility-app=415172466759.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-facility-app-repository
+    argocd-image-updater.argoproj.io/facility-app.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/facility-app.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/facility-app.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: develop
 spec:
@@ -15,9 +15,9 @@ spec:
   source:
     repoURL: https://github.com/ZapNURSE/workforce-managent.git
     targetRevision: develop
-    path: helm/actrus-api
+    path: helm/facility-app
     helm:
-      releaseName: actrus-api
+      releaseName: facility-app
       valueFiles:
       - dev.yaml
   syncPolicy:
