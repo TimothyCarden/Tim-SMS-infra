@@ -35,11 +35,21 @@ spec:
         prometheus:
           prometheusSpec:
             additionalScrapeConfigs:
-            - job_name: quarkus-metrics
+            - job_name: facility-app-metrics
               metrics_path: '/metrics'
               scrape_interval: 30s  
               static_configs:
-                - targets: ['actrus-dev-api.default.svc:80']
+                - targets: ['facility-app.default.svc:80']
+            - job_name: provider-app-metrics
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['provider-app.default.svc:80']
+            - job_name: notification-app-metrics
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['notification-app.default.svc:80']
           enabled: true
           serviceAccount:
             create: true
