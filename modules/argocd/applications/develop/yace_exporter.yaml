@@ -21,107 +21,60 @@ spec:
             includesSessionToken: false
         config: |-
           discovery:
-              jobs:
-                - type: AWS/RDS
-                  regions:
-                    - us-west-2
-                  period: 300
-                  length: 300
-                  metrics:
-                    - name: CPUUtilization
-                      statistics: [Maximum]
-                    - name: DatabaseConnections
-                      statistics: [Sum]
-                    - name: FreeableMemory
-                      statistics: [Average]
-                    - name: FreeStorageSpace
-                      statistics: [Average]
-                    - name: ReadThroughput
-                      statistics: [Average]
-                    - name: WriteThroughput
-                      statistics: [Average]
-                    - name: ReadLatency
-                      statistics: [Maximum]
-                    - name: WriteLatency
-                      statistics: [Maximum]
-                    - name: ReadIOPS
-                      statistics: [Average]
-                    - name: WriteIOPS
-                      statistics: [Average]
-                - type: AWS/Lambda
-                  regions:
-                    - us-west-2
-                  period: 300
-                  length: 300
-                  metrics:
-                    - name: Invocations
-                      statistics: [Sum]
-                    - name: Errors
-                      statistics: [Sum]
-                    - name: Throttles
-                      statistics: [Sum]
-                    - name: Duration
-                      statistics: [Average, Maximum, Minimum, p90]
-                - type: AWS/SNS
-                  regions:
-                  - us-west-2
-                  period: 300
-                  length: 300
-                  metrics:
-                  - name: NumberOfMessagesPublished
-                  statistics: [Sum]
-                  - name: NumberOfNotificationsDelivered
-                  statistics: [Sum]
-                  - name: NumberOfNotificationsFailed
-                  statistics: [Sum]
-                  - name: PublishSize
-                  statistics: [Average]
-                  - name: PublishLatency
-                  statistics: [Maximum]
-                - type: AWS/SQS
-                  regions:
-                  - us-west-2
-                  period: 300
-                  length: 300
-                  metrics:
-                  - name: NumberOfMessagesSent
-                  statistics: [Sum]
-                  - name: NumberOfMessagesReceived
-                  statistics: [Sum]
-                  - name: NumberOfMessagesDeleted
-                  statistics: [Sum]
-                  - name: ApproximateNumberOfMessagesVisible
-                  statistics: [Average]
-                  - name: ApproximateAgeOfOldestMessage
-                  statistics: [Maximum]
-                  - name: ApproximateNumberOfMessagesDelayed
-                  statistics: [Average]
-                - type: AWS/DMS
-                  regions:
-                  - us-west-2
-                  period: 300
-                  length: 300
-                  metrics:
-                  - name: CpuUtilization
-                  statistics: [Average]
-                  - name: MemoryUtilization
-                  statistics: [Average]
-                  - name: FreeableMemory
-                  statistics: [Average]
-                  - name: FreeStorageSpace
-                  statistics: [Average]
-                  - name: ReadIOPS
-                  statistics: [Average]
-                  - name: WriteIOPS
-                  statistics: [Average]
-                  - name: ReadLatency
-                  statistics: [Average]
-                  - name: WriteLatency
-                  statistics: [Average]
-                  - name: NetworkReceiveThroughput
-                  statistics: [Average]
-                  - name: NetworkTransmitThroughput
-                  statistics: [Average]
+            jobs:
+            - region: eu-west-2
+              type: "AWS/RDS"
+              metrics:
+                - name: CPUUtilization
+                  statistics:
+                  - 'Maximum'
+                  period: 600
+                  length: 60
+                - name: DatabaseConnections
+                  statistics:
+                  - 'Sum'
+                  period: 600
+                  length: 60
+                - name: FreeableMemory
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60
+                - name: FreeStorageSpace
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60
+                - name: ReadThroughput
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60                
+                - name: WriteThroughput
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60
+                - name: ReadLatency
+                  statistics:
+                  - 'Maximum'
+                  period: 600
+                  length: 60                
+                - name: WriteLatency
+                  statistics:
+                  - 'Maximum'
+                  period: 600
+                  length: 60
+                - name: ReadIOPS
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60                
+                - name: WriteIOPS
+                  statistics:
+                  - 'Average'
+                  period: 600
+                  length: 60
   project: default
   syncPolicy:
     automated:
