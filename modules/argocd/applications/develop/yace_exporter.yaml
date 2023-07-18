@@ -21,60 +21,264 @@ spec:
             includesSessionToken: false
         config: |-
           discovery:
+            exportedTagsOnMetrics:
+              ec2:
+                - Name
+              ebs:
+                - VolumeId
             jobs:
-            - region: eu-west-2
-              type: "AWS/RDS"
+              - region: us-west-2
+                type: "es"
+                searchTags:
+                  - Key: type
+                    Value: ^(easteregg|k8s)$
+                metrics:
+                  - name: FreeStorageSpace
+                    statistics:
+                      - 'Sum'
+                    period: 600
+                    length: 60
+                  - name: ClusterStatus.green
+                    statistics:
+                      - 'Minimum'
+                    period: 600
+                    length: 60
+                  - name: ClusterStatus.yellow
+                    statistics:
+                      - 'Maximum'
+                    period: 600
+                    length: 60
+                  - name: ClusterStatus.red
+                    statistics:
+                      - 'Maximum'
+                    period: 600
+                    length: 60
+              - type: "elb"
+                region: us-west-2
+                searchTags:
+                  - Key: KubernetesCluster
+                    Value: production-19
+                metrics:
+                  - name: HealthyHostCount
+                    statistics:
+                      - 'Minimum'
+                    period: 600
+                    length: 600
+                  - name: HTTPCode_Backend_4XX
+                    statistics:
+                      - 'Sum'
+                    period: 60
+                    length: 900
+                    delay: 300
+                    nilToZero: true
+              - type: "alb"
+                region: us-west-2
+                searchTags:
+                  - Key: kubernetes.io/service-name
+                    Value: .*
+                metrics:
+                  - name: UnHealthyHostCount
+                    statistics:
+                      - 'Maximum'
+                    period: 60
+                    length: 600
+              - type: "vpn"
+                region: us-west-2
+                searchTags:
+                  - Key: kubernetes.io/service-name
+                    Value: .*
+                metrics:
+                  - name: TunnelState
+                    statistics:
+                      - 'p90'
+                    period: 60
+                    length: 300
+              - type: "kinesis"
+                region: us-west-2
+                metrics:
+                  - name: PutRecords.Success
+                    statistics:
+                      - 'Sum'
+                    period: 60
+                    length: 300
+              - type: "s3"
+                region: us-west-2
+                searchTags:
+                  - Key: type
+                    Value: public
+                additionalDimensions:
+                  - name: StorageType
+                    value: StandardStorage
+                metrics:
+                  - name: NumberOfObjects
+                    statistics:
+                      - Average
+                    period: 86400
+                    length: 172800
+                    addCloudwatchTimestamp: true
+                  - name: BucketSizeBytes
+                    statistics:
+                      - Average
+                    period: 86400
+                    length: 172800
+                    addCloudwatchTimestamp: true
+              - type: "ebs"
+                region: us-west-2
+                searchTags:
+                  - Key: type
+                    Value: public
+                metrics:
+                  - name: BurstBalance
+                    statistics:
+                      - 'Minimum'
+                    period: 600
+                    length: 600
+              - type: "rds"
+                region: us-west-2
+                searchTags:
+                  - Key: environment
+                    Value: production
+                metrics:
+                  - name: CPUUtilization
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: DatabaseConnections
+                    statistics:
+                      - 'Sum'
+                    period: 300
+                    length: 300
+                  - name: FreeableMemory
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: FreeStorageSpace
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: ReadThroughput
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: WriteThroughput
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: ReadLatency
+                    statistics:
+                      - 'Maximum'
+                    period: 300
+                    length: 300
+                  - name: WriteLatency
+                    statistics:
+                      - 'Maximum'
+                    period: 300
+                    length: 300
+                  - name: ReadIOPS
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: WriteIOPS
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+              - type: "sns"
+                region: us-west-2
+                metrics:
+                  - name: NumberOfMessagesPublished
+                    statistics:
+                      - 'Sum'
+                    period: 300
+                    length: 300
+              - type: "sqs"
+                region: us-west-2
+                metrics:
+                  - name: NumberOfMessagesSent
+                    statistics:
+                      - 'Sum'
+                    period: 300
+                    length: 300
+                  - name: NumberOfMessagesReceived
+                    statistics:
+                      - 'Sum'
+                    period: 300
+                    length: 300
+              - type: "dms"
+                region: us-west-2
+                metrics:
+                  - name: CpuUtilization
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: MemoryUtilization
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: FreeableMemory
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: FreeStorageSpace
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: ReadIOPS
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: WriteIOPS
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: ReadLatency
+                    statistics:
+                      - 'Maximum'
+                    period: 300
+                    length: 300
+                  - name: WriteLatency
+                    statistics:
+                      - 'Maximum'
+                    period: 300
+                    length: 300
+                  - name: NetworkReceiveThroughput
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+                  - name: NetworkTransmitThroughput
+                    statistics:
+                      - 'Average'
+                    period: 300
+                    length: 300
+          static:
+            - namespace: AWS/AutoScaling
+              region: us-west-2
+              dimensions:
+                - name: AutoScalingGroupName
+                  value: Test
+              customTags:
+                - Key: CustomTag
+                  Value: CustomValue
               metrics:
-                - name: CPUUtilization
+                - name: GroupInServiceInstances
                   statistics:
-                  - 'Maximum'
-                  period: 600
-                  length: 60
-                - name: DatabaseConnections
-                  statistics:
-                  - 'Sum'
-                  period: 600
-                  length: 60
-                - name: FreeableMemory
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60
-                - name: FreeStorageSpace
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60
-                - name: ReadThroughput
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60                
-                - name: WriteThroughput
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60
-                - name: ReadLatency
-                  statistics:
-                  - 'Maximum'
-                  period: 600
-                  length: 60                
-                - name: WriteLatency
-                  statistics:
-                  - 'Maximum'
-                  period: 600
-                  length: 60
-                - name: ReadIOPS
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60                
-                - name: WriteIOPS
-                  statistics:
-                  - 'Average'
-                  period: 600
-                  length: 60
+                    - 'Minimum'
+                  period: 60
+                  length: 300
+
   project: default
   syncPolicy:
     automated:
