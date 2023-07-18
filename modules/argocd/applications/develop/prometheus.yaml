@@ -50,6 +50,11 @@ spec:
               scrape_interval: 30s  
               static_configs:
                 - targets: ['notification-app.default.svc:80']
+            - job_name: yarn-exporter
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['yace-exporter-prometheus-yace-exporter.monitoring.svc:80']
           enabled: true
           serviceAccount:
             create: true
