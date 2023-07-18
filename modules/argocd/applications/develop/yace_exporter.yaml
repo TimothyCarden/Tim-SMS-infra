@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yace-exporter
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://mogaal.github.io/helm-charts
+    targetRevision: 0.5.0
+    chart: prometheus-yace-exporter
+    helm:
+      values: |
+        aws:
+          secret:
+            name: aws-credentials
+            includesSessionToken: false
+        extraManifests:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: aws-credentials
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: aws-credentials
+            data:
+            - secretKey: access_key
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/AwsCredentials
+                property: access_key
+            - secretKey: secret_key
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: dev/AwsCredentials
+                property: secret_key
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
