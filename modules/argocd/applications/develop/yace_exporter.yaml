@@ -189,14 +189,6 @@ spec:
                       - 'Average'
                     period: 300
                     length: 300
-              - type: "sns"
-                region: us-west-2
-                metrics:
-                  - name: NumberOfMessagesPublished
-                    statistics:
-                      - 'Sum'
-                    period: 300
-                    length: 300
               - type: "sqs"
                 region: us-west-2
                 metrics:
