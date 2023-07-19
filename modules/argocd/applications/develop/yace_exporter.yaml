@@ -129,6 +129,56 @@ spec:
                     statistics: [Average]
                     period: 300
                     length: 300
+              - type: "sns"
+                region: us-west-2
+                metrics:
+                  - name: NumberOfMessagesPublished
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: NumberOfNotificationsDelivered
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: NumberOfNotificationsFailed
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: PublishSize
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: PublishLatency
+                    statistics: [Maximum]
+                    period: 300
+                    length: 300
+              - type: "sqs"
+                region: us-west-2
+                metrics:
+                  - name: NumberOfMessagesSent
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: NumberOfMessagesReceived
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: NumberOfMessagesDeleted
+                    statistics: [Sum]
+                    period: 300
+                    length: 300
+                  - name: ApproximateNumberOfMessagesVisible
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: ApproximateAgeOfOldestMessage
+                    statistics: [Maximum]
+                    period: 300
+                    length: 300
+                  - name: ApproximateNumberOfMessagesDelayed
+                    statistics: [Average]
+                    period: 300
+                    length: 300
           static:
             - namespace: AWS/AutoScaling
               region: us-west-2
