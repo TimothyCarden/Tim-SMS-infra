@@ -111,8 +111,7 @@ spec:
                     period: 300
                     length: 300
               - type: "lambda"
-                regions:
-                  - us-west-2
+                region: us-west-2
                 period: 300
                 length: 300
                 metrics:
