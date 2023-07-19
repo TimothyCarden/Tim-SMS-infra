@@ -110,6 +110,20 @@ spec:
                       - 'Average'
                     period: 300
                     length: 300
+              - type: "lambda"
+                regions:
+                  - us-west-2
+                period: 300
+                length: 300
+                metrics:
+                  - name: Invocations
+                    statistics: [Sum]
+                  - name: Errors
+                    statistics: [Sum]
+                  - name: Throttles
+                    statistics: [Sum]
+                  - name: Duration
+                    statistics: [Average, Maximum, Minimum, p90]
           static:
             - namespace: AWS/AutoScaling
               region: us-west-2
