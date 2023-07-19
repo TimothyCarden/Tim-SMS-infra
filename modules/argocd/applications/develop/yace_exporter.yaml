@@ -82,17 +82,6 @@ spec:
                       - 'Maximum'
                     period: 60
                     length: 600
-              - type: "vpn"
-                region: us-west-2
-                searchTags:
-                  - Key: kubernetes.io/service-name
-                    Value: .*
-                metrics:
-                  - name: TunnelState
-                    statistics:
-                      - 'p90'
-                    period: 60
-                    length: 300
               - type: "kinesis"
                 region: us-west-2
                 metrics:
@@ -101,43 +90,11 @@ spec:
                       - 'Sum'
                     period: 60
                     length: 300
-              - type: "s3"
-                region: us-west-2
-                searchTags:
-                  - Key: type
-                    Value: public
-                additionalDimensions:
-                  - name: StorageType
-                    value: StandardStorage
-                metrics:
-                  - name: NumberOfObjects
-                    statistics:
-                      - Average
-                    period: 86400
-                    length: 172800
-                    addCloudwatchTimestamp: true
-                  - name: BucketSizeBytes
-                    statistics:
-                      - Average
-                    period: 86400
-                    length: 172800
-                    addCloudwatchTimestamp: true
-              - type: "ebs"
-                region: us-west-2
-                searchTags:
-                  - Key: type
-                    Value: public
-                metrics:
-                  - name: BurstBalance
-                    statistics:
-                      - 'Minimum'
-                    period: 600
-                    length: 600
               - type: "rds"
                 region: us-west-2
                 searchTags:
-                  - Key: environment
-                    Value: production
+                  - Key: Environment
+                    Value: dev
                 metrics:
                   - name: CPUUtilization
                     statistics:
