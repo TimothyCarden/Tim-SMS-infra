@@ -115,12 +115,20 @@ spec:
                 metrics:
                   - name: Invocations
                     statistics: [Sum]
+                    period: 300
+                    length: 300
                   - name: Errors
                     statistics: [Sum]
+                    period: 300
+                    length: 300
                   - name: Throttles
                     statistics: [Sum]
+                    period: 300
+                    length: 300
                   - name: Duration
-                    statistics: [Average, Maximum, Minimum, p90]
+                    statistics: [Average]
+                    period: 300
+                    length: 300
           static:
             - namespace: AWS/AutoScaling
               region: us-west-2
