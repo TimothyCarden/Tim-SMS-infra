@@ -112,8 +112,6 @@ spec:
                     length: 300
               - type: "lambda"
                 region: us-west-2
-                period: 300
-                length: 300
                 metrics:
                   - name: Invocations
                     statistics: [Sum]
