@@ -53,44 +53,8 @@ spec:
                       - 'Maximum'
                     period: 600
                     length: 60
-              - type: "elb"
-                region: us-west-2
-                searchTags:
-                  - Key: KubernetesCluster
-                    Value: production-19
-                metrics:
-                  - name: HealthyHostCount
-                    statistics:
-                      - 'Minimum'
-                    period: 600
-                    length: 600
-                  - name: HTTPCode_Backend_4XX
-                    statistics:
-                      - 'Sum'
-                    period: 60
-                    length: 900
-                    delay: 300
-                    nilToZero: true
-              - type: "alb"
-                region: us-west-2
-                searchTags:
-                  - Key: kubernetes.io/service-name
-                    Value: .*
-                metrics:
-                  - name: UnHealthyHostCount
-                    statistics:
-                      - 'Maximum'
-                    period: 60
-                    length: 600
-              - type: "kinesis"
-                region: us-west-2
-                metrics:
-                  - name: PutRecords.Success
-                    statistics:
-                      - 'Sum'
-                    period: 60
-                    length: 300
               - type: "rds"
+                enableMetricData: true
                 region: us-west-2
                 searchTags:
                   - Key: Environment
