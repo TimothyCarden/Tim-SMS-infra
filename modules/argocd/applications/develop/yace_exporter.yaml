@@ -129,31 +129,27 @@ spec:
                     statistics: [Average]
                     period: 300
                     length: 300
-              - type: "sqs"
+              - type: sns
                 region: us-west-2
                 metrics:
-                  - name: NumberOfMessagesSent
+                  - name: NumberOfMessagesPublished
                     statistics: [Sum]
                     period: 300
                     length: 300
-                  - name: NumberOfMessagesReceived
+                  - name: NumberOfNotificationsDelivered
                     statistics: [Sum]
                     period: 300
                     length: 300
-                  - name: NumberOfMessagesDeleted
+                  - name: NumberOfNotificationsFailed
                     statistics: [Sum]
                     period: 300
                     length: 300
-                  - name: ApproximateNumberOfMessagesVisible
+                  - name: PublishSize
                     statistics: [Average]
                     period: 300
                     length: 300
-                  - name: ApproximateAgeOfOldestMessage
+                  - name: PublishLatency
                     statistics: [Maximum]
-                    period: 300
-                    length: 300
-                  - name: ApproximateNumberOfMessagesDelayed
-                    statistics: [Average]
                     period: 300
                     length: 300
           static:
