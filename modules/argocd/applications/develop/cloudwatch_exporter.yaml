@@ -23,72 +23,248 @@ spec:
             region: us-west-2
             period_seconds: 240
             metrics:
-            # Amazon RDS metrics
-            - aws_namespace: AWS/RDS
-              aws_metric_name: CPUUtilization
-              aws_dimensions: [DBInstanceIdentifier]
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/RDS
-              aws_metric_name: DatabaseConnections
-              aws_dimensions: [DBInstanceIdentifier]
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/RDS
-              aws_metric_name: FreeStorageSpace
-              aws_dimensions: [DBInstanceIdentifier]
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/RDS
-              aws_metric_name: ReadIOPS
-              aws_dimensions: [DBInstanceIdentifier]
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/RDS
-              aws_metric_name: WriteIOPS
-              aws_dimensions: [DBInstanceIdentifier]
-              aws_statistics: [Average]
-
-            # Amazon SNS metrics
-            - aws_namespace: AWS/SNS
-              aws_metric_name: NumberOfMessagesPublished
-              aws_statistics: [Sum]
-
-            - aws_namespace: AWS/SNS
-              aws_metric_name: NumberOfNotificationsDelivered
-              aws_statistics: [Sum]
-
-            # Amazon SQS metrics
-            - aws_namespace: AWS/SQS
-              aws_metric_name: NumberOfMessagesReceived
-              aws_statistics: [Sum]
-
-            - aws_namespace: AWS/SQS
-              aws_metric_name: NumberOfMessagesDeleted
-              aws_statistics: [Sum]
-
-            # Amazon DMS metrics
-            - aws_namespace: AWS/DMS
-              aws_metric_name: CpuUtilization
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/DMS
-              aws_metric_name: MemoryUsage
-              aws_statistics: [Average]
-
-            # AWS Lambda metrics
-            - aws_namespace: AWS/Lambda
+            - aws_dimensions:
+              - FunctionName
+              - Resource
               aws_metric_name: Invocations
-              aws_statistics: [Sum]
-
-            - aws_namespace: AWS/Lambda
-              aws_metric_name: Duration
-              aws_statistics: [Average]
-
-            - aws_namespace: AWS/Lambda
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
               aws_metric_name: Errors
-              aws_statistics: [Sum]
-
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: Duration
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: Duration
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Maximum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: Duration
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Minimum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: Throttles
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: ConcurrentExecutions
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - FunctionName
+              - Resource
+              aws_metric_name: UnreservedConcurrentExecutions
+              aws_namespace: AWS/Lambda
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: DatabaseConnections
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Maximum
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: FreeStorageSpace
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: FreeableMemory
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: CPUUtilization
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: ReadIOPS
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: WriteIOPS
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: ReadLatency
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: WriteLatency
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: ReadThroughput
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: WriteThroughput
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: CPUCreditUsage
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: CPUCreditBalance
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: DiskQueueDepth
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: NetworkTransmitThroughput
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: NetworkReceiveThroughput
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - DBInstanceIdentifier
+              aws_metric_name: TransactionLogsDiskUsage
+              aws_namespace: AWS/RDS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfMessagesPublished
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfNotificationsDelivered
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfNotificationsFailed
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: PublishSize
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfNotificationsFilteredOut
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfNotificationsFilteredOut-InvalidAttributes
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - TopicName
+              aws_metric_name: NumberOfNotificationsFilteredOut-NoMessageAttributes
+              aws_namespace: AWS/SNS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: NumberOfMessagesSent
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: NumberOfMessagesReceived
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: NumberOfEmptyReceives
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: NumberOfMessagesDeleted
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: ApproximateNumberOfMessagesDelayed
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: ApproximateAgeOfOldestMessage
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: ApproximateNumberOfMessagesNotVisible
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
+            - aws_dimensions:
+              - QueueName
+              aws_metric_name: ApproximateNumberOfMessagesVisible
+              aws_namespace: AWS/SQS
+              aws_statistics:
+              - Average
   project: default
   syncPolicy:
     automated:
