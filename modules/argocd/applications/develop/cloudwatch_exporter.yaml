@@ -20,7 +20,7 @@ spec:
             name: aws-credentials
             includesSessionToken: false
         config: |-
-            region: eu-west-2
+            region: us-west-2
             period_seconds: 240
             metrics:
             # Amazon RDS metrics
