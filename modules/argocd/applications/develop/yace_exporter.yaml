@@ -1,181 +1,181 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: yace-exporter
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-options: Replace=true
-spec:
-  destination:
-    namespace: monitoring
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://mogaal.github.io/helm-charts
-    targetRevision: 0.5.0
-    chart: prometheus-yace-exporter
-    helm:
-      values: |
-        aws:
-          secret:
-            name: aws-credentials
-            includesSessionToken: false
-        config: |-
-          discovery:
-            exportedTagsOnMetrics:
-              ec2:
-                - Name
-              ebs:
-                - VolumeId
-            jobs:
-              - region: us-west-2
-                type: "es"
-                searchTags:
-                  - Key: type
-                    Value: ^(easteregg|k8s)$
-                metrics:
-                  - name: FreeStorageSpace
-                    statistics:
-                      - 'Sum'
-                    period: 600
-                    length: 60
-                  - name: ClusterStatus.green
-                    statistics:
-                      - 'Minimum'
-                    period: 600
-                    length: 60
-                  - name: ClusterStatus.yellow
-                    statistics:
-                      - 'Maximum'
-                    period: 600
-                    length: 60
-                  - name: ClusterStatus.red
-                    statistics:
-                      - 'Maximum'
-                    period: 600
-                    length: 60
-              - type: "rds"
-                enableMetricData: true
-                region: us-west-2
-                searchTags:
-                  - Key: Environment
-                    Value: dev
-                metrics:
-                  - name: CPUUtilization
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: DatabaseConnections
-                    statistics:
-                      - 'Sum'
-                    period: 300
-                    length: 300
-                  - name: FreeableMemory
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: FreeStorageSpace
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: ReadThroughput
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: WriteThroughput
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: ReadLatency
-                    statistics:
-                      - 'Maximum'
-                    period: 300
-                    length: 300
-                  - name: WriteLatency
-                    statistics:
-                      - 'Maximum'
-                    period: 300
-                    length: 300
-                  - name: ReadIOPS
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-                  - name: WriteIOPS
-                    statistics:
-                      - 'Average'
-                    period: 300
-                    length: 300
-              - type: "lambda"
-                region: us-west-2
-                metrics:
-                  - name: Invocations
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: Errors
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: Throttles
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: Duration
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-              - type: "dms"
-                region: us-west-2
-                metrics:
-                  - name: CpuUtilization
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-                  - name: MemoryUtilization
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-                  - name: FreeableMemory
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-                  - name: FreeStorageSpace
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-                  - name: ReadIOPS
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-                  - name: WriteIOPS
-                    statistics: [Average]
-                    period: 300
-                    length: 300
-          static:
-            - namespace: AWS/AutoScaling
-              region: us-west-2
-              dimensions:
-                - name: AutoScalingGroupName
-                  value: Test
-              customTags:
-                - Key: CustomTag
-                  Value: CustomValue
-              metrics:
-                - name: GroupInServiceInstances
-                  statistics:
-                    - 'Minimum'
-                  period: 60
-                  length: 300
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: yace-exporter
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-options: Replace=true
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: https://kubernetes.default.svc
+#   source:
+#     repoURL: https://mogaal.github.io/helm-charts
+#     targetRevision: 0.5.0
+#     chart: prometheus-yace-exporter
+#     helm:
+#       values: |
+#         aws:
+#           secret:
+#             name: aws-credentials
+#             includesSessionToken: false
+#         config: |-
+#           discovery:
+#             exportedTagsOnMetrics:
+#               ec2:
+#                 - Name
+#               ebs:
+#                 - VolumeId
+#             jobs:
+#               - region: us-west-2
+#                 type: "es"
+#                 searchTags:
+#                   - Key: type
+#                     Value: ^(easteregg|k8s)$
+#                 metrics:
+#                   - name: FreeStorageSpace
+#                     statistics:
+#                       - 'Sum'
+#                     period: 600
+#                     length: 60
+#                   - name: ClusterStatus.green
+#                     statistics:
+#                       - 'Minimum'
+#                     period: 600
+#                     length: 60
+#                   - name: ClusterStatus.yellow
+#                     statistics:
+#                       - 'Maximum'
+#                     period: 600
+#                     length: 60
+#                   - name: ClusterStatus.red
+#                     statistics:
+#                       - 'Maximum'
+#                     period: 600
+#                     length: 60
+#               - type: "rds"
+#                 enableMetricData: true
+#                 region: us-west-2
+#                 searchTags:
+#                   - Key: Environment
+#                     Value: dev
+#                 metrics:
+#                   - name: CPUUtilization
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: DatabaseConnections
+#                     statistics:
+#                       - 'Sum'
+#                     period: 300
+#                     length: 300
+#                   - name: FreeableMemory
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: FreeStorageSpace
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: ReadThroughput
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: WriteThroughput
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: ReadLatency
+#                     statistics:
+#                       - 'Maximum'
+#                     period: 300
+#                     length: 300
+#                   - name: WriteLatency
+#                     statistics:
+#                       - 'Maximum'
+#                     period: 300
+#                     length: 300
+#                   - name: ReadIOPS
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#                   - name: WriteIOPS
+#                     statistics:
+#                       - 'Average'
+#                     period: 300
+#                     length: 300
+#               - type: "lambda"
+#                 region: us-west-2
+#                 metrics:
+#                   - name: Invocations
+#                     statistics: [Sum]
+#                     period: 300
+#                     length: 300
+#                   - name: Errors
+#                     statistics: [Sum]
+#                     period: 300
+#                     length: 300
+#                   - name: Throttles
+#                     statistics: [Sum]
+#                     period: 300
+#                     length: 300
+#                   - name: Duration
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#               - type: "dms"
+#                 region: us-west-2
+#                 metrics:
+#                   - name: CpuUtilization
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#                   - name: MemoryUtilization
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#                   - name: FreeableMemory
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#                   - name: FreeStorageSpace
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#                   - name: ReadIOPS
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#                   - name: WriteIOPS
+#                     statistics: [Average]
+#                     period: 300
+#                     length: 300
+#           static:
+#             - namespace: AWS/AutoScaling
+#               region: us-west-2
+#               dimensions:
+#                 - name: AutoScalingGroupName
+#                   value: Test
+#               customTags:
+#                 - Key: CustomTag
+#                   Value: CustomValue
+#               metrics:
+#                 - name: GroupInServiceInstances
+#                   statistics:
+#                     - 'Minimum'
+#                   period: 60
+#                   length: 300
 
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

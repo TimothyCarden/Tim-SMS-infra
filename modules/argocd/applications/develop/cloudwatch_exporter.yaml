@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudwatch-exporter
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 0.25.1
+    chart: prometheus-cloudwatch-exporter
+    helm:
+      values: |
+        aws:
+          secret:
+            name: aws-credentials
+            includesSessionToken: false
+        config: |-
+            region: eu-west-2
+            period_seconds: 240
+            metrics:
+            - aws_namespace: AWS/ELB
+              aws_metric_name: HealthyHostCount
+              aws_dimensions: [AvailabilityZone, LoadBalancerName]
+              aws_statistics: [Average]
+
+            - aws_namespace: AWS/ELB
+              aws_metric_name: UnHealthyHostCount
+              aws_dimensions: [AvailabilityZone, LoadBalancerName]
+              aws_statistics: [Average]
+
+            - aws_namespace: AWS/ELB
+              aws_metric_name: RequestCount
+              aws_dimensions: [AvailabilityZone, LoadBalancerName]
+              aws_statistics: [Sum]
+
+            - aws_namespace: AWS/ELB
+              aws_metric_name: Latency
+              aws_dimensions: [AvailabilityZone, LoadBalancerName]
+              aws_statistics: [Average]
+
+            - aws_namespace: AWS/ELB
+              aws_metric_name: SurgeQueueLength
+              aws_dimensions: [AvailabilityZone, LoadBalancerName]
+              aws_statistics: [Maximum, Sum]
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
