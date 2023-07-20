@@ -50,11 +50,11 @@ spec:
               scrape_interval: 30s  
               static_configs:
                 - targets: ['notification-app.default.svc:80']
-            - job_name: yarn-exporter
+            - job_name: cloudwatch-exporter
               metrics_path: '/metrics'
               scrape_interval: 30s  
               static_configs:
-                - targets: ['yace-exporter-prometheus-yace-exporter.monitoring.svc:80']
+                - targets: ['cloudwatch-exporter-prometheus-cloudwatch-exporter.monitoring.svc:9106']
           enabled: true
           serviceAccount:
             create: true
