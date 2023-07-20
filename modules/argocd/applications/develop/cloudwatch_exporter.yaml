@@ -23,30 +23,72 @@ spec:
             region: eu-west-2
             period_seconds: 240
             metrics:
-                - aws_namespace: AWS/RDS
-                  aws_metric_name: CPUUtilization
-                  aws_dimensions: [DBInstanceIdentifier]
-                  aws_statistics: [Average]
+            # Amazon RDS metrics
+            - aws_namespace: AWS/RDS
+              aws_metric_name: CPUUtilization
+              aws_dimensions: [DBInstanceIdentifier]
+              aws_statistics: [Average]
 
-                - aws_namespace: AWS/RDS
-                  aws_metric_name: DatabaseConnections
-                  aws_dimensions: [DBInstanceIdentifier]
-                  aws_statistics: [Average]
+            - aws_namespace: AWS/RDS
+              aws_metric_name: DatabaseConnections
+              aws_dimensions: [DBInstanceIdentifier]
+              aws_statistics: [Average]
 
-                - aws_namespace: AWS/RDS
-                  aws_metric_name: FreeStorageSpace
-                  aws_dimensions: [DBInstanceIdentifier]
-                  aws_statistics: [Average]
+            - aws_namespace: AWS/RDS
+              aws_metric_name: FreeStorageSpace
+              aws_dimensions: [DBInstanceIdentifier]
+              aws_statistics: [Average]
 
-                - aws_namespace: AWS/RDS
-                  aws_metric_name: ReadIOPS
-                  aws_dimensions: [DBInstanceIdentifier]
-                  aws_statistics: [Average]
+            - aws_namespace: AWS/RDS
+              aws_metric_name: ReadIOPS
+              aws_dimensions: [DBInstanceIdentifier]
+              aws_statistics: [Average]
 
-                - aws_namespace: AWS/RDS
-                  aws_metric_name: WriteIOPS
-                  aws_dimensions: [DBInstanceIdentifier]
-                  aws_statistics: [Average]
+            - aws_namespace: AWS/RDS
+              aws_metric_name: WriteIOPS
+              aws_dimensions: [DBInstanceIdentifier]
+              aws_statistics: [Average]
+
+            # Amazon SNS metrics
+            - aws_namespace: AWS/SNS
+              aws_metric_name: NumberOfMessagesPublished
+              aws_statistics: [Sum]
+
+            - aws_namespace: AWS/SNS
+              aws_metric_name: NumberOfNotificationsDelivered
+              aws_statistics: [Sum]
+
+            # Amazon SQS metrics
+            - aws_namespace: AWS/SQS
+              aws_metric_name: NumberOfMessagesReceived
+              aws_statistics: [Sum]
+
+            - aws_namespace: AWS/SQS
+              aws_metric_name: NumberOfMessagesDeleted
+              aws_statistics: [Sum]
+
+            # Amazon DMS metrics
+            - aws_namespace: AWS/DMS
+              aws_metric_name: CpuUtilization
+              aws_statistics: [Average]
+
+            - aws_namespace: AWS/DMS
+              aws_metric_name: MemoryUsage
+              aws_statistics: [Average]
+
+            # AWS Lambda metrics
+            - aws_namespace: AWS/Lambda
+              aws_metric_name: Invocations
+              aws_statistics: [Sum]
+
+            - aws_namespace: AWS/Lambda
+              aws_metric_name: Duration
+              aws_statistics: [Average]
+
+            - aws_namespace: AWS/Lambda
+              aws_metric_name: Errors
+              aws_statistics: [Sum]
+
   project: default
   syncPolicy:
     automated:
