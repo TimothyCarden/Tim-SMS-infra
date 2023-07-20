@@ -23,30 +23,30 @@ spec:
             region: eu-west-2
             period_seconds: 240
             metrics:
-            - aws_namespace: AWS/ELB
-              aws_metric_name: HealthyHostCount
-              aws_dimensions: [AvailabilityZone, LoadBalancerName]
-              aws_statistics: [Average]
+                - aws_namespace: AWS/RDS
+                  aws_metric_name: CPUUtilization
+                  aws_dimensions: [DBInstanceIdentifier]
+                  aws_statistics: [Average]
 
-            - aws_namespace: AWS/ELB
-              aws_metric_name: UnHealthyHostCount
-              aws_dimensions: [AvailabilityZone, LoadBalancerName]
-              aws_statistics: [Average]
+                - aws_namespace: AWS/RDS
+                  aws_metric_name: DatabaseConnections
+                  aws_dimensions: [DBInstanceIdentifier]
+                  aws_statistics: [Average]
 
-            - aws_namespace: AWS/ELB
-              aws_metric_name: RequestCount
-              aws_dimensions: [AvailabilityZone, LoadBalancerName]
-              aws_statistics: [Sum]
+                - aws_namespace: AWS/RDS
+                  aws_metric_name: FreeStorageSpace
+                  aws_dimensions: [DBInstanceIdentifier]
+                  aws_statistics: [Average]
 
-            - aws_namespace: AWS/ELB
-              aws_metric_name: Latency
-              aws_dimensions: [AvailabilityZone, LoadBalancerName]
-              aws_statistics: [Average]
+                - aws_namespace: AWS/RDS
+                  aws_metric_name: ReadIOPS
+                  aws_dimensions: [DBInstanceIdentifier]
+                  aws_statistics: [Average]
 
-            - aws_namespace: AWS/ELB
-              aws_metric_name: SurgeQueueLength
-              aws_dimensions: [AvailabilityZone, LoadBalancerName]
-              aws_statistics: [Maximum, Sum]
+                - aws_namespace: AWS/RDS
+                  aws_metric_name: WriteIOPS
+                  aws_dimensions: [DBInstanceIdentifier]
+                  aws_statistics: [Average]
   project: default
   syncPolicy:
     automated:
