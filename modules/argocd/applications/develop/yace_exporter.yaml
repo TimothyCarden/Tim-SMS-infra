@@ -129,27 +129,31 @@ spec:
                     statistics: [Average]
                     period: 300
                     length: 300
-              - type: AWS/SNS
+              - type: "dms"
                 region: us-west-2
                 metrics:
-                  - name: NumberOfMessagesPublished
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: NumberOfNotificationsDelivered
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: NumberOfNotificationsFailed
-                    statistics: [Sum]
-                    period: 300
-                    length: 300
-                  - name: PublishSize
+                  - name: CpuUtilization
                     statistics: [Average]
                     period: 300
                     length: 300
-                  - name: PublishLatency
-                    statistics: [Maximum]
+                  - name: MemoryUtilization
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: FreeableMemory
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: FreeStorageSpace
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: ReadIOPS
+                    statistics: [Average]
+                    period: 300
+                    length: 300
+                  - name: WriteIOPS
+                    statistics: [Average]
                     period: 300
                     length: 300
           static:
