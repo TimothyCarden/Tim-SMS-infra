@@ -129,7 +129,7 @@ spec:
                     statistics: [Average]
                     period: 300
                     length: 300
-              - type: sns
+              - type: AWS/SNS
                 region: us-west-2
                 metrics:
                   - name: NumberOfMessagesPublished
