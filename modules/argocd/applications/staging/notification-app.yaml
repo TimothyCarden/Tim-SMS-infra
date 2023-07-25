@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notification-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: notification-app=150042025240.dkr.ecr.us-west-2.amazonaws.com/actriv-stage-notification-app-repository
+    argocd-image-updater.argoproj.io/notification-app.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/notification-app.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/notification-app.update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/git-branch: develop
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ZapNURSE/workforce-managent.git
+    targetRevision: develop
+    path: helm/notification-app
+    helm:
+      releaseName: notification-app
+      valueFiles:
+      - stage.yaml
+  syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
