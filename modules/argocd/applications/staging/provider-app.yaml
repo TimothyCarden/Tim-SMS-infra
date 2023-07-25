@@ -17,7 +17,7 @@ spec:
     targetRevision: develop
     path: helm/provider-app-stage
     helm:
-      releaseName: provider-app-stage
+      releaseName: provider-app
       valueFiles:
       - stage.yaml
   syncPolicy:
