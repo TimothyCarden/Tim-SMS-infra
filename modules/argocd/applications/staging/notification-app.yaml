@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: notification-app
+  name: notification-app-stage
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: notification-app-stage=150042025240.dkr.ecr.us-west-2.amazonaws.com/actriv-stage-notification-app-repository
@@ -17,7 +17,7 @@ spec:
     targetRevision: develop
     path: helm/notification-app
     helm:
-      releaseName: notification-app
+      releaseName: notification-app-stage
       valueFiles:
       - stage.yaml
   syncPolicy:

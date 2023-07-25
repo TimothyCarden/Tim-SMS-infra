@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: provider-app
+  name: provider-app-stage
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: provider-app-stage=150042025240.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-provider-app-repository
@@ -17,7 +17,7 @@ spec:
     targetRevision: develop
     path: helm/provider-app
     helm:
-      releaseName: provider-app
+      releaseName: provider-app-stage
       valueFiles:
       - stage.yaml
   syncPolicy:
