@@ -4,7 +4,7 @@ metadata:
   name: provider-app-stage
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: provider-app-stage=150042025240.dkr.ecr.us-west-2.amazonaws.com/actriv-dev-provider-app-repository
+    argocd-image-updater.argoproj.io/image-list: provider-app-stage=150042025240.dkr.ecr.us-west-2.amazonaws.com/actriv-stage-provider-app-repository
     argocd-image-updater.argoproj.io/provider-app-stage.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/provider-app-stage.helm.image-tag: image.tag
     argocd-image-updater.argoproj.io/provider-app-stage.update-strategy: latest
