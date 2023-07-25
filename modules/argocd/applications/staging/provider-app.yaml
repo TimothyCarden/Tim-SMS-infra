@@ -15,9 +15,9 @@ spec:
   source:
     repoURL: https://github.com/ZapNURSE/workforce-managent.git
     targetRevision: develop
-    path: helm/provider-app-stage
+    path: helm/provider-app
     helm:
-      releaseName: provider-app
+      releaseName: provider-app-stage
       valueFiles:
       - stage.yaml
   syncPolicy:
