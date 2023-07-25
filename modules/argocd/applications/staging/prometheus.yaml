@@ -82,6 +82,48 @@ spec:
                 decodingStrategy: None
                 key: stage/GrafanaUser
                 property: admin-user
+        - apiVersion: external-secrets.io/v1beta1
+            kind: ExternalSecret
+            metadata:
+              name: aws-credentials
+            spec:
+              refreshInterval: 15s
+              secretStoreRef:
+                name: aws-secretsmanager
+                kind: ClusterSecretStore
+              target:
+                name: aws-credentials
+              data:
+              - secretKey: access_key
+                remoteRef:
+                  conversionStrategy: Default    
+                  decodingStrategy: None
+                  key: stage/AwsCredentials
+                  property: access_key
+              - secretKey: secret_key
+                remoteRef:
+                  conversionStrategy: Default    
+                  decodingStrategy: None
+                  key: stage/AwsCredentials
+                  property: secret_key
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: prometheus-basic-auth
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: prometheus-basic-auth
+            data:
+            - secretKey: auth
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: stage/PrometheusAuth
+                property: auth
   project: default
   syncPolicy:
     automated:
