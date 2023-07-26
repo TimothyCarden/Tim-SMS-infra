@@ -65,6 +65,17 @@
       },
       "rule-action": "include",
       "filters": []
+    },
+    {
+      "rule-type": "selection",
+      "rule-id": "789645783",
+      "rule-name": "789445783",
+      "object-locator": {
+        "schema-name": "workforce",
+        "table-name": "provider_shift_clocking"
+      },
+      "rule-action": "include",
+      "filters": []
     }
   ]
 }
