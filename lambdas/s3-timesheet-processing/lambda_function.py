@@ -129,7 +129,6 @@ def process_timesheet(bucket_name, object_key, cur):
             shift_id = path.split('=')[1]
             logger.info(f'shift {shift_id}')
             obj, file_extension = get_object(bucket_name, object_key)
-            logger.info(f'obj {obj}, file_extension {file_extension}')
             thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
             sql = """update workforce.shift_order_time_sheet 
                         set file_url = %s, 
@@ -225,7 +224,7 @@ def get_object(bucket_name, object_key):
     logger.info(f'object: {obj}')
     if not obj.get('ContentLength') or obj.get('ContentLength') == 0:
         logger.info(f"File {object_key} has 0 size")
-        return None
+        return None, None
     file_extension = get_file_extension(object_key, obj)
     return obj, file_extension
 
