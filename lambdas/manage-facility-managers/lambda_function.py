@@ -40,6 +40,7 @@ def get_or_create_cognito_sub(email):
                     'Value': 'True'
                 }
             ],
+            DesiredDeliveryMediums='EMAIL',
             ForceAliasCreation=False,
             MessageAction='SUPPRESS'
         )
