@@ -19,10 +19,15 @@ def send_response(data, status_code):
         "Payload": json.dumps(data)
     }
 
+def get_cognito_sub(user):
+    attributes = user['User']['Attributes']
+    for attribute in attributes:
+        if attribute['Name'] == 'sub':
+            return attribute['Value']
 
 def get_or_create_cognito_sub(email):
     try:
-        cognito_client.admin_create_user(
+        user = cognito_client.admin_create_user(
             UserPoolId=facility_manager_user_pool_id,
             Username=email,
             UserAttributes=[
@@ -38,6 +43,7 @@ def get_or_create_cognito_sub(email):
             ForceAliasCreation=False,
             MessageAction='SUPPRESS'
         )
+        return get_cognito_sub(user)
     except ClientError as client_error:
         message = client_error.response['message']
         print(f'Email: {email}. Error: {message}')
