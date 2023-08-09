@@ -129,17 +129,20 @@ def process_timesheet(bucket_name, object_key, cur):
             shift_id = path.split('=')[1]
             logger.info(f'shift {shift_id}')
             obj, file_extension = get_object(bucket_name, object_key)
-            thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
-            sql = """update workforce.shift_order_time_sheet 
-                        set file_url = %s, 
-                            file_type = %s,
-                            thumbnail_file_url = %s,
-                            thumbnail_type = %s,
-                            upload_datetime = now() 
-                      where shift_order_id = %s RETURNING id;"""
-            cur.execute(sql, (object_key, file_extension, thumbnail_link, thumbnail_extension, shift_id))
-            id = cur.fetchone()[0]
-            logger.info(f"updated id = {id}")
+            if obj and file_extension:
+                thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
+                sql = """update workforce.shift_order_time_sheet 
+                            set file_url = %s, 
+                                file_type = %s,
+                                thumbnail_file_url = %s,
+                                thumbnail_type = %s,
+                                upload_datetime = now() 
+                          where shift_order_id = %s RETURNING id;"""
+                cur.execute(sql, (object_key, file_extension, thumbnail_link, thumbnail_extension, shift_id))
+                id = cur.fetchone()[0]
+                logger.info(f"updated id = {id}")
+            else:
+                logger.warning(f"Nothing to update: obj is {bucket_name}, file_extension is {file_extension}")
 
 
 def process_credentials(bucket_name, object_key, cur):
