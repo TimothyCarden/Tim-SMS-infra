@@ -128,6 +128,7 @@ def process_timesheet(bucket_name, object_key, cur):
         if path.startswith('shift='):
             shift_id = path.split('=')[1]
             logger.info(f'shift {shift_id}')
+            logger.info(f'==bucket_name {bucket_name}')  # for parsing error investigation
             obj, file_extension = get_object(bucket_name, object_key)
             thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
             sql = """update workforce.shift_order_time_sheet 
@@ -221,7 +222,7 @@ def get_object(bucket_name, object_key):
     obj = s3_client.get_object(
         Bucket=bucket_name, Key=object_key
     )
-    logger.info(obj)
+    logger.info(f'object: {obj}')
     if not obj.get('ContentLength') or obj.get('ContentLength') == 0:
         logger.info(f"File {object_key} has 0 size")
         return None
@@ -261,6 +262,5 @@ def lambda_handler(event, context):
     logger.info(event)
     if event['Records']:
         for record in event['Records']:
-            logger.info(f"record {record}")  # for parsing error investigation
             process_s3_event(record['body'])
     return event
