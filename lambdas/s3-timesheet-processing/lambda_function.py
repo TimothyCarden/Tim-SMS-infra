@@ -218,10 +218,9 @@ def upload_to_s3(bucket_name, head, tail, buffer):
 
 def get_object(bucket_name, object_key):
     logger.info(f'downloading image {object_key}')
-    obj_stream = s3_client.get_object(
+    obj = s3_client.get_object(
         Bucket=bucket_name, Key=object_key
     )
-    obj = obj_stream['Payload'].read()
     logger.info(f'object: {obj}')
     if not obj.get('ContentLength') or obj.get('ContentLength') == 0:
         logger.info(f"File {object_key} has 0 size")
