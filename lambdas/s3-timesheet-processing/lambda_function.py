@@ -261,5 +261,6 @@ def lambda_handler(event, context):
     logger.info(event)
     if event['Records']:
         for record in event['Records']:
+            logger.info(f"record {record}")  # for parsing error investigation
             process_s3_event(record['body'])
     return event
