@@ -296,6 +296,12 @@ spec:
               aws_statistics:
               - Average 
             - aws_dimensions:
+              - ReplicationInstanceIdentifier
+              aws_metric_name: ChangeDataCapture
+              aws_namespace: AWS/DMS
+              aws_statistics:
+              - Sum
+            - aws_dimensions:
               - IdentityType
               - IdentityName
               aws_metric_name: DeliveryAttempts
