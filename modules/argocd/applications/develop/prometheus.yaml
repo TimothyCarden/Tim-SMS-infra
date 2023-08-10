@@ -32,6 +32,14 @@ spec:
               alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
             hosts: 
               - "grafana.dev.actriv.com"
+          grafana.ini:
+            security:
+              cookie_secure: false
+            server:
+              domain: "grafana.dev.actriv.com"
+              protocol: https
+              root_url: "%(protocol)s://%(domain)s"
+              serve_from_sub_path: true
         prometheus:
           prometheusSpec:
             additionalScrapeConfigs:
