@@ -40,9 +40,8 @@ def get_or_create_cognito_sub(email):
                     'Value': 'True'
                 }
             ],
-            DesiredDeliveryMediums='EMAIL',
-            ForceAliasCreation=False,
-            MessageAction='SUPPRESS'
+            DesiredDeliveryMediums=['EMAIL'],
+            ForceAliasCreation=False
         )
         return get_cognito_sub(user)
     except ClientError as client_error:
