@@ -297,7 +297,8 @@ spec:
               - Average 
             - aws_dimensions:
               - ReplicationInstanceIdentifier
-              aws_metric_name: ChangeDataCapture
+              - TaskName
+              aws_metric_name: CDCIncomingChanges
               aws_namespace: AWS/DMS
               aws_statistics:
               - Sum
