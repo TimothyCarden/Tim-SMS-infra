@@ -134,7 +134,8 @@ def lambda_handler(event, context):
         sql = """select ctms_id,
                         cell_phone
                    from workforce.provider 
-                  where status = 'Active'
+                  where
+                    status in ('Active', 'Prospect')
                     and cell_phone is not null
                     and cognito_sub is null"""
         with connection.cursor(name='fetch_active_providers', cursor_factory=psycopg2.extras.RealDictCursor) as cur:
