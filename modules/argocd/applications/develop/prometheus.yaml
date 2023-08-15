@@ -69,6 +69,9 @@ spec:
                   selectors:
                     - role: "pod"
                       label: "app.kubernetes.io/name=facility-app"
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_pod_name]
+                  target_label: pod_name
           enabled: true
           serviceAccount:
             create: true
