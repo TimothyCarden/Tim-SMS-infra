@@ -58,6 +58,17 @@ spec:
               scrape_interval: 30s  
               static_configs:
                 - targets: ['cloudwatch-exporter-prometheus-cloudwatch-exporter.monitoring.svc:9106']
+            - job_name: 'test-targets'
+              scrape_interval: 5s
+              metrics_path: '/metrics'
+              kubernetes_sd_configs:
+                - role: pod
+                  namespaces:
+                    names:
+                      - default
+                  selectors:
+                    - role: "pod"
+                      label: "app.kubernetes.io/name=facility-app"
           enabled: true
           serviceAccount:
             create: true
