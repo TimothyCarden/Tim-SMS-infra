@@ -19,13 +19,44 @@ def send_response(data, status_code):
         "Payload": json.dumps(data)
     }
 
+
 def get_cognito_sub(user):
     attributes = user['User']['Attributes']
     for attribute in attributes:
         if attribute['Name'] == 'sub':
             return attribute['Value']
 
+
 def get_or_create_cognito_sub(email):
+    users = cognito_client.list_users(
+        UserPoolId=facility_manager_user_pool_id,
+        AttributesToGet=[],
+        Filter=f'email ^= \"{email}\"'
+    )
+    if users.get('Users') is not None and users.get('Users'):
+        user = users.get('Users')[0]
+        resend_invite2(email)
+        return user['Username']
+    else:
+        return create_new_manager(email)
+
+
+def resend_invite2(email):
+    try:
+        user = cognito_client.admin_create_user(
+            UserPoolId=facility_manager_user_pool_id,
+            Username=email,
+            DesiredDeliveryMediums=['EMAIL'],
+            ForceAliasCreation=False,
+            MessageAction="RESEND"
+        )
+    except ClientError as client_error:
+        logger.error(client_error)
+    except Exception as ex:
+        logger.error(ex)
+
+
+def create_new_manager(email):
     try:
         user = cognito_client.admin_create_user(
             UserPoolId=facility_manager_user_pool_id,
