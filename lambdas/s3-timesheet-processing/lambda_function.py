@@ -153,7 +153,8 @@ def process_credentials(bucket_name, object_key, cur):
         if path.startswith('certifications'):
             object_type = 'certification'
         if path.endswith('.original'):
-            id = path.split('.')[0]
+            idsp = path.split('.')[0]
+            id = idsp.split('_')[0] if '_' in idsp else idsp
             logger.info(f'{object_type}Id={id}')
             obj, file_extension = get_object(bucket_name, object_key)
             thumbnail_link, thumbnail_extension = make_thumbnail(bucket_name, object_key, obj)
