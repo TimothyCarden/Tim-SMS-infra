@@ -14,12 +14,12 @@ facility_manager_user_pool_id = os.environ.get('FACILITY_MANAGER_USER_POOL_ID')
 
 def switch_user_enabled(email, activate):
     if activate:
-        cognito_client.admin_disable_user(
+        cognito_client.admin_enable_user(
             UserPoolId=facility_manager_user_pool_id,
             Username=email
         )
     else:
-        cognito_client.admin_enable_user(
+        cognito_client.admin_disable_user(
             UserPoolId=facility_manager_user_pool_id,
             Username=email
         )
