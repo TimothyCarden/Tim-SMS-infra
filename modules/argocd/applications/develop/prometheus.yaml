@@ -16,6 +16,15 @@ spec:
     helm:
       values: |
         grafana:
+          persistence:
+            enabled: true
+            type: pvc
+            storageClassName: default
+            accessModes:
+            - ReadWriteOnce
+            size: 4Gi
+            finalizers:
+            - kubernetes.io/pvc-protection
           env:
             GF_SERVER_ROOT_URL: https://grafana.dev.actriv.com
             GF_SERVER_SERVE_FROM_SUB_PATH: 'true'
