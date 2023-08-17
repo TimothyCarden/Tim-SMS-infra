@@ -240,7 +240,7 @@ def make_thumbnail(bucket_name, object_key, obj):
 
     if file_extension not in valid_extensions:
         logger.error(f"File extension {file_extension} is not valid")
-        return None
+        return None, None
 
     if file_extension in image_extensions:
         logger.info('resizing image')
@@ -258,7 +258,7 @@ def make_thumbnail(bucket_name, object_key, obj):
             return uploaded_key, "jpeg"
         else:
             logger.error("Failed to process pdf to image")
-            return None
+            return None, None
 
 
 def lambda_handler(event, context):
