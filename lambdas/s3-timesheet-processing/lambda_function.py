@@ -29,7 +29,7 @@ size = 1024, 1024
 
 image_extensions = ['png', 'jpeg', 'jpg']
 pdf_extensions = ['pdf']
-valid_extensions = ['txt', 'docx'] + image_extensions + pdf_extensions
+valid_extensions = ['txt', 'docx', 'xls'] + image_extensions + pdf_extensions
 
 
 def get_secret(secret_name):
