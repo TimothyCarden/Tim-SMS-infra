@@ -11,6 +11,7 @@ import psycopg2
 from PIL import Image, ImageOps
 from botocore.exceptions import ClientError
 from pdf2image import convert_from_bytes
+from pdf2image.exceptions import PDFPageCountError
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -250,7 +251,11 @@ def make_thumbnail(bucket_name, object_key, obj):
 
     if file_extension in pdf_extensions:
         logger.info("PDF to image")
-        buffer = pdf_to_image(bytes(obj['Body'].read()))
+        try:
+            buffer = pdf_to_image(bytes(obj['Body'].read()))
+        except PDFPageCountError as error:
+            logger.error(error)
+            return None, None
         if buffer:
             uploaded_key = upload_to_s3(bucket_name, head,
                                         tail.replace(f'.{file_extension}.original', '.jpeg.original'), buffer
