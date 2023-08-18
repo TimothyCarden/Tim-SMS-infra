@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     try:
         conn = get_connection()
         with conn.cursor() as cur:
-            sql = "update workforce.client_facility_manager set last_login_date = %s where lower(email) = lower(%s)"
+            sql = "update workforce.client_facility_manager set last_login_date = %s, status = 'active' where lower(email) = lower(%s)"
             cur.execute(sql, (datetime.datetime.now(), event['request']['userAttributes']['email']))
             conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
