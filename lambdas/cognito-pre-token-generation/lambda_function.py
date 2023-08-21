@@ -87,9 +87,7 @@ def lambda_handler(event, context):
                     'facility_id': record[0],
                     'facility_ctms_id': record[1],
                     'is_company': record[2],
-                    'is_actriv_admin': record[3],
-                    'company_children': record[4]
-                }
+                    'is_actriv_admin': record[3]                }
             }
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
