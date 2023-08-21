@@ -105,7 +105,7 @@ def get_ctms_id_by_id(actrus_id):
         conn = get_connection()
         with conn.cursor() as cur:
             sql = "select id from workforce.client_facility where ctms_id = %s"
-            cur.execute(sql, int(actrus_id))
+            cur.execute(sql, [int(actrus_id)])
             records = cur.fetchall()
             if len(records) == 0:
                 raise Exception(f"Facility with ctms id {actrus_id} doesn't exist")
