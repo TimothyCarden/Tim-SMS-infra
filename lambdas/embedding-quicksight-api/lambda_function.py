@@ -57,7 +57,7 @@ cache = SecretCache()
 @InjectSecretString(os.environ['DB_PASSWORD'], cache)
 def get_connection(password, username, jdbc_url):
     try:
-        logger.info("getting connection from db")
+        logger.info("getting connection from db - 2")
         logger.info("getting connection from db - url : %s" % jdbc_url)
         logger.info("getting connection from db - user: %s" % username)
         conn = psycopg2.connect(dsn=jdbc_url[5:jdbc_url.index('?')], user=username, password=password,
