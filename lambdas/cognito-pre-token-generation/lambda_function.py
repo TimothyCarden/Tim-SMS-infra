@@ -68,10 +68,12 @@ def lambda_handler(event, context):
         conn = get_connection()
         with conn.cursor() as cur:
             email = event['request']['userAttributes']['email']
-            sql = """select cf.id, cf.ctms_id,cf.is_company
+            sql = """select cf.id, cf.ctms_id,cf.is_company, cfm.is_actriv_admin, array_agg(ccf.id)
                      from workforce.client_facility_manager cfm
                      left join workforce.client_facility cf on cfm.client_facility_id = cf.id
-                     where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s) """
+                     left join workforce.client_facility ccf on ccf.company_client_facility_id = cf.id
+                     where lower(cf.status) = 'active' and  lower(cfm.email) = lower(%s) 
+                     group by cf.id, cf.ctms_id, cf.is_company, cfm.is_actriv_admin """
             cur.execute(sql, [email])
             records = cur.fetchall()
             if len(records) > 1:
@@ -84,7 +86,9 @@ def lambda_handler(event, context):
                 'claimsToAddOrOverride': {
                     'facility_id': record[0],
                     'facility_ctms_id': record[1],
-                    'is_company': record[2]
+                    'is_company': record[2],
+                    'is_actriv_admin': record[3],
+                    'company_children': record[4]
                 }
             }
     except (Exception, psycopg2.DatabaseError) as error:
