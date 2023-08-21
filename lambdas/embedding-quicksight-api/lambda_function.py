@@ -58,6 +58,8 @@ cache = SecretCache()
 def get_connection(password, username, jdbc_url):
     try:
         logger.info("getting connection from db")
+        logger.info("getting connection from db - url : %s" % jdbc_url)
+        logger.info("getting connection from db - user: %s" % username)
         conn = psycopg2.connect(dsn=jdbc_url[5:jdbc_url.index('?')], user=username, password=password,
                                 connect_timeout=5)
         logger.info("SUCCESS: Connection to RDS PostgreSQL instance succeeded")
