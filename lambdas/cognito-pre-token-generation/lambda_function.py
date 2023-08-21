@@ -82,13 +82,15 @@ def lambda_handler(event, context):
                 raise Exception(f"Manager with email: {email} doesn't exist")
             record = records[0]
             logger.info(record)
-            event['response']['claimsOverrideDetails'] = {
-                'claimsToAddOrOverride': {
-                    'facility_id': record[0],
-                    'facility_ctms_id': record[1],
-                    'is_company': record[2],
-                    'is_actriv_admin': record[3]                }
+            claims = {
+                'facility_id': record[0],
+                'facility_ctms_id': record[1],
+                'is_company': record[2],
+                'is_actriv_admin': record[3],
+                'company_children': ','.join(str(ch) for ch in record[4]) if record[4] else ''
             }
+            logger.info(claims)
+            event['response']['claimsOverrideDetails'] = {'claimsToAddOrOverride': claims}
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         raise error
