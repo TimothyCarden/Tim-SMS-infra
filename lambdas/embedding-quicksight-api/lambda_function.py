@@ -55,7 +55,7 @@ cache = SecretCache()
 @InjectSecretString(os.environ['DB_URL'], cache)
 @InjectSecretString(os.environ['DB_USERNAME'], cache)
 @InjectSecretString(os.environ['DB_PASSWORD'], cache)
-def get_connection(password, username, jdbc_url):
+def get_connection(password, jdbc_url, username):
     try:
         logger.info("getting connection from db - 2")
         logger.info("getting connection from db - url : %s" % jdbc_url)
