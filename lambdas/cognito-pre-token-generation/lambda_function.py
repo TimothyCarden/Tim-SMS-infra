@@ -87,7 +87,7 @@ def lambda_handler(event, context):
                 'facility_ctms_id': record[1],
                 'is_company': record[2],
                 'is_actriv_admin': record[3],
-                'company_children': ','.join(str(ch) for ch in record[4]) if record[4] else ''
+                'company_children': ','.join(str(ch) for ch in record[4]) if record[4] and record[4][0] else ''
             }
             logger.info(claims)
             event['response']['claimsOverrideDetails'] = {'claimsToAddOrOverride': claims}
