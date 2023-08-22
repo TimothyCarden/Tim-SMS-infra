@@ -106,7 +106,7 @@ def get_ctms_id_by_id(actrus_id):
     try:
         conn = get_connection()
         with conn.cursor() as cur:
-            sql = "select ctms_id from workforce.client_facility where id = %s"
+            sql = "select ctms_id from workforce.client_facility where id = %s "
             cur.execute(sql, [int(actrus_id)])
             records = cur.fetchall()
             if len(records) == 0:
