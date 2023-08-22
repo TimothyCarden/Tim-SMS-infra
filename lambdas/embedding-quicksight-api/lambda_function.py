@@ -111,7 +111,7 @@ def get_ctms_id_by_id(actrus_id):
             records = cur.fetchall()
             if len(records) == 0:
                 raise Exception(f"Facility with ctms id {actrus_id} doesn't exist")
-            return records[0]['id']
+            return str(records[0][0])
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         raise error
