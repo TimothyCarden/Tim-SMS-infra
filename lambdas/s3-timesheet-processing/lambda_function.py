@@ -175,7 +175,7 @@ def process_credentials(bucket_name, object_key, cur):
 
 
 def get_file_extension(obj_key, obj):
-    if obj.get('ContentType') not in ['application/octet-stream', 'binary/octet-stream']:
+    if obj and obj.get('ContentType') not in ['application/octet-stream', 'binary/octet-stream']:
         return obj.get('ContentType').split('/')[1]
 
     _, tail = os.path.split(obj_key)
