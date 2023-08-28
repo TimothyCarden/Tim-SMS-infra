@@ -160,6 +160,7 @@ def lambda_handler(event, context):
                     break
                 for record in results:
                     process_record(cognito_subs, record)
+                print('Processed records: %s' % cognito_subs)
                 update(cognito_subs)
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
