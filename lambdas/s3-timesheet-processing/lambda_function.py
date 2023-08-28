@@ -92,7 +92,7 @@ def resize_image(image_path, file_extension):
                 logger.error(e)
                 return None
     except Exception as e:
-        logger.error("Failed to open image")
+        logger.error(f"Failed to open image: {image_path}")
         logger.error(e)
         return None
 
@@ -175,7 +175,7 @@ def process_credentials(bucket_name, object_key, cur):
 
 
 def get_file_extension(obj_key, obj):
-    if obj.get('ContentType') not in ['application/octet-stream', 'binary/octet-stream']:
+    if obj and obj.get('ContentType') not in ['application/octet-stream', 'binary/octet-stream']:
         return obj.get('ContentType').split('/')[1]
 
     _, tail = os.path.split(obj_key)
@@ -246,6 +246,8 @@ def make_thumbnail(bucket_name, object_key, obj):
     if file_extension in image_extensions:
         logger.info('resizing image')
         buffer = resize_image(BytesIO(obj['Body'].read()), file_extension)
+        if not buffer:
+            return None, None
         uploaded_key = upload_to_s3(bucket_name, head, tail, buffer)
         return uploaded_key, file_extension
 
