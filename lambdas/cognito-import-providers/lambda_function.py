@@ -119,9 +119,22 @@ def update(cognito_subs):
 
 def process_record(cognito_subs, record):
     ctms_id = record['ctms_id']
+    debug_provider_cell_phone = record['cell_phone']
+
+    if debug_provider_cell_phone == '206-637-8428':
+        logger.info('Got bad provider in process_record before normalize_phone')
+
     phone = normalize_phone(record['cell_phone'])
+
+    if debug_provider_cell_phone == '206-637-8428':
+        logger.info('Got bad provider in process_record after normalize_phone')
+
     if phone:
+        if debug_provider_cell_phone == '206-637-8428':
+            logger.info('Got bad provider in process_record before get_or_create_cognito_sub')
         cognito_sub = get_or_create_cognito_sub(phone)
+        if debug_provider_cell_phone == '206-637-8428':
+            logger.info('Got bad provider in process_record after get_or_create_cognito_sub')
         print(
             f'Creating provider user for ctms_id: {ctms_id} phone: {phone} cognito_sub: {cognito_sub}')
         cognito_subs.append((ctms_id, cognito_sub))
