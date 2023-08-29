@@ -101,6 +101,7 @@ def get_or_create_cognito_sub(phone):
 
 def update(cognito_subs):
     conn = pg_database_conn()
+   logger.info('cognito_subs: ' + cognito_subs)
     try:
         with conn.cursor() as cur:
             execute_values(cur, """UPDATE workforce.provider as provider
