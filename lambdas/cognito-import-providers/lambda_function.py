@@ -164,7 +164,7 @@ def lambda_handler(event, context):
             cur.execute(sql)
             cognito_subs = []
             while True:
-                results = cur.fetchmany(250)
+                results = cur.fetchmany(50)
                 if not results:
                     break
                 for record in results:
