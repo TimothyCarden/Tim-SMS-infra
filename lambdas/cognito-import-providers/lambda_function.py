@@ -117,6 +117,26 @@ def update(cognito_subs):
             conn.close()
 
 
+def print_duplicates_as_error():
+    conn = None
+    try:
+        conn = pg_database_conn()
+        with conn.cursor() as cur:
+            sql = "select normalized_cell_phone from workforce.provider where normalized_cell_phone is not null group by normalized_cell_phone having count(*) > 1 "
+            cur.execute(sql, [])
+            records = cur.fetchall()
+            if len(records) == 0:
+                print('No phone duplicates')
+            else:
+                logger.error(f"Phone duplicates: {records}")
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+        raise error
+    finally:
+        if conn is not None:
+            conn.close()
+
+
 def process_record(cognito_subs, record):
     ctms_id = record['ctms_id']
     debug_provider_cell_phone = record['cell_phone']
@@ -145,12 +165,13 @@ def lambda_handler(event, context):
     try:
         connection = pg_database_conn()
         sql = """select ctms_id,
-                        cell_phone
+                        normalized_cell_phone
                    from workforce.provider 
                   where
                     status in ('Active', 'Prospect')
-                    and cell_phone is not null
-                    and cognito_sub is null"""
+                    and normalized_cell_phone is not null 
+                    and cognito_sub is null 
+                    and normalized_cell_phone not in (select normalized_cell_phone from workforce.provider where normalized_cell_phone is not null group by normalized_cell_phone having count(*) > 1)"""
         with connection.cursor(name='fetch_active_providers', cursor_factory=psycopg2.extras.RealDictCursor) as cur:
             cur.execute(sql)
             cognito_subs = []
@@ -162,6 +183,7 @@ def lambda_handler(event, context):
                     process_record(cognito_subs, record)
                 print('Processed records: %s' % cognito_subs)
                 update(cognito_subs)
+        print_duplicates_as_error()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         raise error
