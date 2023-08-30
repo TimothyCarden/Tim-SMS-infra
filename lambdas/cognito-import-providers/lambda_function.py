@@ -139,7 +139,7 @@ def print_duplicates_as_error():
 
 def process_record(cognito_subs, record):
     ctms_id = record['ctms_id']
-    phone = normalize_phone(record['cell_phone'])
+    phone = normalize_phone(record['normalized_cell_phone'])
 
     if phone:
         cognito_sub = get_or_create_cognito_sub(phone)
