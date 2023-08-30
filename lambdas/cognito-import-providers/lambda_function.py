@@ -139,22 +139,10 @@ def print_duplicates_as_error():
 
 def process_record(cognito_subs, record):
     ctms_id = record['ctms_id']
-    debug_provider_cell_phone = record['cell_phone']
-
-    if debug_provider_cell_phone == '206-637-8428':
-        logger.info('Got bad provider in process_record before normalize_phone')
-
     phone = normalize_phone(record['cell_phone'])
 
-    if debug_provider_cell_phone == '206-637-8428':
-        logger.info('Got bad provider in process_record after normalize_phone')
-
     if phone:
-        if debug_provider_cell_phone == '206-637-8428':
-            logger.info('Got bad provider in process_record before get_or_create_cognito_sub')
         cognito_sub = get_or_create_cognito_sub(phone)
-        if debug_provider_cell_phone == '206-637-8428':
-            logger.info('Got bad provider in process_record after get_or_create_cognito_sub')
         print(
             f'Creating provider user for ctms_id: {ctms_id} phone: {phone} cognito_sub: {cognito_sub}')
         cognito_subs.append((ctms_id, cognito_sub))
@@ -171,7 +159,7 @@ def lambda_handler(event, context):
                     status in ('Active', 'Prospect')
                     and normalized_cell_phone is not null 
                     and cognito_sub is null 
-                    and normalized_cell_phone not in (select normalized_cell_phone from workforce.provider where normalized_cell_phone is not null group by normalized_cell_phone having count(*) > 1)"""
+                    and normalized_cell_phone not in (select p.normalized_cell_phone from workforce.provider p where p.normalized_cell_phone is not null group by p.normalized_cell_phone having count(*) > 1)"""
         with connection.cursor(name='fetch_active_providers', cursor_factory=psycopg2.extras.RealDictCursor) as cur:
             cur.execute(sql)
             cognito_subs = []
