@@ -64,6 +64,7 @@ def update_cognito_phone(cognito_sub, new_phone):
         )
         return get_phone_from_attributes(user)
     except ClientError as client_error:
+        logger.error(client_error)
         message = client_error.response['message']
         print(f'Updating record error {cognito_sub}. Error message: {message}')
         return None
