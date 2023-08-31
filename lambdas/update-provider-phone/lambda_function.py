@@ -46,7 +46,6 @@ def get_phone_from_attributes(cognito_user):
         if attribute['Name'] == 'phone_number':
             return attribute['Value']
 
-
 def update_cognito_phone(cognito_sub, new_phone):
     try:
         user = cognito_client.admin_update_user_attributes(
@@ -63,32 +62,27 @@ def update_cognito_phone(cognito_sub, new_phone):
                 }
             ]
         )
-        return get_phone_from_attributes(user)
     except ClientError as client_error:
         logger.error(client_error)
         message = client_error.response['message']
         print(f'Updating record error {cognito_sub}. Error message: {message}')
-        return None
 
 def lambda_handler(event, context):
 
     cognito_sub = event.get("cognito_sub")
-    new_phone = event.get("cell_phone")
+    cell_phone = event.get("cell_phone")
 
     try:
-        phone = phonenumbers.parse(new_phone, None)
+        phone = phonenumbers.parse(cell_phone, None)
         if not phonenumbers.is_possible_number(phone):
             raise Exception()
     except:
-        logger.info(f'Bad phone number format {new_phone}')
-        return send_response({"error_message": f"Wrong phone format {new_phone}"}, 400)
+        logger.info(f'Bad phone number format {cell_phone}')
+        return send_response({"error_message": f"Wrong phone format {cell_phone}"}, 400)
 
     if not cognito_sub:
         return send_response({"error_message": f"Cognito sub is missing in request"}, 400)
 
-    cell_phone = update_cognito_phone(cognito_sub, new_phone)
+    update_cognito_phone(cognito_sub, cell_phone)
 
-    if cell_phone:
-        return send_response({"cell_phone": cell_phone}, 200)
-    else:
-        return send_response({"error_message": "Something went wrong"}, 400)
+    return send_response({"cell_phone": cell_phone}, 200)
