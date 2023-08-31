@@ -2,7 +2,7 @@
 
 pip3 install --target ./package -r requirements.txt
 cd package || exit
-zip -r ../cognito-update-provider-phone.zip .
+zip -r ../update-provider-phone.zip .
 cd ../
-zip -g cognito-update-provider-phone.zip lambda_function.py
+zip -g update-provider-phone.zip lambda_function.py
 rm -R ./package
