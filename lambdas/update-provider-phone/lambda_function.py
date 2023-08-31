@@ -40,6 +40,7 @@ def send_response(data, status_code):
     }
 
 def get_phone_from_attributes(cognito_user):
+    logger.info(cognito_user)
     attributes = cognito_user['User']['Attributes']
     for attribute in attributes:
         if attribute['Name'] == 'phone_number':
