@@ -1,3 +1,1 @@
-aws-psycopg2
-aws-secretsmanager-caching
 phonenumberslite

@@ -1,36 +1,15 @@
 import logging
 import os
-import sys
 import boto3
 import json
 import phonenumbers
-import psycopg2
-import psycopg2.extras
-from aws_secretsmanager_caching import SecretCache, InjectSecretString
 from botocore.exceptions import ClientError
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 cognito_client = boto3.client('cognito-idp')
-cache = SecretCache()
 
 PROVIDER_USER_POOL_ID = os.environ['PROVIDER_USER_POOL_ID']
-
-
-@InjectSecretString(os.environ['DB_URL'], cache)
-@InjectSecretString(os.environ['DB_USERNAME'], cache)
-@InjectSecretString(os.environ['DB_PASSWORD'], cache)
-def pg_database_conn(password, username, jdbc_url):
-    try:
-        logger.info("getting connection from db")
-        conn = psycopg2.connect(dsn=jdbc_url[5:jdbc_url.index('?')], user=username, password=password,
-                                connect_timeout=5)
-        logger.info("SUCCESS: Connection to RDS PostgreSQL instance succeeded")
-        return conn
-    except psycopg2.Error as e:
-        logger.error("ERROR: Unexpected error: Could not connect to PostgreSQL instance.")
-        logger.error(e)
-        sys.exit()
 
 
 def send_response(data, status_code):
