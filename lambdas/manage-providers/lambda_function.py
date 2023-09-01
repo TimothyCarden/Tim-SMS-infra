@@ -67,21 +67,55 @@ def get_or_create_cognito_sub(phone):
         return None
 
 
+def delete_user(cognito_sub):
+    try:
+        cognito_client.admin_delete_user(
+            UserPoolId=provider_user_pool_id,
+            Username=cognito_sub
+        )
+        return cognito_sub
+    except ClientError as client_error:
+        message = client_error.response['message']
+        print(f'cognito_sub: {cognito_sub}. Error: {message}')
+        return None
+    except Exception as error:
+        print(error)
+        return None
+
+
 def lambda_handler(event, context):
     logger.info(event)
-    cell_phone = event.get("cell_phone")
 
-    try:
-        phone = phonenumbers.parse(cell_phone, None)
-        if not phonenumbers.is_possible_number(phone):
-            raise Exception()
-    except:
-        logger.info(f'Bad phone number format {cell_phone}')
-        return send_response({"error_message": f"Wrong phone format {cell_phone}"}, 400)
+    action = event.get("action")
+    if not action:
+        return send_response({"error_message": "The action field is empty."}, 400)
+    elif action.lower() == 'create':
+        cell_phone = event.get("cell_phone")
+        try:
+            phone = phonenumbers.parse(cell_phone, None)
+            if not phonenumbers.is_possible_number(phone):
+                raise Exception()
+        except:
+            logger.info(f'Bad phone number format {cell_phone}')
+            return send_response({"error_message": f"Wrong phone format {cell_phone}"}, 400)
 
-    cognito_sub = get_or_create_cognito_sub(cell_phone)
-    if cognito_sub:
-        return send_response({"cognito_sub": cognito_sub}, 200)
+        cognito_sub = get_or_create_cognito_sub(cell_phone)
+        if cognito_sub:
+            return send_response({"cognito_sub": cognito_sub}, 200)
+        else:
+            return send_response({"error_message": "Something went wrong"}, 400)
+    elif action.lower() == 'delete':
+        cognito_sub = event.get("cognito_sub")
+        if not cognito_sub:
+            return send_response({"error_message": "cognito_sub is missing"}, 400)
+
+        result = delete_user(cognito_sub)
+        if result:
+            return send_response({"cognito_sub": result}, 200)
+        else:
+            return send_response({"error_message": "Something went wrong"}, 400)
     else:
-        return send_response({"error_message": "Something went wrong"}, 400)
+        return send_response({"error_message": f"Unsupported action: {action}."}, 400)
+
+
 
