@@ -52,7 +52,7 @@ def normalize_phone(phone):
         digits_phone = "+" + digits_phone
     try:
         parsed_phone = phonenumbers.parse(digits_phone)
-        if not phonenumbers.is_valid_number(parsed_phone):
+        if not phonenumbers.is_possible_number(parsed_phone):
             raise Exception()
         return phonenumbers.format_number(parsed_phone, phonenumbers.PhoneNumberFormat.E164)
     except Exception:
