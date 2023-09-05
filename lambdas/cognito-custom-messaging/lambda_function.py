@@ -61,7 +61,7 @@ def get_facility_name_by_manager(facility_manager_email):
 
 def get_facility_manager_by_email(facility_manager_email):
     sql = """
-        select CONCAT(last_name, ' ', first_name) AS full_name
+        select CONCAT(first_name, ' ', last_name) AS full_name
           from workforce.client_facility_manager cfm
          where lower(cfm.email) = lower(%s)
     """
