@@ -59,6 +59,28 @@ def get_facility_name_by_manager(facility_manager_email):
             conn.close()
     raise Exception(f"Cannot find facility manager with email {facility_manager_email}")
 
+def get_facility_manager_by_email(facility_manager_email):
+    sql = """
+        select CONCAT(last_name, ' ', first_name) AS full_name
+          from workforce.client_facility_manager cfm
+         where lower(cfm.email) = lower(%s)
+    """
+    conn = None
+    try:
+        conn = get_connection()
+        with conn.cursor() as cur:
+            cur.execute(sql, (facility_manager_email,))
+            record = cur.fetchone()
+            if record:
+                return record[0]
+    except (Exception, psycopg2.DatabaseError) as error:
+        logger.error(error)
+        raise error
+    finally:
+        if conn is not None:
+            conn.close()
+    raise Exception(f"Cannot find facility manager with email {facility_manager_email}")
+
 
 def confirm_sign_up(request):
     email = request.get('userAttributes').get('email')
@@ -69,7 +91,8 @@ def confirm_sign_up(request):
         'user_name': request.get('usernameParameter'),
         'actrusfm_url': domain,
         'verification_code': code,
-        'facility_name': get_facility_name_by_manager(email)
+        'facility_name': get_facility_name_by_manager(email),
+        'facility_manager_name': get_facility_manager_by_email(email)
     })
     return {
         'emailSubject': 'Signup Confirmation',
