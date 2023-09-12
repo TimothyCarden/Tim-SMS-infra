@@ -119,7 +119,6 @@
     "ValidationQueryCdcDelaySeconds": 0,
     "PartitionSize": 10000
   },
-
   "PostProcessingRules": null,
   "CharacterSetSettings": {
     "CharacterSetSupport": {
