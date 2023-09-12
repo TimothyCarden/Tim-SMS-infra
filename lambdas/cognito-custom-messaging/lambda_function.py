@@ -106,7 +106,8 @@ def recover_password(request):
     template = env.get_template('recover_password.html')
     output = template.render({
         'user_name': email,
-        'reset_link': f'{domain}/auth/reset-password?email={email}&code={code}'
+        'reset_link': f'{domain}/auth/reset-password?email={email}&code={code}',
+        'actrusfm_url': domain
     })
     return {
         'emailSubject': 'Password Recovery',
