@@ -119,8 +119,14 @@
     "ValidationQueryCdcDelaySeconds": 0,
     "PartitionSize": 10000
   },
+
   "PostProcessingRules": null,
-  "CharacterSetSettings": null,
+  "CharacterSetSettings": {
+    "CharacterSetSupport": {
+      "CharacterSet": "UTF-8",
+      "ReplaceWithCharacterCodePoint": 0
+    }
+  },
   "LoopbackPreventionSettings": null,
   "BeforeImageSettings": null
 }
