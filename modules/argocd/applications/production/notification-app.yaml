@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: notification-app
+  name: notification-app-prod
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: notification-app=082380147777.dkr.ecr.us-west-2.amazonaws.com/actriv-prod-notification-app-repository
-    argocd-image-updater.argoproj.io/notification-app.helm.image-name: image.repository
-    argocd-image-updater.argoproj.io/notification-app.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/notification-app.update-strategy: latest
+    argocd-image-updater.argoproj.io/image-list: notification-app-prod=082380147777.dkr.ecr.us-west-2.amazonaws.com/actriv-prod-notification-app-repository
+    argocd-image-updater.argoproj.io/notification-app-prod.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/notification-app-prod.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/notification-app-prod.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: develop
 spec:
@@ -17,7 +17,7 @@ spec:
     targetRevision: develop
     path: helm/notification-app
     helm:
-      releaseName: notification-app
+      releaseName: notification-app-prod
       valueFiles:
       - prod.yaml
   syncPolicy:

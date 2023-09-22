@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: facility-app
+  name: facility-app-prod
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: facility-app=082380147777.dkr.ecr.us-west-2.amazonaws.com/actriv-prod-facility-app-repository
-    argocd-image-updater.argoproj.io/facility-app.helm.image-name: image.repository
-    argocd-image-updater.argoproj.io/facility-app.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/facility-app.update-strategy: latest
+    argocd-image-updater.argoproj.io/image-list: facility-app-prod=082380147777.dkr.ecr.us-west-2.amazonaws.com/actriv-prod-facility-app-repository
+    argocd-image-updater.argoproj.io/facility-app-prod.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/facility-app-prod.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/facility-app-prod.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/git-branch: develop
 spec:
@@ -17,7 +17,7 @@ spec:
     targetRevision: develop
     path: helm/facility-app
     helm:
-      releaseName: facility-app
+      releaseName: facility-app-prod
       valueFiles:
       - prod.yaml
   syncPolicy:
