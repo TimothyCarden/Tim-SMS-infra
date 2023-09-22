@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://argoproj.github.io/argo-helm/
+    chart: argo-rollouts
+    targetRevision: 2.31.0
+    helm:
+      values: |
+        dashboard:
+          enabled: true
+          ingress:
+            enabled: true
+            pathType: Prefix
+            paths:
+                - /
+            annotations:
+              nginx.ingress.kubernetes.io/auth-type: "basic"
+              nginx.ingress.kubernetes.io/auth-secret: "rollouts-basic-auth"
+              nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:082380147777:certificate/0d41853e-af3d-4279-bc37-57697eb97f82"
+              external-dns.alpha.kubernetes.io/hostname: "argo-rollouts.app.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+            hosts: 
+              - "argo-rollouts.app.actriv.com"
+        extraObjects:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: rollouts-basic-auth
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: rollouts-basic-auth
+            data:
+            - secretKey: auth
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/ArgoRollouts
+                property: auth
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    namespace: argo-rollouts
+    server: https://kubernetes.default.svc
