@@ -1,0 +1,207 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 46.6.0
+    chart: kube-prometheus-stack
+    helm:
+      values: |
+        grafana:
+          persistence:
+            enabled: true
+            type: pvc
+            storageClassName: default
+            accessModes:
+            - ReadWriteOnce
+            size: 4Gi
+            finalizers:
+            - kubernetes.io/pvc-protection
+          env:
+            GF_SERVER_ROOT_URL: https://grafana.app.actriv.com
+            GF_SERVER_SERVE_FROM_SUB_PATH: 'true'
+          admin:
+            existingSecret: "grafana-secrets-ext"
+          ingress:
+            enabled: true
+            pathType: Prefix
+            paths:
+                - /
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:082380147777:certificate/0d41853e-af3d-4279-bc37-57697eb97f82"
+              external-dns.alpha.kubernetes.io/hostname: "grafana.app.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+            hosts: 
+              - "grafana.app.actriv.com"
+        prometheus:
+          prometheusSpec:
+            additionalScrapeConfigs:
+            - job_name: facility-app-metrics
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['facility-app.default.svc:80']
+            - job_name: provider-app-metrics
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['provider-app.default.svc:80']
+            - job_name: notification-app-metrics
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['notification-app.default.svc:80']
+            - job_name: cloudwatch-exporter
+              metrics_path: '/metrics'
+              scrape_interval: 30s  
+              static_configs:
+                - targets: ['cloudwatch-exporter-prometheus-cloudwatch-exporter.monitoring.svc:9106']
+            - job_name: 'facility-app'
+              scrape_interval: 5s
+              metrics_path: '/metrics'
+              kubernetes_sd_configs:
+                - role: pod
+                  namespaces:
+                    names:
+                      - default
+                  selectors:
+                    - role: "pod"
+                      label: "app.kubernetes.io/name=facility-app"
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_pod_name]
+                  target_label: pod_name
+            - job_name: 'provider-app'
+              scrape_interval: 5s
+              metrics_path: '/metrics'
+              kubernetes_sd_configs:
+                - role: pod
+                  namespaces:
+                    names:
+                      - default
+                  selectors:
+                    - role: "pod"
+                      label: "app.kubernetes.io/name=provider-app"
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_pod_name]
+                  target_label: pod_name
+          enabled: true
+          serviceAccount:
+            create: true
+            name: prometheus-service-account
+          pdb:
+            minAvailable: 2
+          service:
+            type: ClusterIP
+            port: 9090
+          ingress:
+            pathType: Prefix
+            enabled: true
+            hosts: 
+              - "prometheus.app.actriv.com"
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              ingressClassName: "nginx"
+              nginx.ingress.kubernetes.io/auth-type: "basic"
+              nginx.ingress.kubernetes.io/auth-secret: "prometheus-basic-auth"
+              nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+              nginx.ingress.kubernetes.io/certificate: "arn:aws:acm:us-west-2:082380147777:certificate/0d41853e-af3d-4279-bc37-57697eb97f82"
+              external-dns.alpha.kubernetes.io/hostname: "prometheus.app.actriv.com"
+              alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              alb.ingress.kubernetes.io/ssl-policy: "ELBSecurityPolicy-2016-08"
+        extraManifests:
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: prometheus-basic-auth
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: prometheus-basic-auth
+            data:
+            - secretKey: auth
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/PrometheusAuth
+                property: auth
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: grafana-admin-external
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: grafana-secrets-ext
+            data:
+            - secretKey: admin-password
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/GrafanaPassword
+                property: admin-password
+            - secretKey: admin-user
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/GrafanaUser
+                property: admin-user
+        - apiVersion: external-secrets.io/v1beta1
+          kind: ExternalSecret
+          metadata:
+            name: aws-credentials
+          spec:
+            refreshInterval: 15s
+            secretStoreRef:
+              name: aws-secretsmanager
+              kind: ClusterSecretStore
+            target:
+              name: aws-credentials
+            data:
+            - secretKey: access_key
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/AwsCredentials
+                property: access_key
+            - secretKey: secret_key
+              remoteRef:
+                conversionStrategy: Default    
+                decodingStrategy: None
+                key: prod/AwsCredentials
+                property: secret_key
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: prometheusagents.monitoring.coreos.com
+      jsonPointers:
+      - /status
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: prometheuses.monitoring.coreos.com
+      jsonPointers:
+      - /status
